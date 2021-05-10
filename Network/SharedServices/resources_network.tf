@@ -13,7 +13,7 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_route_table" "route_table" {
-  name                          = "${var.resource_name}-${var.resource_environment}-rt"
+  name                          = "${var.subnet_name}Subnet-rt"
   resource_group_name           = azurerm_resource_group.resource_group.name
   location                      = azurerm_resource_group.resource_group.location
   disable_bgp_route_propagation = false
