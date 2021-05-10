@@ -38,6 +38,7 @@ stages:
   - job: Evaluate
     continueOnError: false
     steps:
+    - checkout: self
     - task: TerraformInstaller@0
       displayName: 'Terraform Install'
       inputs:
