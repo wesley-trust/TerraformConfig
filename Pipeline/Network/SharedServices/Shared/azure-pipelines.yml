@@ -23,6 +23,7 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Validate'
       inputs:
@@ -51,6 +52,7 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Plan'
       inputs:
@@ -83,9 +85,11 @@ stages:
               backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
               backendAzureRmContainerName: '$(backendAzureRmContainerName)'
               backendAzureRmKey: '$(backendAzureRmKey)'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
           - task: TerraformTaskV1@0
             displayName: 'Terraform Apply'
             inputs:
               provider: 'azurerm'
               command: 'apply'
               environmentServiceNameAzureRM: '$(backendServiceArm)'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
