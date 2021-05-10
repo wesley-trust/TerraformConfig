@@ -59,6 +59,7 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: '$(backendServiceArm)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
 - stage: Apply
   pool:
     vmImage: 'ubuntu-latest'
