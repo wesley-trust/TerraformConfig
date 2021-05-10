@@ -28,6 +28,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
