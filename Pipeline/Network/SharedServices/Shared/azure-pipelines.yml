@@ -1,5 +1,4 @@
 variables:
-- group: 'ServicePrincipal'
 - group: 'terraform-backend'
 - group: 'terraform-system'
 stages:
@@ -19,6 +18,11 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
+        backendServiceArm: '$(backendServiceArm)'
+        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+        backendAzureRmKey: '$(backendAzureRmKey)'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Validate'
       inputs:
@@ -41,6 +45,11 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
+        backendServiceArm: '$(backendServiceArm)'
+        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+        backendAzureRmKey: '$(backendAzureRmKey)'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Plan'
       inputs:
@@ -68,6 +77,11 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
+              backendServiceArm: '$(backendServiceArm)'
+              backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+              backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+              backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+              backendAzureRmKey: '$(backendAzureRmKey)'
           - task: TerraformTaskV1@0
             displayName: 'Terraform Apply'
             inputs:
