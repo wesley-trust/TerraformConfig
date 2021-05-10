@@ -5,7 +5,7 @@ variable "resource_name" {
 }
 
 variable "resource_address_space" {
-  description = "Desired name for the provisioned resources"
+  description = "Desired address space for the provisioned resources"
   type        = string
   default    = "10.0.0.0/24"
 }
@@ -16,20 +16,20 @@ variable "resource_environment" {
   default    = "Prod"
 }
 
-variable "resource_subnet_name" {
-  description = "Desired name for the provisioned resources"
+variable "subnet_name" {
+  description = "Desired subnet name for the provisioned resources"
   type        = string
   default    = "Infrastructure"
 }
 
-variable "resource_subnet_prefix" {
-  description = "Desired name for the provisioned resources"
+variable "subnet_prefix" {
+  description = "Desired subnet prefix for the provisioned resources"
   type        = string
   default    = "10.0.0.0/24"
 }
 
 variable "resource_location" {
-  description = "Desired location to provision the resources. Eg UK South"
+  description = "Desired location to provision the resources"
   type        = string
   default    = "UK South"
 }

@@ -9,7 +9,7 @@ resource "azurerm_subnet" "subnet" {
   name                 = "${var.subnet_name}Subnet"
   resource_group_name  = azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
-  address_prefixes     = ["${var.resource_subnet_prefix}"]
+  address_prefixes     = ["${var.subnet_prefix}"]
 }
 
 resource "azurerm_route_table" "route_table" {
