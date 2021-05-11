@@ -1,3 +1,4 @@
+# Define variables
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = string

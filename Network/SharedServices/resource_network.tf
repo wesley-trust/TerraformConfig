@@ -1,3 +1,4 @@
+# Define virtual network
 resource "azurerm_virtual_network" "virtual_network" {
   name                = "${var.resource_name}-${var.resource_environment}-vnet"
   address_space       = ["${var.resource_address_space}"]
@@ -25,7 +26,7 @@ resource "azurerm_route_table" "route_table" {
   }
 }
 
-resource "azurerm_subnet_route_table_association" "route_table_association" {
+resource "azurerm_subnet_route_table_association" "association" {
   subnet_id      = azurerm_subnet.subnet.id
   route_table_id = azurerm_route_table.route_table.id
 }
