@@ -37,7 +37,7 @@ variable "subnet_name" {
 
 variable "subnet_prefix" {
   description = "Desired subnet prefixes for the provisioned resources"
-  type        = string
+  type        = list(string)
   default    = ["10.0.0.0/24", "10.0.1.0/24"]
 }
 
