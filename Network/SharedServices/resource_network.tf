@@ -27,6 +27,7 @@ resource "azurerm_route_table" "route_table" {
 }
 
 resource "azurerm_subnet_route_table_association" "association" {
+  for_each       = toset(azurerm_subnet.subnet)
   subnet_id      = azurerm_subnet.subnet[each.key].id
   route_table_id = azurerm_route_table.route_table.id
 }
