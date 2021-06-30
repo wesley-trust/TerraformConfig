@@ -29,16 +29,22 @@ variable "resource_address_space" {
   default     = "10.0.0.0/23"
 }
 
-variable "subnet_name" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-  default     = "Infrastructure"
-}
-
-variable "subnet_prefix" {
-  description = "Desired subnet prefixes for the provisioned resources"
-  type        = list(string)
-  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+variable "subnet" {
+  description = "Desired subnet name and address prefix for the provisioned resources"
+  type = list(object({
+    name           = string
+    address_prefix = string
+  }))
+  default = [
+    {
+      name           = "Infrastructure"
+      address_prefix = "10.0.0.0/24"
+    },
+    {
+      name           = "Infrastructure"
+      address_prefix = "10.0.1.0/24"
+    }
+  ]
 }
 
 variable "resource_location" {
