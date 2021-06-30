@@ -25,7 +25,8 @@ resource "azurerm_route_table" "route_table" {
     next_hop_type  = "Internet"
   }
 }
+
 resource "azurerm_subnet_route_table_association" "association" {
-  subnet_id      = azurerm_subnet.subnet.id
+  subnet_id      = azurerm_subnet.subnet.id[each.key]
   route_table_id = azurerm_route_table.route_table.id
 }
