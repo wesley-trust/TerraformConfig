@@ -45,11 +45,11 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   }
 
   boot_diagnostics {
-    enabled = "true"
+    enabled = true
   }
 
   tags = {
-    environment = "staging"
+    environment = var.service_environment
   }
 
 }
