@@ -35,8 +35,38 @@ variable "resource_name" {
   default     = "ACD"
 }
 
-variable "resource_size" {
-  description = "Desired name for the provisioned resources"
+variable "resource_vm_size" {
+  description = "Desired size for the provisioned resources"
   type        = string
-  default     = "ACD"
+  default     = "Standard_B1s"
+}
+
+variable "resource_vm_sku" {
+  description = "Desired size for the provisioned resources"
+  type        = string
+  default     = "2019-Datacenter-smalldisk"
+}
+
+variable "resource_disk_size" {
+  description = "Desired size for the provisioned resources"
+  type        = string
+  default     = "32"
+}
+
+variable "resource_network_group" {
+  description = "Desired subnet name for the provisioned resources"
+  type        = string
+  default     = "SharedServices-Prod-01-rg"
+}
+
+variable "resource_network_name" {
+  description = "Desired subnet name for the provisioned resources"
+  type        = string
+  default     = "SharedServices-Prod-vnet"
+}
+
+variable "resource_subnet_name" {
+  description = "Desired subnet name for the provisioned resources"
+  type        = string
+  default     = "InfrastructureSubnet-1"
 }
