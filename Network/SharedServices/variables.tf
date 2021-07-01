@@ -29,16 +29,16 @@ variable "resource_address_space" {
   default     = "10.0.0.0/23"
 }
 
-variable "subnet_name" {
+variable "resource_subnet_name" {
   description = "Desired subnet name for the provisioned resources"
   type        = string
   default     = "Infrastructure"
 }
 
-variable "subnet_prefix" {
+variable "resource_cidrsubnets" {
   description = "Desired subnet prefixes for the provisioned resources"
   type        = list(string)
-  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+  default     = cidrsubnets(var.resource_address_space, 1, 1)
 }
 
 variable "resource_location" {

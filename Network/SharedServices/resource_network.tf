@@ -7,15 +7,15 @@ resource "azurerm_virtual_network" "virtual_network" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  for_each             = toset(var.subnet_prefix)
-  name                 = "${var.subnet_name}Subnet-${index(var.subnet_prefix, each.value) + 1}"
+  for_each             = toset(var.resource_cidrsubnets)
+  name                 = "${var.resource_subnet_name}Subnet-${index(var.resource_cidrsubnets, each.value) + 1}"
   resource_group_name  = azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   address_prefixes     = [each.value]
 }
 
 resource "azurerm_route_table" "route_table" {
-  name                          = "${var.subnet_name}Subnet-rt"
+  name                          = "${var.resource_subnet_name}Subnet-rt"
   resource_group_name           = azurerm_resource_group.resource_group.name
   location                      = azurerm_resource_group.resource_group.location
   disable_bgp_route_propagation = false
