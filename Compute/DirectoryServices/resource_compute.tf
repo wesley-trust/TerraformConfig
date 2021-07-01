@@ -26,7 +26,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   size                = var.resource_vm_size
   admin_username      = var.admin_username
   admin_password      = var.admin_password
-  license_type        = "WindowsServer"
+  license_type        = "Windows_Server"
   network_interface_ids = [
     azurerm_network_interface.network_interface.id,
   ]
