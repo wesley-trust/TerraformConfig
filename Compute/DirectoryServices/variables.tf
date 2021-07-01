@@ -70,3 +70,15 @@ variable "resource_subnet_name" {
   type        = string
   default     = "InfrastructureSubnet-1"
 }
+
+variable "admin_username" {
+  description = "Desired username for the provisioned resources"
+  type        = string
+  default     = "wesley"
+}
+
+variable "admin_password" {
+  description = "Desired password for the provisioned resources"
+  type        = string
+  default     = "CheeseCake1987"
+}
