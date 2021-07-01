@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "virtual_network" {
 
 resource "azurerm_subnet" "subnet" {
   for_each             = toset(var.subnet_prefix)
-  name                 = "Subnet-${index(var.subnet_prefix, each.value) + 1}"
+  name                 = "${var.subnet_name}Subnet-${index(var.subnet_prefix, each.value) + 1}"
   resource_group_name  = azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   address_prefixes     = [each.value]
