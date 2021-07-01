@@ -35,12 +35,6 @@ variable "resource_subnet_name" {
   default     = "Infrastructure"
 }
 
-variable "resource_cidrsubnets" {
-  description = "Desired subnet prefixes for the provisioned resources"
-  type        = list(string)
-  default     = cidrsubnets(var.resource_address_space, 1, 1)
-}
-
 variable "resource_location" {
   description = "Desired location to provision the resources"
   type        = string
