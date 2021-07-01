@@ -45,7 +45,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   }
 
   boot_diagnostics {
-    enabled = true
+    storage_account_uri = null
   }
 
   tags = {
