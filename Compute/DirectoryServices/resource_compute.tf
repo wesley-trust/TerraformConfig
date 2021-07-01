@@ -1,14 +1,7 @@
-# Get subnet information
-data "azurerm_subnet" "subnet" {
-  name                 = var.resource_subnet_name
-  virtual_network_name = var.resource_network_name
-  resource_group_name  = var.resource_network_group
-}
-
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
   count               = var.resource_vm_instance_count
-  name                = "${var.resource_environment}-${var.resource_name}${format("%00d", count.index + 1)}-ni"
+  name                = "${var.resource_environment}-${var.resource_name}${format("%02s", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -22,7 +15,7 @@ resource "azurerm_network_interface" "network_interface" {
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
   count               = var.resource_vm_instance_count
-  name                = "${var.resource_environment}-${var.resource_name}${format("%00d", count.index + 1)}-vm"
+  name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = var.resource_vm_size
