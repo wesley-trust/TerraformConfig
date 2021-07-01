@@ -7,7 +7,8 @@ data "azurerm_subnet" "subnet" {
 
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  name                = "${var.resource_environment}-${var.resource_name}-ni"
+  count               = var.resource_vm_instance_count
+  name                = "${var.resource_environment}-${var.resource_name}${count.index + 1}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -20,7 +21,8 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  name                = "${var.resource_environment}-${var.resource_name}-vm"
+  count               = var.resource_vm_instance_count
+  name                = "${var.resource_environment}-${var.resource_name}${count.index + 1}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = var.resource_vm_size
@@ -28,7 +30,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   admin_password      = var.admin_password
   license_type        = "Windows_Server"
   network_interface_ids = [
-    azurerm_network_interface.network_interface.id,
+    element(azurerm_network_interface.vm.*.id, count.index),
   ]
 
   os_disk {

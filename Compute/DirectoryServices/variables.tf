@@ -35,6 +35,12 @@ variable "resource_name" {
   default     = "ACD"
 }
 
+variable "resource_vm_instance_count" {
+  description = "Desired number of the provisioned resources"
+  type        = number
+  default     = "2"
+}
+
 variable "resource_vm_size" {
   description = "Desired size for the provisioned resources"
   type        = string
