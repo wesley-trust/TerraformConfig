@@ -40,7 +40,6 @@ variable "resource_location_az" {
   type        = map(string)
   default = {
     "UK South" = 3
-    "UK West"  = 0
   }
 }
 
