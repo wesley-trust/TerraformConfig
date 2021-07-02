@@ -1,6 +1,6 @@
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  count               = var.resource_instance_count
+  count               = lookup(var.resource_instance_count, var.service_environment, null)
   name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
