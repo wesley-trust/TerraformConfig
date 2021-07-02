@@ -44,15 +44,21 @@ variable "resource_location_az" {
 }
 
 variable "resource_instance_count" {
-  description = "Desired number of the provisioned resources"
-  type        = number
-  default     = "2"
+  description = "Desired number of the provisioned resources for each service environment"
+  type        = map(string)
+  default = {
+    "Prod"    = 2
+    "Prod-DR" = 1
+  }
 }
 
 variable "resource_vm_size" {
-  description = "Desired size for the provisioned resources"
-  type        = string
-  default     = "Standard_B1s"
+  description = "Desired size for the provisioned resources for each service"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "Standard_B1s"
+    "FileServices"      = "Standard_B1s"
+  }
 }
 
 variable "resource_vm_sku" {

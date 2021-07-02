@@ -14,11 +14,11 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  count               = var.resource_instance_count
+  count               = lookup(var.resource_instance_count, var.service_environment, null)
   name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
-  size                = var.resource_vm_size
+  size                = lookup(var.resource_vm_size, var.service_name, null)
   admin_username      = var.admin_username
   admin_password      = var.admin_password
   license_type        = "Windows_Server"
