@@ -1,6 +1,6 @@
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  count               = var.resource_vm_instance_count
+  count               = var.resource_instance_count
   name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  count               = var.resource_vm_instance_count
+  count               = var.resource_instance_count
   name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
@@ -25,6 +25,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   network_interface_ids = [
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
+  zone = [count.index % lookup(var.resource_location_az, azurerm_resource_group.resource_group.location, 0)]
 
   os_disk {
     caching              = "ReadWrite"

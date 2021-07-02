@@ -35,7 +35,16 @@ variable "resource_name" {
   default     = "ACD"
 }
 
-variable "resource_vm_instance_count" {
+variable "resource_location_az" {
+  description = "Number of availability zones in the location"
+  type        = map(string)
+  default = {
+    "UK South" = 3
+    "UK West"  = 0
+  }
+}
+
+variable "resource_instance_count" {
   description = "Desired number of the provisioned resources"
   type        = number
   default     = "2"
