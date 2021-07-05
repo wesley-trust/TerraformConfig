@@ -2,8 +2,8 @@
 resource "azurerm_network_interface" "network_interface" {
   # Lookup instance count based upon service environment
   count = lookup(var.resource_instance_count, var.service_environment, null)
-  # CConcatenate, lookup the name based upon the lookup of the environment, service, format with a leading zero and the iteration count incremented by 1
-  name                = "${lookup(var.resource_environment_prefix, var.service_environment, null)}-${lookup(var.resource_name, var.service_name, null)}${format("%02d", count.index + 1)}-ni"
+  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  name                = "${local.resource_name}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -18,8 +18,8 @@ resource "azurerm_network_interface" "network_interface" {
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
   # Lookup instance count based upon service environment
   count = lookup(var.resource_instance_count, var.service_environment, null)
-  # Concatenate, lookup the name based upon the lookup of the environment, location, service, format with a leading zero and the iteration count incremented by 1
-  name                = "${lookup(var.resource_environment_prefix, var.service_environment, null)}-${lookup(var.resource_location_prefix, lookup(var.resource_location, var.service_environment, null), null)}-${lookup(var.resource_name, var.service_name, null)}${format("%02d", count.index + 1)}-vm"
+  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  name                = "${local.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = lookup(var.resource_vm_size, var.service_name, null)
