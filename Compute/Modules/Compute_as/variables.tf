@@ -50,11 +50,11 @@ variable "resource_name" {
   }
 }
 
-variable "resource_location_az" {
-  description = "Number of availability zones in the location"
+variable "resource_location_fault_domain" {
+  description = "Number of fault domains in the location"
   type        = map(string)
   default = {
-    "UK South" = 3
+    "UK West" = 2
   }
 }
 
