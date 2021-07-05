@@ -3,7 +3,7 @@ resource "azurerm_network_interface" "network_interface" {
   # Lookup instant count based upon service environment
   count = lookup(var.resource_instance_count, var.service_environment, null)
   # Concatenate, and lookup name from service environment, format with a leading zero and the iteration count incremented by 1
-  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_environment, null)}${format("%02d", count.index + 1)}-ni"
+  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_name, null)}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -19,7 +19,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   # Lookup instant count based upon service environment
   count = lookup(var.resource_instance_count, var.service_environment, null)
   # Concatenate, lookup the name based upon the lookup of the service, format with a leading zero and the iteration count incremented by 1
-  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_environment, null)}${format("%02d", count.index + 1)}-vm"
+  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_name, null)}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = lookup(var.resource_vm_size, var.service_name, null)
