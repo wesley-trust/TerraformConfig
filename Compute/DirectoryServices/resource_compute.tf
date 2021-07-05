@@ -1,7 +1,9 @@
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  count               = lookup(var.resource_instance_count, var.service_environment, null)
-  name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-ni"
+  # Lookup instant count based upon service environment
+  count = lookup(var.resource_instance_count, var.service_environment, null)
+  # Concatenate, and lookup name from service environment, format with a leading zero and the iteration count incremented by 1
+  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_environment, null)}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
@@ -14,8 +16,10 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  count               = lookup(var.resource_instance_count, var.service_environment, null)
-  name                = "${var.resource_environment}-${var.resource_name}${format("%02d", count.index + 1)}-vm"
+  # Lookup instant count based upon service environment
+  count = lookup(var.resource_instance_count, var.service_environment, null)
+  # Concatenate, lookup the name based upon the lookup of the service, format with a leading zero and the iteration count incremented by 1
+  name                = "${var.resource_environment}-${lookup(var.resource_name, var.service_environment, null)}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   size                = lookup(var.resource_vm_size, var.service_name, null)
@@ -23,9 +27,11 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   admin_password      = var.admin_password
   license_type        = "Windows_Server"
   network_interface_ids = [
+    # Get all of the interface ids, and select the correct one for this iteration
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
-  zone = count.index + 1 % lookup(var.resource_location_az, var.resource_location, null)
+  # Lookup the number of availability zones from a lookup of the resource location, from a lookup of the service environment
+  zone = count.index + 1 % lookup(var.resource_location_az, lookup(var.resource_location, var.service_environment, null), null)
 
   os_disk {
     caching              = "ReadWrite"

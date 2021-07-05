@@ -18,9 +18,12 @@ variable "service_deployment" {
 }
 
 variable "resource_location" {
-  description = "Desired location to provision the resources"
-  type        = string
-  default     = "UK South"
+  description = "Desired location for each service environment"
+  type        = map(string)
+  default = {
+    "Prod" = "UK South"
+    "Prod-DR" = "UK West"
+  }
 }
 
 variable "resource_environment" {
@@ -31,8 +34,11 @@ variable "resource_environment" {
 
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
-  type        = string
-  default     = "ACD"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "ACD"
+    "FileServices" = "FS"
+  }
 }
 
 variable "resource_location_az" {
