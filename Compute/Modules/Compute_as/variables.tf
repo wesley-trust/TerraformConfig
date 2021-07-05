@@ -52,7 +52,7 @@ variable "resource_name" {
 
 variable "resource_location_fault_domain" {
   description = "Number of fault domains in the location"
-  type        = map(number)
+  type        = map(any)
   default = {
     "UK West" = 2
   }
