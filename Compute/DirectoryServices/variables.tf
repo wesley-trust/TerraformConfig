@@ -26,10 +26,22 @@ variable "resource_location" {
   }
 }
 
-variable "resource_environment" {
+variable "resource_location_prefix" {
+  description = "Desired location for each service environment"
+  type        = map(string)
+  default = {
+    "UK South" = "UKS"
+    "UK West"  = "UKW"
+  }
+}
+
+variable "resource_environment_prefix" {
   description = "Desired environment prefix for the provisioned resources"
-  type        = string
-  default     = "P"
+  type        = map(string)
+  default = {
+    "Prod"    = "P"
+    "Prod-DR" = "P"
+  }
 }
 
 variable "resource_name" {
