@@ -21,7 +21,7 @@ variable "resource_location" {
   description = "Desired location for each service environment"
   type        = map(string)
   default = {
-    "Prod" = "UK South"
+    "Prod"    = "UK South"
     "Prod-DR" = "UK West"
   }
 }
@@ -37,7 +37,7 @@ variable "resource_name" {
   type        = map(string)
   default = {
     "DirectoryServices" = "ACD"
-    "FileServices" = "FS"
+    "FileServices"      = "FS"
   }
 }
 
@@ -79,22 +79,22 @@ variable "resource_disk_size" {
   default     = "32"
 }
 
-variable "resource_network_group" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-  default     = "SharedServices-Prod-01-rg"
-}
-
-variable "resource_network_name" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-  default     = "SharedServices-Prod-vnet"
+variable "resource_network" {
+  description = "The network name for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "SharedServices"
+    "FileServices"      = "SharedServices"
+  }
 }
 
 variable "resource_subnet_name" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-  default     = "InfrastructureSubnet-1"
+  description = "The subnet name for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "InfrastructureSubnet-1"
+    "FileServices"      = "InfrastructureSubnet-1"
+  }
 }
 
 variable "admin_username" {
