@@ -1,3 +1,16 @@
+# Create availability set
+resource "azurerm_availability_set" "availability_set" {
+  # Lookup instance count based upon service environment
+  count               = lookup(var.resource_instance_count, var.service_environment, null)
+  name                = "${local.resource_name}${format("%02d", count.index + 1)}-as"
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
+
+  tags = {
+    environment = var.service_environment
+  }
+}
+
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
   # Lookup instance count based upon service environment
@@ -31,7 +44,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
   # Lookup the number of availability zones from a lookup of the resource location, from a lookup of the service environment
-  zone = count.index + 1 % lookup(var.resource_location_az, lookup(var.resource_location, var.service_environment, null), null)
+  availability_set_id = element(azurerm_availability_set.availability_set.*.id, count.index)
 
   os_disk {
     caching              = "ReadWrite"
