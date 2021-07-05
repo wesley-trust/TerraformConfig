@@ -1,5 +1,5 @@
 # Create production virtual machines
-module "virtual_machine_prod" {
+module "virtual_machine_ad_prod" {
   source              = "../Modules/Compute_az"
   service_name        = var.service_name
   service_environment = "Prod"
@@ -7,7 +7,7 @@ module "virtual_machine_prod" {
 }
 
 # Create production virtual machines
-module "virtual_machine_prod" {
+module "virtual_machine_fs_prod" {
   source              = "../Modules/Compute_az"
   service_name        = "FileServices"
   service_environment = "Prod"
