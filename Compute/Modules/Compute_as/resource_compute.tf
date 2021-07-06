@@ -44,7 +44,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   availability_set_id = azurerm_availability_set.availability_set.id
 
   os_disk {
-    caching              = "ReadWrite"
+    caching              = "ReadOnly"
     storage_account_type = "Standard_LRS"
     disk_size_gb         = var.resource_disk_size
   }

@@ -32,7 +32,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   zone = count.index + 1 % lookup(var.resource_location_az, var.service_location, null)
 
   os_disk {
-    caching              = "ReadWrite"
+    caching              = "ReadOnly"
     storage_account_type = "Standard_LRS"
     disk_size_gb         = var.resource_disk_size
   }
