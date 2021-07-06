@@ -5,18 +5,6 @@ variable "service_name" {
   default     = "DirectoryServices"
 }
 
-variable "service_environment" {
-  description = "Desired environment for the service collection of provisioned resources"
-  type        = string
-  default     = "Prod"
-}
-
-variable "service_deployment" {
-  description = "Desired deployment identifier of the service collection of provisioned resources"
-  type        = string
-  default     = "01"
-}
-
 variable "service_location" {
   description = "The production resource locations to deploy"
   type        = map(any)
