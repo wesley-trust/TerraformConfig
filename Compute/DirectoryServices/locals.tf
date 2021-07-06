@@ -4,7 +4,7 @@ locals {
   resource_name               = lookup(var.resource_name, var.service_name, null)
   resource_instance_size      = lookup(var.resource_instance_size, var.service_name, null)
   resource_network_name       = lookup(var.resource_network_name, var.service_name, null)
-  resource_network_deployment = lookup(var.resource_network_name, var.service_name, null)
+  resource_network_deployment = lookup(var.resource_network_deployment, var.service_name, null)
   resource_subnet_name        = lookup(var.resource_subnet_name, var.service_name, null)
 
   # Production Specific
