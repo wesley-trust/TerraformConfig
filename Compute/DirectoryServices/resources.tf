@@ -1,6 +1,6 @@
 # Create production virtual machines
 module "virtual_machine_prod" {
-  for_each                = toset(local.resource_prod_locations)
+  for_each                = local.resource_prod_locations
   service_environment     = "Prod"
   source                  = "../Modules/Compute_az"
   service_name            = var.service_name
@@ -14,7 +14,7 @@ module "virtual_machine_prod" {
 }
 
 module "virtual_machine_prod_dr" {
-  for_each                = toset(local.resource_prod_dr_locations)
+  for_each                = local.resource_prod_dr_locations
   service_environment     = "Prod-DR"
   source                  = "../Modules/Compute_as"
   service_name            = var.service_name
