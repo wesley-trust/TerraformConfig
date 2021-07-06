@@ -1,0 +1,97 @@
+variables:
+- group: 'terraform-backend'
+- group: 'terraform-system'
+stages:
+- stage: Validate
+  pool:
+    vmImage: 'ubuntu-latest'
+  jobs:
+  - job: Import
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'Terraform Install'
+      inputs:
+        terraformVersion: '$(terraformVersion)'
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Initialise'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: '$(backendServiceArm)'
+        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+        backendAzureRmKey: '$(backendAzureRmKey)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Validate'
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
+- stage: Plan
+  pool:
+    vmImage: 'ubuntu-latest'
+  dependsOn: Validate
+  jobs:
+  - job: Evaluate
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'Terraform Install'
+      inputs:
+        terraformVersion: '$(terraformVersion)'
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Initialise'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: '$(backendServiceArm)'
+        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+        backendAzureRmKey: '$(backendAzureRmKey)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Plan'
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: '$(backendServiceArm)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
+- stage: Apply
+  pool:
+    vmImage: 'ubuntu-latest'
+  dependsOn: Plan
+  jobs:
+  - deployment: Deploy
+    continueOnError: false
+    environment: $(Environment)
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - checkout: self
+          - task: TerraformInstaller@0
+            displayName: 'Terraform Install'
+            inputs:
+              terraformVersion: '$(terraformVersion)'
+          - task: TerraformTaskV1@0
+            displayName: 'Terraform Initialise'
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: '$(backendServiceArm)'
+              backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+              backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
+              backendAzureRmContainerName: '$(backendAzureRmContainerName)'
+              backendAzureRmKey: '$(backendAzureRmKey)'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
+          - task: TerraformTaskV1@0
+            displayName: 'Terraform Apply'
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: '$(backendServiceArm)'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/FileServices/'
