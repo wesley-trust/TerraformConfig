@@ -3,7 +3,7 @@ resource "azurerm_availability_set" "availability_set" {
   name                        = "${local.resource_name}-as"
   location                    = azurerm_resource_group.resource_group.location
   resource_group_name         = azurerm_resource_group.resource_group.name
-  platform_fault_domain_count = lookup(var.resource_location_fault_domain, lookup(var.service_location, var.service_environment, null), null)
+  platform_fault_domain_count = lookup(var.resource_location_fault_domain, var.service_location, null)
 
   tags = {
     environment = var.service_environment
