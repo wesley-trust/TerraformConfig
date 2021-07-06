@@ -14,7 +14,7 @@ variable "service_deployment" {
   type        = string
 }
 
-variable "resource_location" {
+variable "service_location" {
   description = "Desired location for each service environment"
   type        = string
 }
@@ -55,7 +55,7 @@ variable "resource_instance_count" {
   type        = string
 }
 
-variable "resource_vm_size" {
+variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = string
 }
@@ -72,7 +72,7 @@ variable "resource_disk_size" {
   default     = "32"
 }
 
-variable "resource_network" {
+variable "resource_network_name" {
   description = "The network name for the provisioned resources"
   type        = string
 }
