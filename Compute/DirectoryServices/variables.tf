@@ -21,11 +21,11 @@ variable "service_location" {
   description = "The production resource locations to deploy"
   type        = map(any)
   default = {
-    prod = [
+    Prod = [
       "UK South",
     ]
 
-    prod-dr = [
+    Prod-DR = [
       "UK West",
     ]
   }
