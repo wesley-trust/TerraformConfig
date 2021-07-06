@@ -35,7 +35,7 @@ variable "resource_subnet_name" {
   default     = "Infrastructure"
 }
 
-variable "resource_location" {
+variable "service_location" {
   description = "Desired location to provision the resources"
   type        = string
   default     = "UK South"
