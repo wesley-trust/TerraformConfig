@@ -75,21 +75,3 @@ variable "resource_subnet_name" {
     "FileServices"      = "InfrastructureSubnet-1"
   }
 }
-
-variable "availability_location_support" {
-  description = "The availability preference for the location"
-  type        = map(string)
-  default = {
-    "UK South" = "AZ"
-    "UK West"  = "AS"
-  }
-}
-
-variable "source_compute" {
-  description = "The compute module source to use depending on AZ or AS support"
-  type        = map(string)
-  default = {
-    "AZ" = "../Modules/Compute_az"
-    "AS" = "../Modules/Compute_as"
-  }
-}
