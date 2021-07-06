@@ -1,3 +1,7 @@
+output "availability_set" {
+  value = azurerm_network_interface.availability_set
+}
+
 output "network_interface" {
   value = azurerm_network_interface.network_interface
 }

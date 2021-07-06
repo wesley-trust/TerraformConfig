@@ -23,8 +23,9 @@ variable "resource_location_prefix" {
   description = "Desired location for each service environment"
   type        = map(string)
   default = {
-    "UK South" = "UKS"
-    "UK West"  = "UKW"
+    "UK South"     = "UKS"
+    "UK West"      = "UKW"
+    "North Europe" = "NEU"
   }
 }
 
@@ -46,7 +47,8 @@ variable "resource_location_fault_domain" {
   description = "Number of fault domains in the location"
   type        = map(string)
   default = {
-    "UK West" = 2
+    "UK West"      = 2
+    "North Europe" = 2
   }
 }
 
@@ -74,6 +76,11 @@ variable "resource_disk_size" {
 
 variable "resource_network_name" {
   description = "The network name for the provisioned resources"
+  type        = string
+}
+
+variable "resource_network_deployment" {
+  description = "Required deployment identifier of the network"
   type        = string
 }
 

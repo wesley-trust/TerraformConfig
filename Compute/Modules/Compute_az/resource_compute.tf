@@ -1,8 +1,7 @@
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  # Lookup instance count based upon service environment
   count = var.resource_instance_count
-  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  # Format with leading zero
   name                = "${local.resource_name}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
@@ -16,9 +15,8 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  # Lookup instance count based upon service environment
   count = var.resource_instance_count
-  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  # Format with leading zero
   name                = "${local.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
@@ -30,7 +28,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
     # Get all of the interface ids, and select the correct one for this iteration
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
-  # Lookup the number of availability zones from a lookup of the resource location, from a lookup of the service environment
+  # Select the first AZ from the maximum iteration from the lookup of theAZs in a service location
   zone = count.index + 1 % lookup(var.resource_location_az, var.service_location, null)
 
   os_disk {

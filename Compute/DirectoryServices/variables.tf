@@ -14,7 +14,7 @@ variable "service_location" {
     ]
 
     Prod-DR = [
-      "UK West",
+      "North Europe",
     ]
   }
 }
@@ -52,6 +52,15 @@ variable "resource_network_name" {
   default = {
     "DirectoryServices" = "SharedServices"
     "FileServices"      = "SharedServices"
+  }
+}
+
+variable "resource_network_deployment" {
+  description = "The network deployment for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "01"
+    "FileServices"      = "01"
   }
 }
 

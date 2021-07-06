@@ -1,9 +1,10 @@
 # Create availability set
 resource "azurerm_availability_set" "availability_set" {
-  name                        = "${local.resource_name}-as"
+  # Format with leading zero
+  name                        = "${local.resource_name}${format("%02d", count.index + 1)}-as"
   location                    = azurerm_resource_group.resource_group.location
   resource_group_name         = azurerm_resource_group.resource_group.name
-  platform_fault_domain_count = lookup(var.resource_location_fault_domain, var.service_location, null)
+  platform_fault_domain_count = local.platform_fault_domain_count
 
   tags = {
     environment = var.service_environment
@@ -12,9 +13,8 @@ resource "azurerm_availability_set" "availability_set" {
 
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
-  # Lookup instance count based upon service environment
   count = var.resource_instance_count
-  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  # Format with leading zero
   name                = "${local.resource_name}${format("%02d", count.index + 1)}-ni"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
@@ -28,9 +28,8 @@ resource "azurerm_network_interface" "network_interface" {
 
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "virtual_machine" {
-  # Lookup instance count based upon service environment
   count = var.resource_instance_count
-  # Use local variable concatenation, format with a leading zero and the iteration count incremented by 1
+  # Format with leading zero
   name                = "${local.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
@@ -42,7 +41,6 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
     # Get all of the interface ids, and select the correct one for this iteration
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
-  # Lookup the number of availability zones from a lookup of the resource location, from a lookup of the service environment
   availability_set_id = azurerm_availability_set.availability_set.id
 
   os_disk {
