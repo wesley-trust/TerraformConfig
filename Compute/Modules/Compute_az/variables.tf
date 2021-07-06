@@ -16,11 +16,7 @@ variable "service_deployment" {
 
 variable "resource_location" {
   description = "Desired location for each service environment"
-  type        = map(string)
-  default = {
-    "Prod"    = "UK South"
-    "Prod-DR" = "UK West"
-  }
+  type        = string
 }
 
 variable "resource_location_prefix" {
@@ -43,11 +39,7 @@ variable "resource_environment_prefix" {
 
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
-  type        = map(string)
-  default = {
-    "DirectoryServices" = "ACD"
-    "FileServices"      = "FS"
-  }
+  type        = string
 }
 
 variable "resource_location_az" {
@@ -60,20 +52,12 @@ variable "resource_location_az" {
 
 variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
-  type        = map(string)
-  default = {
-    "Prod"    = 2
-    "Prod-DR" = 1
-  }
+  type        = string
 }
 
 variable "resource_vm_size" {
   description = "Desired size for the provisioned resources for each service"
-  type        = map(string)
-  default = {
-    "DirectoryServices" = "Standard_B1s"
-    "FileServices"      = "Standard_B1s"
-  }
+  type        = string
 }
 
 variable "resource_vm_sku" {
@@ -90,20 +74,12 @@ variable "resource_disk_size" {
 
 variable "resource_network" {
   description = "The network name for the provisioned resources"
-  type        = map(string)
-  default = {
-    "DirectoryServices" = "SharedServices"
-    "FileServices"      = "SharedServices"
-  }
+  type        = string
 }
 
 variable "resource_subnet_name" {
   description = "The subnet name for the provisioned resources"
-  type        = map(string)
-  default = {
-    "DirectoryServices" = "InfrastructureSubnet-1"
-    "FileServices"      = "InfrastructureSubnet-1"
-  }
+  type        = string
 }
 
 variable "admin_username" {

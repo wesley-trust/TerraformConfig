@@ -16,3 +16,80 @@ variable "service_deployment" {
   type        = string
   default     = "01"
 }
+
+variable "service_location" {
+  description = "The production resource locations to deploy"
+  type        = map(any)
+  default = {
+    prod = [
+      "UK South",
+    ]
+
+    prod-dr = [
+      "UK West",
+    ]
+  }
+}
+
+variable "resource_name" {
+  description = "Desired name for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "ACD"
+    "FileServices"      = "FS"
+  }
+}
+
+variable "resource_instance_count" {
+  description = "Desired number of the provisioned resources for each service environment"
+  type        = map(string)
+  default = {
+    "Prod"    = 2
+    "Prod-DR" = 1
+  }
+}
+
+variable "resource_instance_size" {
+  description = "Desired size for the provisioned resources for each service"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "Standard_B1s"
+    "FileServices"      = "Standard_B1s"
+  }
+}
+
+variable "resource_network_name" {
+  description = "The network name for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "SharedServices"
+    "FileServices"      = "SharedServices"
+  }
+}
+
+variable "resource_subnet_name" {
+  description = "The subnet name for the provisioned resources"
+  type        = map(string)
+  default = {
+    "DirectoryServices" = "InfrastructureSubnet-1"
+    "FileServices"      = "InfrastructureSubnet-1"
+  }
+}
+
+variable "availability_location_support" {
+  description = "The availability preference for the location"
+  type        = map(string)
+  default = {
+    "UK South" = "AZ"
+    "UK West"  = "AS"
+  }
+}
+
+variable "source_compute" {
+  description = "The compute module source to use depending on AZ or AS support"
+  type        = map(string)
+  default = {
+    "AZ" = "../Modules/Compute_az"
+    "AS" = "../Modules/Compute_as"
+  }
+}
