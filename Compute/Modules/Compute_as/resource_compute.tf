@@ -1,7 +1,7 @@
 # Create availability set
 resource "azurerm_availability_set" "availability_set" {
   # Format with leading zero
-  name                        = "${local.resource_name}${format("%02d", count.index + 1)}-as"
+  name                        = "${local.resource_name}-as"
   location                    = azurerm_resource_group.resource_group.location
   resource_group_name         = azurerm_resource_group.resource_group.name
   platform_fault_domain_count = local.platform_fault_domain_count

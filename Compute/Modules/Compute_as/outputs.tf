@@ -1,5 +1,5 @@
 output "availability_set" {
-  value = azurerm_network_interface.availability_set
+  value = azurerm_availability_set.availability_set
 }
 
 output "network_interface" {
