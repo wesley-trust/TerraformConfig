@@ -37,6 +37,11 @@ variable "resource_environment_prefix" {
   }
 }
 
+variable "resource_name" {
+  description = "Desired name for the provisioned resources"
+  type        = string
+}
+
 variable "resource_location_fault_domain" {
   description = "Number of fault domains in the location"
   type        = map(string)
