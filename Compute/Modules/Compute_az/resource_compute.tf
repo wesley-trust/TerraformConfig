@@ -31,7 +31,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
     element(azurerm_network_interface.network_interface.*.id, count.index),
   ]
   # Lookup the number of availability zones from a lookup of the resource location, from a lookup of the service environment
-  zone = count.index + 1 % lookup(var.resource_location_az, lookup(var.service_location, var.service_environment, null), null)
+  zone = count.index + 1 % lookup(var.resource_location_az, var.service_location, null)
 
   os_disk {
     caching              = "ReadWrite"
