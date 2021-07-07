@@ -5,38 +5,43 @@ variable "service_name" {
   default     = "SharedServices"
 }
 
-variable "service_environment" {
-  description = "Desired environment for the service collection of provisioned resources"
-  type        = string
-  default     = "Prod"
-}
+variable "service_location" {
+  description = "The production resource locations to deploy"
+  type        = map(any)
+  default = {
+    Prod = [
+      "UK South",
+    ]
 
-variable "service_deployment" {
-  description = "Desired deployment identifier of the service collection of provisioned resources"
-  type        = string
-  default     = "01"
-}
-
-variable "resource_name" {
-  description = "Desired name for the provisioned resources"
-  type        = string
-  default     = "SharedServices"
+    Prod-DR = [
+      "North Europe",
+    ]
+  }
 }
 
 variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"
-  type        = string
-  default     = "10.0.0.0/23"
+  type        = map(string)
+  default = {
+    "UK South"     = "10.0.0.0/23"
+    "North Europe" = "10.1.0.0/23"
+  }
+}
+
+variable "resource_subnet_count" {
+  description = "Desired number of the provisioned resources for each service environment"
+  type        = map(string)
+  default = {
+    "Prod"    = 2
+    "Prod-DR" = 1
+  }
 }
 
 variable "resource_subnet_name" {
   description = "Desired subnet name for the provisioned resources"
-  type        = string
-  default     = "Infrastructure"
-}
-
-variable "service_location" {
-  description = "Desired location to provision the resources"
-  type        = string
-  default     = "UK South"
+  type        = map(string)
+  default = {
+    "UK South"     = "Infrastructure"
+    "North Europe" = "Infrastructure"
+  }
 }

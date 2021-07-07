@@ -1,13 +1,13 @@
 # Define virtual network
 resource "azurerm_virtual_network" "virtual_network" {
-  name                = "${var.resource_name}-${var.service_environment}-vnet"
+  name                = local.resource_virtual_network_name
   address_space       = ["${var.resource_address_space}"]
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
 }
 
 resource "azurerm_subnet" "subnet" {
-  for_each             = toset(local.resource_cidrsubnets)
+  for_each             = toset(local.resource_cidrsubnets.var.resource_subnet_count)
   name                 = "${var.resource_subnet_name}Subnet-${index(local.resource_cidrsubnets, each.value) + 1}"
   resource_group_name  = azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
@@ -15,7 +15,7 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_route_table" "route_table" {
-  name                          = "${var.resource_subnet_name}Subnet-rt"
+  name                          = local.resource_route_table_name
   resource_group_name           = azurerm_resource_group.resource_group.name
   location                      = azurerm_resource_group.resource_group.location
   disable_bgp_route_propagation = false

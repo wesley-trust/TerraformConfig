@@ -1,5 +1,5 @@
 # Define resource group for resource
 resource "azurerm_resource_group" "resource_group" {
-  name     = "${var.service_name}-${var.service_environment}-${var.service_deployment}-rg"
+  name     = local.resource_group_name
   location = var.service_location
 }
