@@ -23,13 +23,13 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Validate'
       inputs:
         provider: 'azurerm'
         command: 'validate'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
@@ -52,14 +52,14 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
     - task: TerraformTaskV1@0
       displayName: 'Terraform Plan'
       inputs:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: '$(backendServiceArm)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
 - stage: Apply
   pool:
     vmImage: 'ubuntu-latest'
@@ -87,11 +87,11 @@ stages:
               backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
               backendAzureRmContainerName: '$(backendAzureRmContainerName)'
               backendAzureRmKey: '$(backendAzureRmKey)'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
           - task: TerraformTaskV1@0
             displayName: 'Terraform Apply'
             inputs:
               provider: 'azurerm'
               command: 'apply'
               environmentServiceNameAzureRM: '$(backendServiceArm)'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Network/EdgeServices/'
