@@ -19,11 +19,6 @@ variable "resource_address_space" {
   type        = string
 }
 
-variable "resource_subnet_count" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-}
-
 variable "resource_subnet_name" {
   description = "Desired subnet name for the provisioned resources"
   type        = string
