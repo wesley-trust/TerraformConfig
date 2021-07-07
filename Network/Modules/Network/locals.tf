@@ -2,7 +2,7 @@
 locals {
   # Resource
   resource_cidrsubnets = {
-    "1" = cidrsubnets(var.resource_address_space, 1, 1)
+    "1" = cidrsubnets(var.resource_address_space, 1)
     "2" = cidrsubnets(var.resource_address_space, 1, 1)
   }
   resource_group_name           = "${var.service_name}-${var.service_environment}-${var.service_deployment}-rg"

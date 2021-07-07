@@ -1,17 +1,11 @@
 # Calculate local variables
 locals {
 
-  # Resource
-  resource_name               = lookup(var.resource_name, var.service_name, null)
-  resource_network_name       = lookup(var.resource_network_name, var.service_name, null)
-  resource_network_deployment = lookup(var.resource_network_deployment, var.service_name, null)
-  resource_subnet_name        = lookup(var.resource_subnet_name, var.service_name, null)
-
   # Production Specific
-  resource_prod_locations     = lookup(var.service_location, "Prod", null)
-  resource_prod_address_space = lookup(var.resource_instance_count, "Prod", null)
+  resource_prod_locations    = lookup(var.service_location, "Prod", null)
+  resource_prod_subnet_count = lookup(var.resource_subnet_count, "Prod", null)
 
   # Production DR Specific
-  resource_prod_dr_locations     = lookup(var.service_location, "Prod-DR", null)
-  resource_prod_dr_address_space = lookup(var.resource_instance_count, "Prod-DR", null)
+  resource_prod_dr_locations    = lookup(var.service_location, "Prod-DR", null)
+  resource_prod_dr_subnet_count = lookup(var.resource_subnet_count, "Prod-DR", null)
 }
