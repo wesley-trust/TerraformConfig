@@ -1,6 +1,7 @@
 # Calculate local variables
 locals {
   # Resource
+  resource_cidrsubnet = "local.resource_cidrsubnets.${var.resource_subnet_count}"
   resource_cidrsubnets = {
     "1" = cidrsubnets(var.resource_address_space, 1)
     "2" = cidrsubnets(var.resource_address_space, 1, 1)
