@@ -97,5 +97,5 @@ variable "admin_username" {
 variable "admin_password" {
   description = "Desired password for the provisioned resources"
   type        = string
-  default     = "CheeseCake1987"
+  default     = "mnUuk2TOEVe1qh"
 }
