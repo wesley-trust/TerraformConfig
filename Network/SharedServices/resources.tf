@@ -7,7 +7,6 @@ module "network_prod" {
   service_location       = each.value
   service_deployment     = format("%02d", index(local.resource_prod_locations, each.value) + 1)
   resource_address_space = lookup(var.resource_address_space, each.value, null)
-  resource_subnet_count  = local.resource_prod_subnet_count
   resource_subnet_name   = lookup(var.resource_subnet_name, each.value, null)
 }
 
@@ -19,6 +18,5 @@ module "network_prod_dr" {
   service_location       = each.value
   service_deployment     = format("%02d", index(local.resource_prod_dr_locations, each.value) + 1)
   resource_address_space = lookup(var.resource_address_space, each.value, null)
-  resource_subnet_count  = local.resource_prod_dr_subnet_count
   resource_subnet_name   = lookup(var.resource_subnet_name, each.value, null)
 }
