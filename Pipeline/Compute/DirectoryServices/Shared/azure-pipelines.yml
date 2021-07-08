@@ -14,14 +14,15 @@ stages:
       inputs:
         terraformVersion: '$(terraformVersion)'
     - task: TerraformCLI@0
+      displayName: 'Terraform Initialise'
       inputs:
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
         backendType: 'azurerm'
         backendServiceArm: 'ARM-Alpha'
         ensureBackend: true
         backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
-        backendAzureRmResourceGroupLocation: 'uksouth'
+        backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
@@ -29,9 +30,9 @@ stages:
     - task: TerraformCLI@0
       displayName: 'Terraform Validate'
       inputs:
-        provider: 'azurerm'
         command: 'validate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+        allowTelemetryCollection: false
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
@@ -47,21 +48,24 @@ stages:
     - task: TerraformCLI@0
       displayName: 'Terraform Initialise'
       inputs:
-        provider: 'azurerm'
         command: 'init'
-        backendServiceArm: '$(backendServiceArm)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+        backendType: 'azurerm'
+        backendServiceArm: 'ARM-Alpha'
+        ensureBackend: true
         backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+        allowTelemetryCollection: false
     - task: TerraformCLI@0
       displayName: 'Terraform Plan'
       inputs:
-        provider: 'azurerm'
         command: 'plan'
-        environmentServiceNameAzureRM: '$(backendServiceArm)'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+        environmentServiceNameAzureRM: '$(backendServiceArm)'
+        publishPlanResults: 'plan.tfplan'
 - stage: Apply
   pool:
     vmImage: 'ubuntu-latest'
@@ -82,18 +86,20 @@ stages:
           - task: TerraformCLI@0
             displayName: 'Terraform Initialise'
             inputs:
-              provider: 'azurerm'
               command: 'init'
-              backendServiceArm: '$(backendServiceArm)'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+              backendType: 'azurerm'
+              backendServiceArm: 'ARM-Alpha'
+              ensureBackend: true
               backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+              backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
               backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
               backendAzureRmContainerName: '$(backendAzureRmContainerName)'
               backendAzureRmKey: '$(backendAzureRmKey)'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+              allowTelemetryCollection: false
           - task: TerraformCLI@0
             displayName: 'Terraform Apply'
             inputs:
-              provider: 'azurerm'
               command: 'apply'
-              environmentServiceNameAzureRM: '$(backendServiceArm)'
               workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+              environmentServiceNameAzureRM: '$(backendServiceArm)'
