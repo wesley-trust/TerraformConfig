@@ -60,6 +60,7 @@ stages:
         backendAzureRmKey: '$(backendAzureRmKey)'
         allowTelemetryCollection: false
     - task: PowerShell@2
+      displayName: 'Create artifact directory'
       inputs:
         targetType: 'inline'
         script: |
@@ -81,6 +82,7 @@ stages:
         publishPlanResults: 'terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/terraform.tfplan -detailed-exitcode'
     - task: PublishPipelineArtifact@1
+      displayName: 'Publish plan artifact'
       inputs:
         targetPath: '$(Pipeline.Workspace)/Output'
         artifact: 'Evaluate'
