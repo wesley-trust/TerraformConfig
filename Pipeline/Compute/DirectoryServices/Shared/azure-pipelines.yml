@@ -26,7 +26,7 @@ stages:
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
         allowTelemetryCollection: false
-    - task: TerraformTaskV1@0
+    - task: TerraformCLI@0
       displayName: 'Terraform Validate'
       inputs:
         provider: 'azurerm'
@@ -44,7 +44,7 @@ stages:
       displayName: 'Terraform Install'
       inputs:
         terraformVersion: '$(terraformVersion)'
-    - task: TerraformTaskV1@0
+    - task: TerraformCLI@0
       displayName: 'Terraform Initialise'
       inputs:
         provider: 'azurerm'
@@ -55,7 +55,7 @@ stages:
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
-    - task: TerraformTaskV1@0
+    - task: TerraformCLI@0
       displayName: 'Terraform Plan'
       inputs:
         provider: 'azurerm'
@@ -79,7 +79,7 @@ stages:
             displayName: 'Terraform Install'
             inputs:
               terraformVersion: '$(terraformVersion)'
-          - task: TerraformTaskV1@0
+          - task: TerraformCLI@0
             displayName: 'Terraform Initialise'
             inputs:
               provider: 'azurerm'
@@ -90,7 +90,7 @@ stages:
               backendAzureRmContainerName: '$(backendAzureRmContainerName)'
               backendAzureRmKey: '$(backendAzureRmKey)'
               workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
-          - task: TerraformTaskV1@0
+          - task: TerraformCLI@0
             displayName: 'Terraform Apply'
             inputs:
               provider: 'azurerm'
