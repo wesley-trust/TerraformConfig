@@ -138,4 +138,4 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
               environmentServiceName: '$(backendServiceArm)'
-              commandOptions: '$(Pipeline.Workspace)/Evaluate/terraform.tfplan.json'
+              commandOptions: '$(Pipeline.Workspace)/Evaluate/terraform.tfplan'
