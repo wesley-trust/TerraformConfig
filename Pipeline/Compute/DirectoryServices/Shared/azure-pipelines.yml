@@ -64,7 +64,7 @@ stages:
       inputs:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
-        environmentServiceNameAzureRM: '$(backendServiceArm)'
+        environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'plan.tfplan'
 - stage: Apply
   pool:
@@ -102,4 +102,4 @@ stages:
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
-              environmentServiceNameAzureRM: '$(backendServiceArm)'
+              environmentServiceName: '$(backendServiceArm)'
