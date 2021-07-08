@@ -59,19 +59,10 @@ stages:
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
         allowTelemetryCollection: false
-    - task: PowerShell@2
+    - bash: |
+          mkdir -p $(Pipeline.Workspace)/Output
+      name: 'Variable'
       displayName: 'Create artifact directory'
-      inputs:
-        targetType: 'inline'
-        script: |
-
-          # Create directory for artifact, if it does not exist
-          $TestPath = Test-Path $(Pipeline.Workspace)/Output -PathType Container
-          if (!$TestPath){
-              New-Item -Path $(Pipeline.Workspace)/Output -ItemType Directory | Out-Null
-          }
-        pwsh: true
-        workingDirectory: '$(System.ArtifactsDirectory)'
     - task: TerraformCLI@0
       name: 'Plan'
       displayName: 'Terraform Plan'
