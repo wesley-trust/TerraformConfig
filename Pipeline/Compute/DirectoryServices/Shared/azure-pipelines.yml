@@ -61,7 +61,7 @@ stages:
         allowTelemetryCollection: false
     - bash: |
           mkdir -p $(Pipeline.Workspace)/Output
-      name: 'Variable'
+      name: 'Directory'
       displayName: 'Create artifact directory'
     - task: TerraformCLI@0
       name: 'Plan'
