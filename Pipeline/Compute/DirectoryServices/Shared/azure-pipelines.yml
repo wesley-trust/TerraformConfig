@@ -13,17 +13,19 @@ stages:
       displayName: 'Terraform Install'
       inputs:
         terraformVersion: '$(terraformVersion)'
-    - task: TerraformTaskV1@0
-      displayName: 'Terraform Initialise'
+    - task: TerraformCLI@0
       inputs:
-        provider: 'azurerm'
         command: 'init'
-        backendServiceArm: '$(backendServiceArm)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Network/SharedServices/'
+        backendType: 'azurerm'
+        backendServiceArm: 'ARM-Alpha'
+        ensureBackend: true
         backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
+        backendAzureRmResourceGroupLocation: 'uksouth'
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
+        allowTelemetryCollection: false
     - task: TerraformTaskV1@0
       displayName: 'Terraform Validate'
       inputs:
