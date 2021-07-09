@@ -99,4 +99,5 @@ variable "admin_password" {
   description = "Desired password for the provisioned resources"
   type        = string
   default     = "mnUuk2TOEVe1qh"
+  sensitive   = true
 }

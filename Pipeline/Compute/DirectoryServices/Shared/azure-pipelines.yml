@@ -31,7 +31,6 @@ stages:
       inputs:
         command: 'validate'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Compute/DirectoryServices/'
-        allowTelemetryCollection: false
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
@@ -57,7 +56,6 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        allowTelemetryCollection: false
     - bash: |
           mkdir -p $(Pipeline.Workspace)/Output
       name: 'Directory'
@@ -114,7 +112,6 @@ stages:
               backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
               backendAzureRmContainerName: '$(backendAzureRmContainerName)'
               backendAzureRmKey: '$(backendAzureRmKey)'
-              allowTelemetryCollection: false
           - task: TerraformCLI@0
             displayName: 'Terraform Apply'
             inputs:
