@@ -26,7 +26,6 @@ stages:
         backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
         backendAzureRmContainerName: '$(backendAzureRmContainerName)'
         backendAzureRmKey: '$(backendAzureRmKey)'
-        allowTelemetryCollection: false
     - task: TerraformCLI@0
       displayName: 'Terraform Validate'
       inputs:
