@@ -76,12 +76,7 @@ variable "resource_disk_size" {
   default     = "32"
 }
 
-variable "resource_network_name" {
-  description = "The network name for the provisioned resources"
-  type        = string
-}
-
-variable "resource_network_deployment" {
+variable "resource_address_space" {
   description = "Required deployment identifier of the network"
   type        = string
 }
