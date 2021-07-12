@@ -32,8 +32,8 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(string)
   default = {
-    "Prod"    = 2
-    "Prod-DR" = 1
+    "Prod"    = 3
+    "Prod-DR" = 2
   }
 }
 
