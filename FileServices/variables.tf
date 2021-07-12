@@ -46,29 +46,22 @@ variable "resource_instance_size" {
   }
 }
 
-variable "resource_network_name" {
-  description = "The network name for the provisioned resources"
+variable "resource_address_space" {
+  description = "Desired address space for the provisioned resources"
   type        = map(string)
   default = {
-    "DirectoryServices" = "SharedServices"
-    "FileServices"      = "SharedServices"
-  }
-}
-
-variable "resource_network_deployment" {
-  description = "The network deployment for the provisioned resources"
-  type        = map(string)
-  default = {
-    "DirectoryServices" = "01"
-    "FileServices"      = "01"
+    "UK South"     = "10.0.0.0/23"
+    "North Europe" = "10.1.0.0/23"
+    "West Europe"  = "10.2.0.0/23"
   }
 }
 
 variable "resource_subnet_name" {
-  description = "The subnet name for the provisioned resources"
+  description = "Desired subnet name for the provisioned resources"
   type        = map(string)
   default = {
-    "DirectoryServices" = "InfrastructureSubnet-1"
-    "FileServices"      = "InfrastructureSubnet-1"
+    "UK South"     = "Infrastructure"
+    "North Europe" = "Infrastructure"
+    "West Europe"  = "Infrastructure"
   }
 }
