@@ -8,7 +8,7 @@ resource "azurerm_network_interface" "network_interface" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = azurerm_subnet.subnet.id
+    subnet_id                     = element(azurerm_subnet.subnet.*.id, count.index)
     private_ip_address_allocation = "Dynamic"
   }
 }
