@@ -11,7 +11,6 @@ variable "service_location" {
   default = {
     Prod = [
       "UK South",
-      "West Europe"
     ]
 
     Prod-DR = [
@@ -33,8 +32,8 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(string)
   default = {
-    "Prod"    = 3
-    "Prod-DR" = 2
+    "Prod"    = 2
+    "Prod-DR" = 1
   }
 }
 
