@@ -11,6 +11,7 @@ variable "service_location" {
   default = {
     Prod = [
       "UK South",
+      "West Europe"
     ]
 
     Prod-DR = [
