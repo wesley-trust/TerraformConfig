@@ -26,6 +26,7 @@ variable "resource_location_prefix" {
     "UK South"     = "UKS"
     "UK West"      = "UKW"
     "North Europe" = "NEU"
+    "West Europe"  = "WEU"
   }
 }
 
@@ -49,6 +50,7 @@ variable "resource_location_fault_domain" {
   default = {
     "UK West"      = 2
     "North Europe" = 2
+    "West Europe"  = 2
   }
 }
 

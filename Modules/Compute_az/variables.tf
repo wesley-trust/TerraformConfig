@@ -26,6 +26,7 @@ variable "resource_location_prefix" {
     "UK South"     = "UKS"
     "UK West"      = "UKW"
     "North Europe" = "NEU"
+    "West Europe"  = "WEU"
   }
 }
 
@@ -47,7 +48,9 @@ variable "resource_location_az" {
   description = "Number of availability zones in the location"
   type        = map(string)
   default = {
-    "UK South" = 3
+    "UK South"     = 3
+    "North Europe" = 3
+    "West Europe"  = 3
   }
 }
 
@@ -98,4 +101,5 @@ variable "admin_password" {
   description = "Desired password for the provisioned resources"
   type        = string
   default     = "mnUuk2TOEVe1qh"
+  sensitive   = true
 }
