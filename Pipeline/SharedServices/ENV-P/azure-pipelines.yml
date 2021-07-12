@@ -6,7 +6,7 @@ trigger:
     - main
   paths:
     include:
-      - Network/SharedServices/
+      - SharedServices/
 
 # Do not trigger builds on PRs
 pr: none

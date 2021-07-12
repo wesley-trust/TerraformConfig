@@ -6,7 +6,7 @@ trigger:
     - develop
   paths:
     include:
-      - Compute/FileServices/
+      - FileServices/
 
 # Do not trigger builds on PRs
 pr: none

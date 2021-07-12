@@ -6,7 +6,7 @@ trigger:
     - develop
   paths:
     include:
-      - Network/EdgeServices/
+      - EdgeServices/
 
 # Do not trigger builds on PRs
 pr: none

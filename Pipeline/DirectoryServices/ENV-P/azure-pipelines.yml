@@ -6,7 +6,7 @@ trigger:
     - main
   paths:
     include:
-      - Compute/DirectoryServices/
+      - DirectoryServices/
 
 # Do not trigger builds on PRs
 pr: none
