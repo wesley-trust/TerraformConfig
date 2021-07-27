@@ -46,27 +46,6 @@ variable "resource_instance_size" {
 }
 
 # Defined resource variables
-variable "resource_location_prefix" {
-  description = "Desired location for each service environment"
-  type        = map(string)
-  default = {
-    "UK South"         = "UKS"
-    "UK West"          = "UKW"
-    "North Europe"     = "NEU"
-    "West Europe"      = "WEU"
-    "North Central US" = "NCUS"
-  }
-}
-
-variable "resource_environment_prefix" {
-  description = "Desired environment prefix for the provisioned resources"
-  type        = map(string)
-  default = {
-    "Prod"    = "P"
-    "Prod-DR" = "P"
-  }
-}
-
 variable "resource_location_fault_domain" {
   description = "Number of fault domains in the location"
   type        = map(string)

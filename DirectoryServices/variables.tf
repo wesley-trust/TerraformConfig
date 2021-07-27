@@ -14,7 +14,7 @@ variable "service_location" {
     ]
 
     Prod-DR = [
-      "North Central US"
+      "North Europe"
     ]
   }
 }
