@@ -14,17 +14,17 @@ variable "service_deployment" {
   type        = string
 }
 
+variable "service_location" {
+  description = "Desired location to provision the resources"
+  type        = string
+}
+
 variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"
   type        = string
 }
 
-variable "resource_subnet_name" {
-  description = "Desired subnet name for the provisioned resources"
-  type        = string
-}
-
-variable "service_location" {
-  description = "Desired location to provision the resources"
-  type        = string
+variable "resource_dns_servers" {
+  description = "Desired DNS servers for the provisioned resources"
+  type        = list(string)
 }

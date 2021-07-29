@@ -21,13 +21,13 @@ variable "service_location" {
 
 # Required resource variables
 variable "resource_address_space" {
-  description = "Required deployment identifier of the network"
+  description = "Required address space of the network"
   type        = string
 }
 
-variable "resource_subnet_name" {
-  description = "The subnet name for the provisioned resources"
-  type        = string
+variable "resource_dns_servers" {
+  description = "Desired DNS servers for the provisioned resources"
+  type        = list
 }
 
 variable "resource_name" {
@@ -46,7 +46,7 @@ variable "resource_instance_size" {
 }
 
 # Defined resource variables
-variable "resource_location_fault_domain" {
+variable "platform_location_fault_domain" {
   description = "Number of fault domains in the location"
   type        = map(string)
   default = {
@@ -57,7 +57,7 @@ variable "resource_location_fault_domain" {
   }
 }
 
-variable "resource_location_az" {
+variable "platform_location_az" {
   description = "Number of availability zones in the location"
   type        = map(string)
   default = {

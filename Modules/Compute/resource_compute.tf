@@ -2,7 +2,7 @@
 resource "azurerm_availability_set" "availability_set" {
 
   # If there is less than one availability zone, create availability set
-  count = local.resource_location_az_count < 1 ? 1 : 0
+  count = local.platform_location_az_count < 1 ? 1 : 0
 
   # Format with leading zero
   name                        = "${local.resource_name}-as"
@@ -26,8 +26,9 @@ resource "azurerm_network_interface" "network_interface" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = azurerm_subnet.subnet.id
-    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = module.service_spoke_network.subnet_id
+    private_ip_address_allocation = "static"
+    private_ip_address            = cidrhost(var.resource_address_space, 4 + count.index)
   }
 }
 
@@ -50,10 +51,10 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   ]
 
   # If there is less than one availability zone, then specify availability set id
-  availability_set_id = local.resource_location_az_count < 1 ? azurerm_availability_set.availability_set[0].id : null
+  availability_set_id = local.platform_location_az_count < 1 ? azurerm_availability_set.availability_set[0].id : null
 
   # If there is more than one availability zone, select the AZ in iteration from the maximum count of availability zones
-  zone = local.resource_location_az_count > 1 ? (count.index + 1 % local.resource_location_az_count) : null
+  zone = local.platform_location_az_count > 1 ? (count.index + 1 % local.platform_location_az_count) : null
 
   os_disk {
     caching              = "ReadOnly"
