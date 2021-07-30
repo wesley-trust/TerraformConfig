@@ -14,7 +14,7 @@ variable "service_location" {
     ]
 
     Prod-DR = [
-      "North Europe"
+      "North Central US"
     ]
   }
 }
@@ -44,6 +44,18 @@ variable "resource_instance_size" {
     "DirectoryServices" = "Standard_B1s"
     "FileServices"      = "Standard_B1s"
   }
+}
+
+variable "resource_data_disk_count" {
+  description = "Desired size for the provisioned resources for each service"
+  type        = number
+  default     = 1
+}
+
+variable "resource_data_disk_size" {
+  description = "Desired size for the provisioned resources for each service"
+  type        = number
+  default     = 32
 }
 
 variable "resource_address_space" {

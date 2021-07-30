@@ -17,6 +17,11 @@ resource "azurerm_availability_set" "availability_set" {
 
 # Create network adapter
 resource "azurerm_network_interface" "network_interface" {
+
+    # Force explicit dependency to prevent race condition/deadlock in network module
+  depends_on = [
+    module.service_spoke_network
+  ]
   count = var.resource_instance_count
 
   # Format with leading zero
@@ -54,7 +59,7 @@ resource "azurerm_windows_virtual_machine" "virtual_machine" {
   availability_set_id = local.platform_location_az_count < 1 ? azurerm_availability_set.availability_set[0].id : null
 
   # If there is more than one availability zone, select the AZ in iteration from the maximum count of availability zones
-  zone = local.platform_location_az_count > 1 ? (count.index + 1 % local.platform_location_az_count) : null
+  zone = local.platform_location_az_count > 1 ? (count.index % local.platform_location_az_count) + 1 : null
 
   os_disk {
     caching              = "ReadOnly"

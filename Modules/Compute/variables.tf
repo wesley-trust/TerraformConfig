@@ -25,6 +25,11 @@ variable "resource_address_space" {
   type        = string
 }
 
+variable "resource_data_disk_count" {
+  description = "Desired number of data disks"
+  type        = string
+}
+
 variable "resource_dns_servers" {
   description = "Desired DNS servers for the provisioned resources"
   type        = list
@@ -75,8 +80,14 @@ variable "resource_vm_sku" {
   default     = "2019-Datacenter-smalldisk"
 }
 
-variable "resource_disk_size" {
+variable "resource_data_disk_size" {
   description = "Desired size for the provisioned resources"
+  type        = string
+  default     = "32"
+}
+
+variable "resource_disk_size" {
+  description = "Desired disk size for the provisioned resources"
   type        = string
   default     = "32"
 }
