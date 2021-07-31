@@ -1,12 +1,21 @@
-# Required service variables
-variable "service_name" {
-  description = "Desired name for the provisioned resources"
+# Required resource variables
+variable "resource_network_interface_count" {
+  description = "Desired number of network interfaces"
   type        = string
 }
 
-# Required resource variables
-variable "resource_address_space" {
-  description = "Desired address space for the provisioned resources"
+variable "resource_private_ip_address" {
+  description = "Desired private ip address"
+  type        = string
+}
+
+variable "resource_subnet_id" {
+  description = "Desired subnet id"
+  type        = string
+}
+
+variable "resource_name" {
+  description = "Desired name for the provisioned resources"
   type        = string
 }
 
@@ -23,10 +32,4 @@ variable "resource_location" {
 variable "resource_environment" {
   description = "Desired environment for the provisioned resources"
   type        = string
-}
-
-# Defined resource variables
-variable "resource_dns_servers" {
-  description = "Desired DNS servers for the provisioned resources"
-  type        = list(string)
 }

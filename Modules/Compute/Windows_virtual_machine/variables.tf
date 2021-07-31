@@ -92,6 +92,12 @@ variable "resource_disk_size" {
   default     = "32"
 }
 
+variable "resource_network_interface_count" {
+  description = "Desired number of network interfaces"
+  type        = string
+  default     = 2
+}
+
 variable "admin_username" {
   description = "Desired username for the provisioned resources"
   type        = string

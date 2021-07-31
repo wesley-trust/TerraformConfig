@@ -2,15 +2,15 @@
 resource "azurerm_managed_disk" "disks" {
   count                = var.resource_data_disk_count
   name                 = "${var.resource_name}_DataDisk_${count.index + 1}"
-  location             = azurerm_resource_group.resource_group.location
-  resource_group_name  = azurerm_resource_group.resource_group.name
+  location             = var.resource_location
+  resource_group_name  = var.resource_group_name
   storage_account_type = "Standard_LRS"
   create_option        = "Empty"
   disk_size_gb         = var.resource_data_disk_size
   zones                = var.resource_zone != null ? [var.resource_zone] : null
 
   tags = {
-    environment = var.service_environment
+    environment = var.resource_environment
   }
 }
 
