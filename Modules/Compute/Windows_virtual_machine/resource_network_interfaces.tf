@@ -12,6 +12,6 @@ module "network_interfaces" {
   resource_environment             = var.service_environment
   resource_name                    = "${local.resource_name}${format("%02d", count.index + 1)}-vm"
   resource_network_interface_count = var.resource_network_interface_count
-  resource_subnet_id               = module.service_spoke_network.subnet_ids
+  resource_subnet_id               = module.service_spoke_network.subnet_id
   resource_private_ip_address      = cidrhost(var.resource_address_space, 4 + count.index)
 }

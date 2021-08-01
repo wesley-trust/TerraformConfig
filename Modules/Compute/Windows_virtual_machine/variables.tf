@@ -95,7 +95,7 @@ variable "resource_disk_size" {
 variable "resource_network_interface_count" {
   description = "Desired number of network interfaces"
   type        = string
-  default     = 2
+  default     = 1
 }
 
 variable "admin_username" {
