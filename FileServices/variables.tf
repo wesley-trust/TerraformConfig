@@ -23,9 +23,7 @@ variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = map(string)
   default = {
-    "DirectoryServices" = "ACD"
-    "FileServices"      = "FS"
-    "EdgeServices"      = "FW"
+    "FileServices" = "FS"
   }
 }
 
@@ -42,9 +40,7 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(string)
   default = {
-    "DirectoryServices" = "Standard_B1s"
-    "FileServices"      = "Standard_B1s"
-    "EdgeServices"      = "Standard_B1ls"
+    "FileServices" = "Standard_B1s"
   }
 }
 

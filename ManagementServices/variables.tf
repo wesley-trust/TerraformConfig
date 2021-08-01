@@ -1,8 +1,8 @@
 # Define variables
 variable "service_name" {
-  description = "Desired name for the service collection of provisioned resources"
+  description = "Desired name for the provisioned resources"
   type        = string
-  default     = "EdgeServices"
+  default     = "ManagementServices"
 }
 
 variable "service_location" {
@@ -14,7 +14,6 @@ variable "service_location" {
     ]
 
     Prod-DR = [
-      "North Central US"
     ]
   }
 }
@@ -23,7 +22,7 @@ variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = map(string)
   default = {
-    "EdgeServices" = "FW"
+    "ManagementServices" = "MGMT"
   }
 }
 
@@ -31,8 +30,8 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(string)
   default = {
-    "Prod"    = 2
-    "Prod-DR" = 1
+    "Prod"    = 1
+    "Prod-DR" = 0
   }
 }
 
@@ -40,7 +39,7 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(string)
   default = {
-    "EdgeServices" = "Standard_B1ls"
+    "ManagementServices" = "Standard_B1ls"
   }
 }
 
@@ -48,10 +47,10 @@ variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"
   type        = map(string)
   default = {
-    "UK South"         = "10.0.0.0/24"
-    "North Europe"     = "10.2.0.0/24"
-    "West Europe"      = "10.4.0.0/24"
-    "North Central US" = "10.6.0.0/24"
+    "UK South"         = "10.0.6.0/24"
+    "North Europe"     = "10.2.6.0/24"
+    "West Europe"      = "10.4.6.0/24"
+    "North Central US" = "10.6.6.0/24"
   }
 }
 
@@ -79,10 +78,4 @@ variable "resource_dns_servers" {
       "10.6.2.5"
     ]
   }
-}
-
-variable "resource_network_interface_count" {
-  description = "Desired number of network interfaces"
-  type        = string
-  default     = 2
 }

@@ -24,8 +24,6 @@ variable "resource_name" {
   type        = map(string)
   default = {
     "DirectoryServices" = "ACD"
-    "FileServices"      = "FS"
-    "EdgeServices"      = "FW"
   }
 }
 
@@ -43,8 +41,6 @@ variable "resource_instance_size" {
   type        = map(string)
   default = {
     "DirectoryServices" = "Standard_B1s"
-    "FileServices"      = "Standard_B1s"
-    "EdgeServices"      = "Standard_B1ls"
   }
 }
 
