@@ -25,6 +25,7 @@ variable "resource_name" {
   default = {
     "DirectoryServices" = "ACD"
     "FileServices"      = "FS"
+    "EdgeServices"      = "FW"
   }
 }
 
