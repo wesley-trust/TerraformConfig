@@ -46,26 +46,14 @@ variable "resource_instance_size" {
   }
 }
 
-variable "resource_data_disk_count" {
-  description = "Desired size for the provisioned resources for each service"
-  type        = number
-  default     = 1
-}
-
-variable "resource_data_disk_size" {
-  description = "Desired size for the provisioned resources for each service"
-  type        = number
-  default     = 32
-}
-
 variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"
   type        = map(string)
   default = {
-    "UK South"         = "10.0.0.0/24"
-    "North Europe"     = "10.0.2.0/24"
-    "West Europe"      = "10.0.4.0/24"
-    "North Central US" = "10.0.6.0/24"
+    "UK South"         = "10.0.2.0/24"
+    "North Europe"     = "10.2.2.0/24"
+    "West Europe"      = "10.4.2.0/24"
+    "North Central US" = "10.6.2.0/24"
   }
 }
 
@@ -74,23 +62,23 @@ variable "resource_dns_servers" {
   type        = map(any)
   default = {
     "UK South" = [
-      "10.0.0.4",
-      "10.0.0.5"
-    ]
-
-    "North Europe" = [
       "10.0.2.4",
       "10.0.2.5"
     ]
 
+    "North Europe" = [
+      "10.2.2.4",
+      "10.2.2.5"
+    ]
+
     "West Europe" = [
-      "10.0.4.4",
-      "10.0.4.5"
+      "10.4.2.4",
+      "10.4.2.5"
     ]
 
     "North Central US" = [
-      "10.0.6.4",
-      "10.0.6.5"
+      "10.6.2.4",
+      "10.6.2.5"
     ]
   }
 }
