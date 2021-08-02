@@ -8,7 +8,7 @@ module "directory_services_prod" {
   service_location        = each.value
   resource_name           = local.resource_name
   resource_instance_count = local.resource_prod_instance_count
-  resource_instance_size  = local.resource_instance_size
+  resource_instance_size  = local.resource_prod_instance_size
   resource_address_space  = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
 }
@@ -22,7 +22,7 @@ module "directory_services_prod_dr" {
   service_location        = each.value
   resource_name           = local.resource_name
   resource_instance_count = local.resource_prod_dr_instance_count
-  resource_instance_size  = local.resource_instance_size
+  resource_instance_size  = local.resource_prod_dr_instance_size
   resource_address_space  = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
 }

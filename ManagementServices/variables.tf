@@ -30,16 +30,25 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(string)
   default = {
-    "Prod"    = 1
-    "Prod-DR" = 0
+    "Prod" = {
+      "ManagementServices" = 2
+    },
+    "Prod-DR" = {
+      "ManagementServices" = 0
+    }
   }
 }
 
 variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
-  type        = map(string)
+  type        = map(any)
   default = {
-    "ManagementServices" = "Standard_B1ls"
+    "Prod" = {
+      "ManagementServices" = "Standard_B1s"
+    },
+    "Prod-DR" = {
+      "ManagementServices" = "Standard_B1s"
+    }
   }
 }
 
