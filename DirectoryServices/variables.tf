@@ -10,8 +10,7 @@ variable "service_location" {
   type        = map(any)
   default = {
     Prod = [
-      "UK South",
-      "North Europe"
+      "UK South"
     ]
 
     Prod-DR = [
@@ -33,7 +32,7 @@ variable "resource_instance_count" {
   type        = map(any)
   default = {
     "Prod" = {
-      "DirectoryServices" = 3
+      "DirectoryServices" = 2
     },
     "Prod-DR" = {
       "DirectoryServices" = 1
