@@ -31,7 +31,7 @@ variable "resource_instance_count" {
   type        = map(any)
   default = {
     "Prod" = {
-      "ManagementServices" = 2
+      "ManagementServices" = 1
     },
     "Prod-DR" = {
       "ManagementServices" = 0
