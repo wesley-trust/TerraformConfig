@@ -88,3 +88,9 @@ variable "resource_dns_servers" {
     ]
   }
 }
+
+variable "resource_provision_public_load_balancer" {
+  description = "Whether to provision a public load balancer"
+  type        = bool
+  default     = true
+}

@@ -10,7 +10,7 @@ resource "azurerm_network_interface" "network_interface" {
   ip_configuration {
     name                          = "ipconfig1"
     subnet_id                     = var.resource_subnet_id
-    private_ip_address_allocation = "dynamic"
-    #private_ip_address            = var.resource_private_ip_address
+    private_ip_address_allocation = "static"
+    private_ip_address            = var.resource_private_ip_address
   }
 }
