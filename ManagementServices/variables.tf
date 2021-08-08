@@ -5,6 +5,15 @@ variable "service_name" {
   default     = "ManagementServices"
 }
 
+variable "service_traffic_manager_location" {
+  description = "The production resource location for traffic manager to deploy"
+  type        = map(any)
+  default = {
+    Prod    = "UK South"
+    Prod-DR = null
+  }
+}
+
 variable "service_location" {
   description = "The production resource locations to deploy"
   type        = map(any)
@@ -89,8 +98,14 @@ variable "resource_dns_servers" {
   }
 }
 
-variable "resource_provision_public_load_balancer" {
+variable "provision_public_load_balancer" {
   description = "Whether to provision a public load balancer"
+  type        = bool
+  default     = true
+}
+
+variable "provision_traffic_manager" {
+  description = "Whether to provision traffic manager"
   type        = bool
   default     = true
 }

@@ -6,7 +6,7 @@ module "network_interfaces" {
     module.service_spoke_network
   ]
   count                            = var.resource_instance_count
-  source                           = "../Network_interfaces/"
+  source                           = "../../Resources/Network_interfaces"
   resource_location                = module.resource_group.location
   resource_group_name              = module.resource_group.name
   resource_environment             = var.service_environment

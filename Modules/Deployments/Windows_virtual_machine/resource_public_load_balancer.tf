@@ -1,7 +1,10 @@
-# Create spoke network dependencies
+# Create public load balancer
 module "public_load_balancer" {
-  count                          = var.resource_provision_public_load_balancer == true ? 1 : 0
-  source                         = "../../Public_load_balancer/"
+  depends_on = [
+    azurerm_windows_virtual_machine.virtual_machine
+  ]
+  count                          = var.provision_public_load_balancer == true ? 1 : 0
+  source                         = "../../Resources/Public_load_balancer"
   resource_location              = module.resource_group.location
   resource_group_name            = module.resource_group.name
   resource_environment           = var.service_environment

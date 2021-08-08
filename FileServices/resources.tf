@@ -1,7 +1,7 @@
 # Create production virtual machines
 module "file_services_prod" {
   for_each                 = toset(local.resource_prod_locations)
-  source                   = "../Modules/Compute/Windows_virtual_machine"
+  source                   = "../Modules/Deployments/Windows_virtual_machine"
   service_environment      = "Prod"
   service_deployment       = "01"
   service_name             = var.service_name
@@ -17,7 +17,7 @@ module "file_services_prod" {
 
 module "file_services_prod_dr" {
   for_each                 = toset(local.resource_prod_dr_locations)
-  source                   = "../Modules/Compute/Windows_virtual_machine"
+  source                   = "../Modules/Deployments/Windows_virtual_machine"
   service_environment      = "Prod-DR"
   service_deployment       = "01"
   service_name             = var.service_name

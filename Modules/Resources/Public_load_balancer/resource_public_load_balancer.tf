@@ -6,6 +6,7 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method   = "Static"
   sku                 = "Standard"
   availability_zone   = var.resource_location_zone_support == true ? "Zone-Redundant" : "No-Zone"
+  domain_name_label   = local.resource_public_ip_domain_name_label
 }
 
 # Create load balancer

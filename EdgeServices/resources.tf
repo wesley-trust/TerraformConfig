@@ -1,7 +1,7 @@
 # Create production virtual machines
 module "edge_services_prod" {
   for_each                         = toset(local.resource_prod_locations)
-  source                           = "../Modules/Compute/Linux_virtual_machine"
+  source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod"
   service_deployment               = "01"
   service_name                     = var.service_name
