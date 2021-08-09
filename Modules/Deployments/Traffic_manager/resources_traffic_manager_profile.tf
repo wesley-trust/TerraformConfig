@@ -10,7 +10,7 @@ resource "azurerm_traffic_manager_profile" "traffic_manager_profile" {
   }
 
   monitor_config {
-    protocol                     = "https"
+    protocol                     = "HTTPS"
     port                         = 443
     path                         = "/"
     interval_in_seconds          = 30
