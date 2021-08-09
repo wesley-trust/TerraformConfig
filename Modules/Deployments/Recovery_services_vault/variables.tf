@@ -25,12 +25,12 @@ variable "resource_name" {
   type        = string
 }
 
-variable "resource_traffic_manager_endpoint_locations" {
-  description = "Traffic manager endpoint locations"
-  type        = list(string)
+variable "resource_recovery_services_instance_count" {
+  description = "Desired number of the provisioned resources to backup in each service environment"
+  type        = string
 }
 
-variable "resource_traffic_manager_endpoints" {
-  description = "Traffic manager endpoint public ips"
+variable "resource_recovery_services_virtual_machines" {
+  description = "Desired virtual machines of the provisioned resources to backup"
   type        = any
 }

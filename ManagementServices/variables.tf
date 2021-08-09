@@ -5,6 +5,19 @@ variable "service_name" {
   default     = "ManagementServices"
 }
 
+variable "service_location" {
+  description = "The production resource locations to deploy"
+  type        = map(any)
+  default = {
+    Prod = [
+      "UK South",
+    ]
+
+    Prod-DR = [
+    ]
+  }
+}
+
 variable "service_traffic_manager_location" {
   description = "The production resource location for traffic manager to deploy"
   type        = map(any)
@@ -14,12 +27,11 @@ variable "service_traffic_manager_location" {
   }
 }
 
-variable "service_location" {
-  description = "The production resource locations to deploy"
+variable "service_recovery_services_location" {
+  description = "The production resource locations to backup"
   type        = map(any)
   default = {
     Prod = [
-      "UK South",
     ]
 
     Prod-DR = [
@@ -41,6 +53,19 @@ variable "resource_instance_count" {
   default = {
     "Prod" = {
       "ManagementServices" = 1
+    },
+    "Prod-DR" = {
+      "ManagementServices" = 0
+    }
+  }
+}
+
+variable "resource_recovery_services_instance_count" {
+  description = "Desired number of the provisioned resources to backup in each service environment"
+  type        = map(any)
+  default = {
+    "Prod" = {
+      "ManagementServices" = 0
     },
     "Prod-DR" = {
       "ManagementServices" = 0
