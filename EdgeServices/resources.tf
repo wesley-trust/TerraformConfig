@@ -29,7 +29,7 @@ module "edge_services_recovery_services_vault_prod" {
 
 module "edge_services_prod_dr" {
   for_each                         = toset(local.resource_prod_dr_locations)
-  source                           = ".../Modules/Deployments/Linux_virtual_machine"
+  source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod-DR"
   service_deployment               = "01"
   service_name                     = var.service_name
