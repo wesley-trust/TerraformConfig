@@ -15,6 +15,19 @@ module "file_services_prod" {
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
 }
 
+# Create production recovery services vault
+module "file_services_recovery_services_vault_prod" {
+  for_each                                    = toset(local.resource_prod_recovery_services_locations)
+  source                                      = "../Modules/Deployments/Recovery_services_vault"
+  service_environment                         = "Prod"
+  service_deployment                          = "01"
+  service_name                                = "${var.service_name}-RSV"
+  service_location                            = each.value
+  resource_name                               = local.resource_name
+  resource_recovery_services_instance_count   = local.resource_prod_recovery_services_instance_count
+  resource_recovery_services_virtual_machines = module.file_services_prod[each.value]
+}
+
 module "file_services_prod_dr" {
   for_each                 = toset(local.resource_prod_dr_locations)
   source                   = "../Modules/Deployments/Windows_virtual_machine"

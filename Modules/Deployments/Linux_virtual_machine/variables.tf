@@ -111,3 +111,21 @@ variable "admin_password" {
   default     = "mnUuk2TOEVe1qh"
   sensitive   = true
 }
+
+variable "provision_public_load_balancer" {
+  description = "Whether to provision a public load balancer"
+  type        = bool
+  default     = false
+}
+
+variable "resource_traffic_manager_profile_name" {
+  description = "Traffic manager profile name"
+  type        = string
+  default     = null
+}
+
+variable "resource_traffic_manager_resource_group_name" {
+  description = "Traffic manager resource group name"
+  type        = string
+  default     = null
+}

@@ -4,8 +4,8 @@ resource "azurerm_network_interface" "network_interface" {
 
   # Format with leading zero
   name                = "${var.resource_name}-ni${count.index + 1}"
-  location             = var.resource_location
-  resource_group_name  = var.resource_group_name
+  location            = var.resource_location
+  resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "ipconfig1"

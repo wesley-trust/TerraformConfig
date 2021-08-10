@@ -19,6 +19,18 @@ variable "service_location" {
   }
 }
 
+variable "service_recovery_services_location" {
+  description = "The production resource locations to backup"
+  type        = map(any)
+  default = {
+    Prod = [
+    ]
+
+    Prod-DR = [
+    ]
+  }
+}
+
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = map(string)
@@ -36,6 +48,19 @@ variable "resource_instance_count" {
     },
     "Prod-DR" = {
       "FileServices" = 1
+    }
+  }
+}
+
+variable "resource_recovery_services_instance_count" {
+  description = "Desired number of the provisioned resources to backup in each service environment"
+  type        = map(any)
+  default = {
+    "Prod" = {
+      "FileServices" = 0
+    },
+    "Prod-DR" = {
+      "FileServices" = 0
     }
   }
 }
