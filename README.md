@@ -1,6 +1,6 @@
 # TerraformConfig
 Configuration files for deployment with Terraform and Pipeline definitions
-## Deployments
+## Services
 |  |  main  | develop |
 |:---| :----: | :-----: |
 | Directory Services |[![Build Status](https://dev.azure.com/wesleytrust/Terraform/_apis/build/status/DirectoryServices/SVC-CP%3BENV-P%3B%20Directory%20Services?branchName=main)](https://dev.azure.com/wesleytrust/Terraform/_build/latest?definitionId=41&branchName=main)|[![Build Status](https://dev.azure.com/wesleytrust/Terraform/_apis/build/status/DirectoryServices/SVC-CP%3BENV-D%3B%20Directory%20Services?branchName=develop)](https://dev.azure.com/wesleytrust/Terraform/_build/latest?definitionId=44&branchName=develop)|
