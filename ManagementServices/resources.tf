@@ -25,9 +25,9 @@ module "management_services_traffic_manager_prod" {
   resource_traffic_manager_endpoint_locations = local.resource_prod_locations
 }
 
-module "management_services_recovery_services_vault_prod" {
+module "management_services_recovery_services_prod" {
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
-  source                                      = "../Modules/Deployments/Recovery_services_vault"
+  source                                      = "../Modules/Deployments/Recovery_services"
   service_environment                         = "Prod"
   service_deployment                          = "01"
   service_name                                = "${var.service_name}-RSV"

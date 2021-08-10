@@ -14,9 +14,9 @@
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
 }
 
-module "file_services_recovery_services_vault_prod" {
+module "file_services_recovery_services_prod" {
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
-  source                                      = "../Modules/Deployments/Recovery_services_vault"
+  source                                      = "../Modules/Deployments/Recovery_services"
   service_environment                         = "Prod"
   service_deployment                          = "01"
   service_name                                = "${var.service_name}-RSV"
