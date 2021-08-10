@@ -1,4 +1,3 @@
-# Create production virtual machines
 module "edge_services_prod" {
   for_each                         = toset(local.resource_prod_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
@@ -14,7 +13,6 @@ module "edge_services_prod" {
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
 }
 
-# Create production recovery services vault
 module "edge_services_recovery_services_vault_prod" {
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services_vault"

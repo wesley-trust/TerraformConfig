@@ -1,4 +1,3 @@
-# Create production virtual machines
 module "management_services_prod" {
   for_each                       = toset(local.resource_prod_locations)
   source                         = "../Modules/Deployments/Windows_virtual_machine"
@@ -14,7 +13,6 @@ module "management_services_prod" {
   provision_public_load_balancer = var.provision_public_load_balancer
 }
 
-# Create production traffic manager
 module "management_services_traffic_manager_prod" {
   count                                       = var.provision_traffic_manager == true ? 1 : 0
   source                                      = "../Modules/Deployments/Traffic_manager"
@@ -27,7 +25,6 @@ module "management_services_traffic_manager_prod" {
   resource_traffic_manager_endpoint_locations = local.resource_prod_locations
 }
 
-# Create production recovery services vault
 module "management_services_recovery_services_vault_prod" {
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services_vault"
