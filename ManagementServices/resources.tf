@@ -37,5 +37,5 @@ module "management_services_recovery_services_vault_prod" {
   service_location                            = each.value
   resource_name                               = local.resource_name
   resource_recovery_services_instance_count   = local.resource_prod_recovery_services_instance_count
-  resource_recovery_services_virtual_machines = module.management_services_prod
+  resource_recovery_services_virtual_machines = module.management_services_prod[each.value]
 }
