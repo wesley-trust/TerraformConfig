@@ -25,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "virtual_machine" {
   resource_group_name             = module.resource_group.name
   size                            = var.resource_instance_size
   admin_username                  = var.admin_username
-  admin_password                  = var.admin_password
+  admin_password                  = random_password.password[count.index].result
   disable_password_authentication = false
 
   # Get all of the interface ids, and select the correct one for this iteration

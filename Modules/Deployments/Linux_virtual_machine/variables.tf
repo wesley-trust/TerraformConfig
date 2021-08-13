@@ -105,17 +105,22 @@ variable "admin_username" {
   default     = "wesley"
 }
 
-variable "admin_password" {
-  description = "Desired password for the provisioned resources"
-  type        = string
-  default     = "mnUuk2TOEVe1qh"
-  sensitive   = true
-}
-
 variable "provision_public_load_balancer" {
   description = "Whether to provision a public load balancer"
   type        = bool
   default     = false
+}
+
+variable "provision_key_vault" {
+  description = "Whether to provision a key vault"
+  type        = bool
+  default     = true
+}
+
+variable "resource_key_vault_access_object_id" {
+  description = "The object ID to have access to the key vault"
+  type        = string
+  default     = "27cf12d2-6428-4882-a6ff-ca3cf4aef391"
 }
 
 variable "resource_traffic_manager_profile_name" {

@@ -19,22 +19,17 @@ variable "resource_location" {
   type        = string
 }
 
-variable "resource_virtual_network_id" {
-  description = "Virtual network ID for the provisioned resources"
-  type        = string
-}
-
-variable "resource_address_space" {
-  description = "Virtual network address space for the provisioned resources"
-  type        = string
-}
-
 variable "resource_instance_count" {
   description = "Virtual network ID for the provisioned resources"
   type        = string
 }
 
-variable "resource_location_zone_support" {
-  description = "Whether the current location supports zones"
-  type        = bool
+variable "resource_secret" {
+  description = "Resource secret to store in vault"
+  type        = any
+}
+
+variable "resource_key_vault_access_object_id" {
+  description = "The object ID to have access to the key vault"
+  type        = string
 }

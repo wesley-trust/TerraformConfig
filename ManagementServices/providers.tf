@@ -1,8 +1,3 @@
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  features {}
-}
-
 # Set required providers and versions
 terraform {
   backend "azurerm" {}
@@ -11,5 +6,18 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">= 2.29.0"
     }
+
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.0.1"
+    }
   }
+}
+
+# Configure Providers
+provider "azurerm" {
+  features {}
+}
+
+provider "random" {
 }
