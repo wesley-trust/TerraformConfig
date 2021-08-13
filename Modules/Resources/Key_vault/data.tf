@@ -1,3 +1,4 @@
-# Get current subscription information
-data "azurerm_subscription" "current" {
+# Get current configuration
+data "azurerm_client_config" "current" {
+
 }

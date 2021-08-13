@@ -32,6 +32,7 @@ variable "service_recovery_services_location" {
   type        = map(any)
   default = {
     Prod = [
+      "UK South"
     ]
 
     Prod-DR = [
@@ -65,7 +66,7 @@ variable "resource_recovery_services_instance_count" {
   type        = map(any)
   default = {
     "Prod" = {
-      "ManagementServices" = 0
+      "ManagementServices" = 1
     },
     "Prod-DR" = {
       "ManagementServices" = 0
