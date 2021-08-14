@@ -10,14 +10,14 @@ Configuration files for deployment with Terraform and Pipeline definitions
 
 ## Modules
 ### Deployments
-| Parent Module | Required Dependencies | Optional Dependencies |
-| :---------------------- | :---------------------- | :---------------------- |
+| Parent Module | Child Dependencies |
+| :---------------------- | :---------------------- |
 | Resource_group      |  |
 | Static_site       | Resource_group |
 | Traffic_manager     | Resource_group |
 | Recovery_services    | Resource_group |
-| Windows_virtual_machine | Resource_group, Key_vault, Network, Network_interfaces | Disks, Public_load_balancer |
-| Linux_virtual_machine  | Resource_group, Key_vault, Network, Network_interfaces | Disks, Public_load_balancer |
+| Windows_virtual_machine | Resource_group, Key_vault, Network, Network_interfaces, Disks, Public_load_balancer |
+| Linux_virtual_machine  | Resource_group, Key_vault, Network, Network_interfaces, Disks, Public_load_balancer |
 
 ### Resources
 | Child Module |
