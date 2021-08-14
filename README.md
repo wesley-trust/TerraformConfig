@@ -10,7 +10,7 @@ Configuration files for deployment with Terraform and Pipeline definitions
 
 ## Modules
 ### Deployments
-| Deployment Parent Modules |
+| Deployment Parent Module |
 | :---------------------- |
 | Windows_virtual_machine |
 | Linux_virtual_machine  |
@@ -20,7 +20,7 @@ Configuration files for deployment with Terraform and Pipeline definitions
 | Traffic_manager     |
 
 ### Resources
-| Resource Child Modules |
+| Resource Child Module |
 | :---------------------- |
 | Disks |
 | Key_vault |
