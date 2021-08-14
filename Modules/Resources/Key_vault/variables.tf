@@ -29,7 +29,7 @@ variable "resource_secret" {
   type        = any
 }
 
-variable "resource_key_vault_access_object_id" {
+variable "resource_key_vault_access_object_ids" {
   description = "The object ID to have access to the key vault"
-  type        = string
+  type        = list(string)
 }

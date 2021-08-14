@@ -25,8 +25,17 @@ variable "resource_environment" {
   type        = string
 }
 
-# Defined resource variables
 variable "resource_dns_servers" {
   description = "Desired DNS servers for the provisioned resources"
   type        = list(string)
+}
+
+variable "resource_network_subnet_count" {
+  description = "Desired number of subnets for the provisioned resources"
+  type        = string
+
+  validation {
+    condition     = var.resource_network_subnet_count <= 2
+    error_message = "The maximum subnet count cannot exceed 2 in the current configuration."
+  }
 }

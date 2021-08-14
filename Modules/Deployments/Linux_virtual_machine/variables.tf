@@ -117,10 +117,12 @@ variable "provision_key_vault" {
   default     = true
 }
 
-variable "resource_key_vault_access_object_id" {
-  description = "The object ID to have access to the key vault"
-  type        = string
-  default     = "27cf12d2-6428-4882-a6ff-ca3cf4aef391"
+variable "resource_key_vault_access_object_ids" {
+  description = "The object IDs to have access to the key vault"
+  type        = list(string)
+  default = [
+    "27cf12d2-6428-4882-a6ff-ca3cf4aef391"
+  ]
 }
 
 variable "resource_traffic_manager_profile_name" {
@@ -133,4 +135,10 @@ variable "resource_traffic_manager_resource_group_name" {
   description = "Traffic manager resource group name"
   type        = string
   default     = null
+}
+
+variable "resource_private_ip_initial_address" {
+  description = "The initial IP address available for static assignment"
+  type        = string
+  default     = 4
 }

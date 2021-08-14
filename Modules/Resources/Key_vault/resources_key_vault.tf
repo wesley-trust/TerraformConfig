@@ -26,21 +26,25 @@ resource "azurerm_key_vault" "vault" {
     ]
   }
 
-  access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = var.resource_key_vault_access_object_id
+  dynamic "access_policy" {
+    for_each = var.resource_key_vault_access_object_ids
 
-    key_permissions = [
-      "get",
-    ]
+    content {
+      tenant_id = data.azurerm_client_config.current.tenant_id
+      object_id = access_policy.value
 
-    secret_permissions = [
-      "get", "backup", "delete", "list", "purge", "recover", "restore", "set",
-    ]
+      key_permissions = [
+        "get",
+      ]
 
-    storage_permissions = [
-      "get",
-    ]
+      secret_permissions = [
+        "get", "backup", "delete", "list", "purge", "recover", "restore", "set",
+      ]
+
+      storage_permissions = [
+        "get",
+      ]
+    }
   }
 }
 

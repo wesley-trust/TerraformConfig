@@ -4,13 +4,18 @@ variable "resource_network_interface_count" {
   type        = string
 }
 
-variable "resource_private_ip_address" {
-  description = "Desired private ip address"
-  type        = string
-}
-
 variable "resource_subnet_id" {
   description = "Desired subnet id"
+  type        = list(string)
+}
+
+variable "resource_subnet_address_prefixes" {
+  description = "Subnet address prefix"
+  type        = any
+}
+
+variable "resource_private_ip_initial_address" {
+  description = "The initial IP address available for static assignment"
   type        = string
 }
 

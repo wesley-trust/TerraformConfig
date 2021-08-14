@@ -83,10 +83,10 @@ variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"
   type        = map(string)
   default = {
-    "UK South"         = "10.0.0.0/24"
-    "North Europe"     = "10.2.0.0/24"
-    "West Europe"      = "10.4.0.0/24"
-    "North Central US" = "10.6.0.0/24"
+    "UK South"         = "10.0.0.0/23"
+    "North Europe"     = "10.2.0.0/23"
+    "West Europe"      = "10.4.0.0/23"
+    "North Central US" = "10.6.0.0/23"
   }
 }
 
