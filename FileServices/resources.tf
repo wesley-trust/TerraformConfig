@@ -1,4 +1,4 @@
-/* module "file_services_prod" {
+module "file_services_prod" {
   for_each                 = toset(local.resource_prod_locations)
   source                   = "../Modules/Deployments/Windows_virtual_machine"
   service_environment      = "Prod"
@@ -41,4 +41,4 @@ module "file_services_prod_dr" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-} */
+}
