@@ -16,13 +16,13 @@ Configuration files for deployment with Terraform and Pipeline definitions
 | Static_site       | Resource_group |
 | Traffic_manager     | Resource_group |
 | Recovery_services    | Resource_group |
-| Windows_virtual_machine | Resource_group, Key_vault, Network, Network_interfaces | Data_disks, Public_load_balancer |
-| Linux_virtual_machine  | Resource_group, Key_vault, Network, Network_interfaces | Data_disks, Public_load_balancer |
+| Windows_virtual_machine | Resource_group, Key_vault, Network, Network_interfaces | Disks, Public_load_balancer |
+| Linux_virtual_machine  | Resource_group, Key_vault, Network, Network_interfaces | Disks, Public_load_balancer |
 
 ### Resources
 | Resource Child Module |
 | :---------------------- |
-| Data_disks |
+| Disks |
 | Key_vault |
 | Network |
 | Network_interfaces |
