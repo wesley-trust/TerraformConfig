@@ -10,7 +10,7 @@ Configuration files for deployment with Terraform and Pipeline definitions
 
 ## Modules
 ### Deployments
-| Parent Module | Child Dependencies |
+| Parent Module | Child Module Dependencies |
 | :---------------------- | :---------------------- |
 | Resource_group      |  |
 | Static_site       | Resource_group |
