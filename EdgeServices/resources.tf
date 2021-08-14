@@ -14,6 +14,7 @@ module "edge_services_prod" {
 }
 
 module "edge_services_recovery_services_prod" {
+  depends_on                                  = [module.edge_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
   service_environment                         = "Prod"

@@ -1,4 +1,4 @@
-/* module "directory_services_prod" {
+module "directory_services_prod" {
   for_each                = toset(local.resource_prod_locations)
   source                  = "../Modules/Deployments/Windows_virtual_machine"
   service_environment     = "Prod"
@@ -13,6 +13,7 @@
 }
 
 module "directory_services_recovery_services_prod" {
+  depends_on                                  = [module.directory_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
   service_environment                         = "Prod"
@@ -36,4 +37,4 @@ module "directory_services_prod_dr" {
   resource_instance_size  = local.resource_prod_dr_instance_size
   resource_address_space  = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
-} */
+}

@@ -1,5 +1,6 @@
 # Backup policy
 resource "azurerm_backup_policy_vm" "backup_policy_vm" {
+  depends_on          = [azurerm_recovery_services_vault.recovery_services_vault]
   name                = "${local.resource_name}-policy"
   resource_group_name = module.resource_group.name
   recovery_vault_name = azurerm_recovery_services_vault.recovery_services_vault.name
@@ -36,6 +37,7 @@ resource "azurerm_backup_policy_vm" "backup_policy_vm" {
 
 # Backup virtual machine
 resource "azurerm_backup_protected_vm" "backup_protected_vm" {
+  depends_on          = [azurerm_backup_policy_vm.backup_policy_vm]
   count               = var.resource_recovery_services_instance_count
   resource_group_name = module.resource_group.name
   recovery_vault_name = azurerm_recovery_services_vault.recovery_services_vault.name

@@ -2,9 +2,7 @@
 module "network_interfaces" {
 
   # Force explicit dependency to prevent race condition/deadlock in network module
-  depends_on = [
-    module.service_spoke_network
-  ]
+  depends_on                          = [module.service_spoke_network]
   count                               = var.resource_instance_count
   source                              = "../../Resources/Network_interfaces"
   resource_location                   = module.resource_group.location
