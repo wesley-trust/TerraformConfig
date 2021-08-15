@@ -1,6 +1,6 @@
 # Set required providers and versions
 terraform {
-  backend "azurerm" {}
+  #backend "azurerm" {}
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"

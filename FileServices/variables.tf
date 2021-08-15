@@ -20,7 +20,20 @@ variable "service_location" {
 }
 
 variable "service_recovery_services_location" {
-  description = "The production resource locations to backup"
+  description = "The resource locations to backup"
+  type        = map(any)
+  default = {
+    Prod = [
+      "UK South"
+    ]
+
+    Prod-DR = [
+    ]
+  }
+}
+
+variable "service_storage_sync_location" {
+  description = "The resource locations for storage sync"
   type        = map(any)
   default = {
     Prod = [
