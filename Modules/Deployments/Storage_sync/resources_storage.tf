@@ -1,4 +1,5 @@
 resource "azurerm_storage_sync" "sync" {
+  depends_on          = [azurerm_resource_provider_registration.storage_sync]
   name                = local.resource_storage_sync_name
   resource_group_name = module.resource_group.name
   location            = module.resource_group.location
