@@ -1,4 +1,4 @@
-/* module "management_services_prod" {
+module "management_services_prod" {
   for_each                       = toset(local.resource_prod_locations)
   source                         = "../Modules/Deployments/Windows_virtual_machine"
   service_environment            = "Prod"
@@ -13,7 +13,7 @@
   provision_public_load_balancer = var.provision_public_load_balancer
 }
 
-module "management_services_traffic_manager_prod" {
+/* module "management_services_traffic_manager_prod" {
   depends_on                                  = [module.management_services_prod]
   count                                       = var.provision_traffic_manager == true ? 1 : 0
   source                                      = "../Modules/Deployments/Traffic_manager"

@@ -1,4 +1,4 @@
-/* module "file_services_prod" {
+module "file_services_prod" {
   for_each                 = toset(local.resource_prod_locations)
   source                   = "../Modules/Deployments/Windows_virtual_machine"
   service_environment      = "Prod"
@@ -14,7 +14,7 @@
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
 }
 
-module "file_services_storage_sync_prod" {
+/* module "file_services_storage_sync_prod" {
   for_each            = toset(local.resource_prod_storage_sync_locations)
   source              = "../Modules/Deployments/Storage_sync"
   service_environment = "Prod"
@@ -35,7 +35,7 @@ module "file_services_recovery_services_prod" {
   resource_name                               = local.resource_name
   resource_recovery_services_instance_count   = local.resource_prod_recovery_services_instance_count
   resource_recovery_services_virtual_machines = module.file_services_prod[each.value]
-}
+} */
 
 module "file_services_prod_dr" {
   for_each                 = toset(local.resource_prod_dr_locations)
@@ -51,4 +51,4 @@ module "file_services_prod_dr" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-} */
+}
