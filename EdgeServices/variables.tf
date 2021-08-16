@@ -37,10 +37,13 @@ variable "resource_network_peering" {
   type        = map(any)
   default = {
     "Prod" = {
-      "DirectoryServices-Prod-UKS-01-rg" = "DirectoryServices-Prod-vnet"
+      "DirectoryServices-Prod-UKS-01-rg"  = "DirectoryServices-Prod-vnet"
+      "FileServices-Prod-UKS-01-rg"       = "FileServices-Prod-vnet"
+      "ManagementServices-Prod-UKS-01-rg" = "ManagementServices-Prod-vnet"
     },
     "Prod-DR" = {
-
+      "DirectoryServices-Prod-DR-NCUS-01-rg"  = "DirectoryServices-Prod-DR-vnet"
+      "FileServices-Prod-DR-NUCS-01-rg"       = "FileServices-Prod-DR-vnet"
     }
   }
 }
