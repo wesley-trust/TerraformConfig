@@ -9,6 +9,6 @@ module "public_load_balancer" {
   resource_name                  = local.resource_name
   resource_instance_count        = var.resource_instance_count
   resource_location_zone_support = local.platform_location_az_count > 1 ? true : false
-  resource_virtual_network_id    = module.service_spoke_network.network_id
+  resource_virtual_network_id    = module.service_network.network_id
   resource_address_space         = var.resource_address_space
 }

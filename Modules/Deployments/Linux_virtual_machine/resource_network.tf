@@ -1,5 +1,5 @@
 # Create spoke network dependencies
-module "service_spoke_network" {
+module "service_network" {
   source                        = "../../Resources/Network"
   service_name                  = var.service_name
   resource_location             = module.resource_group.location

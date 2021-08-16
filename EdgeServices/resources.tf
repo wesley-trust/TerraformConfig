@@ -1,4 +1,4 @@
-/* module "edge_services_prod" {
+module "edge_services_prod" {
   for_each                         = toset(local.resource_prod_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod"
@@ -11,9 +11,10 @@
   resource_network_interface_count = var.resource_network_interface_count
   resource_address_space           = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
+  #resource_spoke_networks = 
 }
 
-module "edge_services_recovery_services_prod" {
+/* module "edge_services_recovery_services_prod" {
   depends_on                                  = [module.edge_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"

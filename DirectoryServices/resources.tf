@@ -1,4 +1,4 @@
-/* module "directory_services_prod" {
+module "directory_services_prod" {
   for_each                = toset(local.resource_prod_locations)
   source                  = "../Modules/Deployments/Windows_virtual_machine"
   service_environment     = "Prod"
@@ -12,7 +12,7 @@
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
 }
 
-module "directory_services_recovery_services_prod" {
+/* module "directory_services_recovery_services_prod" {
   depends_on                                  = [module.directory_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
