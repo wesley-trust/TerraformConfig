@@ -148,3 +148,9 @@ variable "resource_network_peering" {
   type        = any
   default     = null
 }
+
+variable "resource_network_peering_global" {
+  description = "The networks to be peered"
+  type        = any
+  default     = null
+}

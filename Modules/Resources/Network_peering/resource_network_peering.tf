@@ -5,6 +5,11 @@ resource "azurerm_virtual_network_peering" "from_hub_to_peer" {
   virtual_network_name = var.resource_network_name
   # Destination
   remote_virtual_network_id = data.azurerm_virtual_network.peer.id
+
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+
+  allow_gateway_transit = false
 }
 
 resource "azurerm_virtual_network_peering" "from_peer_to_hub" {
@@ -14,4 +19,9 @@ resource "azurerm_virtual_network_peering" "from_peer_to_hub" {
   virtual_network_name = data.azurerm_virtual_network.peer.name
   # Destination
   remote_virtual_network_id = var.resource_network_id
+
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+
+  allow_gateway_transit = false
 }
