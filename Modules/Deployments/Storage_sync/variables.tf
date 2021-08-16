@@ -24,3 +24,9 @@ variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = string
 }
+
+variable "resource_storage_sync_object_id" {
+  description = "Desired name for the provisioned resources"
+  type        = string
+  default = "a7ddc9cc-daee-4e0a-be3f-027903915879"
+}

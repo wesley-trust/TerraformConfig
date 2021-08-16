@@ -1,7 +1,6 @@
-resource "azurerm_role_assignment" "data_access" {
-  #name               = "00000000-0000-0000-0000-000000000000"
-  scope              = azurerm_storage_account.account.id
-  #role_definition_id = azurerm_role_definition.example.role_definition_resource_id
+# Assign reader and data access for Azure StorageSync principal to storage account
+resource "azurerm_role_assignment" "reader_and_data_access" {
+  scope                = azurerm_storage_account.account.id
   role_definition_name = "Reader and Data Access"
-  principal_id       = "a7ddc9cc-daee-4e0a-be3f-027903915879"
+  principal_id         = var.resource_storage_sync_object_id
 }
