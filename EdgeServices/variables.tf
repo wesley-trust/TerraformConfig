@@ -43,7 +43,7 @@ variable "resource_network_peering" {
     },
     "Prod-DR" = {
       "DirectoryServices-Prod-DR-NCUS-01-rg"  = "DirectoryServices-Prod-DR-vnet"
-      "FileServices-Prod-DR-NUCS-01-rg"       = "FileServices-Prod-DR-vnet"
+      "FileServices-Prod-DR-NCUS-01-rg"       = "FileServices-Prod-DR-vnet"
     }
   }
 }
