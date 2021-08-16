@@ -9,7 +9,7 @@ resource "azurerm_virtual_network_peering" "to_peer" {
 
 resource "azurerm_virtual_network_peering" "from_peer" {
   name                = "To-${var.service_name}"
-  resource_group_name = var.resource_group_name
+  resource_group_name = var.resource_network_name_peer
   # Source
   virtual_network_name = data.azurerm_virtual_network.peer.name
   # Destination
