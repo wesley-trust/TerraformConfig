@@ -142,3 +142,15 @@ variable "resource_private_ip_initial_address" {
   type        = string
   default     = 4
 }
+
+variable "resource_network_peering" {
+  description = "The networks to be peered"
+  type        = any
+  default     = null
+}
+
+variable "resource_network_peering_global" {
+  description = "The networks to be peered"
+  type        = any
+  default     = null
+}
