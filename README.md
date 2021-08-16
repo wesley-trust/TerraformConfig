@@ -17,8 +17,8 @@ Configuration files for deployment with Terraform and Pipeline definitions
 | Traffic_manager     | Resource_group |
 | Storage_sync    | Resource_group |
 | Recovery_services    | Resource_group |
-| Windows_virtual_machine | Resource_group<br>Key_vault<br>Network<br>Network_peering<br>Network_interfaces | Disks<br>Public_load_balancer |
-| Linux_virtual_machine  | Resource_group<br>Key_vault<br>Network<br>Network_peering<br>Network_interfaces | Disks<br>Public_load_balancer |
+| Windows_virtual_machine | Resource_group<br>Key_vault<br>Network<br>Network_interfaces | Disks<br>Network_peering<br>Public_load_balancer |
+| Linux_virtual_machine  | Resource_group<br>Key_vault<br>Network<br>Network_interfaces | Disks<br>Network_peering<br>Public_load_balancer |
 
 ### Resources
 | Child Module |
