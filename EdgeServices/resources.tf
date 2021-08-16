@@ -40,4 +40,5 @@ module "edge_services_prod_dr" {
   resource_network_interface_count = var.resource_network_interface_count
   resource_address_space           = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
+  resource_network_peering         = local.resource_prod_dr_network_peering
 }
