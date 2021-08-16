@@ -12,7 +12,7 @@
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-} */
+}
 
 module "file_services_storage_sync_prod" {
   for_each            = toset(local.resource_prod_storage_sync_locations)
@@ -24,7 +24,7 @@ module "file_services_storage_sync_prod" {
   resource_name       = local.resource_name
 }
 
-/* module "file_services_recovery_services_prod" {
+module "file_services_recovery_services_prod" {
   depends_on                                  = [module.file_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
