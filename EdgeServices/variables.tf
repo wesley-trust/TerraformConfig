@@ -32,6 +32,19 @@ variable "service_recovery_services_location" {
   }
 }
 
+variable "resource_network_peering" {
+  description = "The resources resource group and network pairs"
+  type        = map(any)
+  default = {
+    "Prod" = {
+      "DirectoryServices-Prod-UKS-01-rg" = "DirectoryServices-Prod-vnet"
+    },
+    "Prod-DR" = {
+
+    }
+  }
+}
+
 variable "resource_name" {
   description = "Desired name for the provisioned resources"
   type        = map(string)

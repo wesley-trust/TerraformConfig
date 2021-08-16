@@ -1,8 +1,15 @@
 # Create spoke network dependencies
-/* module "service_network_peering" {
-  source                   = "../../Resources/Network_peering"
-  service_name             = var.service_name
-  resource_group_name      = module.resource_group.name
-  resource_network_id      = module.service_network.network_id
-  service_destination_name = var.service_destination_name
-} */
+module "service_network_peering" {
+  source   = "../../Resources/Network_peering"
+  for_each = var.resource_network_peering
+
+  # Hub
+  service_name          = var.service_name
+  resource_group_name   = module.resource_group.name
+  resource_network_id   = module.service_network.network_id
+  resource_network_name = module.service_network.network_name
+
+  # Peer
+  resource_group_name_peer   = each.key
+  resource_network_name_peer = each.value
+}

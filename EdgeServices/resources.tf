@@ -11,7 +11,7 @@ module "edge_services_prod" {
   resource_network_interface_count = var.resource_network_interface_count
   resource_address_space           = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
-  #resource_spoke_networks = 
+  resource_network_peering         = local.resource_prod_network_peering
 }
 
 /* module "edge_services_recovery_services_prod" {

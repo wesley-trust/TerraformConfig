@@ -5,37 +5,27 @@ variable "service_name" {
 }
 
 # Required resource variables
-variable "resource_address_space" {
-  description = "Desired address space for the provisioned resources"
-  type        = string
-}
-
 variable "resource_group_name" {
   description = "Desired resource group name for the provisioned resources"
   type        = string
 }
 
-variable "resource_location" {
-  description = "Desired location for the provisioned resources"
+variable "resource_network_id" {
+  description = "The network Id"
   type        = string
 }
 
-variable "resource_environment" {
-  description = "Desired environment for the provisioned resources"
+variable "resource_network_name" {
+  description = "The network name"
   type        = string
 }
 
-variable "resource_dns_servers" {
-  description = "Desired DNS servers for the provisioned resources"
-  type        = list(string)
+variable "resource_group_name_peer" {
+  description = "The resource group name of the peer"
+  type        = string
 }
 
-variable "resource_network_subnet_count" {
-  description = "Desired number of subnets for the provisioned resources"
+variable "resource_network_name_peer" {
+  description = "The network name of the peer"
   type        = string
-
-  validation {
-    condition     = var.resource_network_subnet_count <= 2
-    error_message = "The maximum subnet count cannot exceed 2 in the current configuration."
-  }
 }
