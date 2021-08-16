@@ -1,4 +1,4 @@
-module "edge_services_prod" {
+/* module "edge_services_prod" {
   for_each                         = toset(local.resource_prod_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod"
@@ -15,7 +15,7 @@ module "edge_services_prod" {
   resource_network_peering_global  = local.resource_prod_dr_network_peering
 }
 
-/* module "edge_services_recovery_services_prod" {
+module "edge_services_recovery_services_prod" {
   depends_on                                  = [module.edge_services_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
@@ -26,7 +26,7 @@ module "edge_services_prod" {
   resource_name                               = local.resource_name
   resource_recovery_services_instance_count   = local.resource_prod_recovery_services_instance_count
   resource_recovery_services_virtual_machines = module.edge_services_prod[each.value]
-} */
+}
 
 module "edge_services_prod_dr" {
   for_each                         = toset(local.resource_prod_dr_locations)
@@ -44,3 +44,4 @@ module "edge_services_prod_dr" {
   resource_network_peering         = local.resource_prod_dr_network_peering
   resource_network_peering_global  = local.resource_prod_network_peering
 }
+ */
