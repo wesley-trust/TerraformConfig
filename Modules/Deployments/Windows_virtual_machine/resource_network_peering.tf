@@ -35,10 +35,11 @@ module "service_network_peering_hub_global" {
   for_each = var.resource_network_hub_peering_global != null ? var.resource_network_hub_peering_global : {}
 
   # Hub
-  service_name          = var.service_name
-  resource_group_name   = module.resource_group.name
-  resource_network_id   = module.service_network.network_id
-  resource_network_name = module.service_network.network_name
+  service_name                         = var.service_name
+  resource_group_name                  = module.resource_group.name
+  resource_network_id                  = module.service_network.network_id
+  resource_network_name                = module.service_network.network_name
+  resource_virtual_network_hub_peering = true
 
   # Hub peer
   resource_group_name_peer   = each.key

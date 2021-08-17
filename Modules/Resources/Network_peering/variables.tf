@@ -29,3 +29,9 @@ variable "resource_network_name_peer" {
   description = "The network name of the peer"
   type        = string
 }
+
+variable "resource_virtual_network_hub_peering" {
+  description = "Whether the network peering type is 'hub'"
+  type        = bool
+  default     = false
+}

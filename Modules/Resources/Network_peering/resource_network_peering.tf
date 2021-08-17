@@ -13,6 +13,8 @@ resource "azurerm_virtual_network_peering" "from_hub_to_peer" {
 }
 
 resource "azurerm_virtual_network_peering" "from_peer_to_hub" {
+  count = var.resource_virtual_network_hub_peering != true ? 1 : 0
+
   name                = "From-${var.resource_network_name_peer}-To-${var.resource_network_name}"
   resource_group_name = var.resource_group_name_peer
   # From
