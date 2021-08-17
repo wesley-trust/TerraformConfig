@@ -9,11 +9,12 @@ resource "azurerm_virtual_network_peering" "from_hub_to_peer" {
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 
+  # Required to be false for global peering
   allow_gateway_transit = false
 }
 
 resource "azurerm_virtual_network_peering" "from_peer_to_hub" {
-  count = var.resource_virtual_network_hub_peering != true ? 1 : 0
+  count = var.resource_virtual_network_standalone_peering != true ? 1 : 0
 
   name                = "From-${var.resource_network_name_peer}-To-${var.resource_network_name}"
   resource_group_name = var.resource_group_name_peer
@@ -25,5 +26,6 @@ resource "azurerm_virtual_network_peering" "from_peer_to_hub" {
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 
+  # Required to be false for global peering
   allow_gateway_transit = false
 }
