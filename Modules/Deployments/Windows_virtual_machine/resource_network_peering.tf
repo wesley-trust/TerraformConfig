@@ -30,7 +30,7 @@ module "service_network_peering_global" {
   resource_network_name_peer = each.value
 }
 
-module "service_network_peering_global" {
+module "service_network_peering_hub_global" {
   source   = "../../Resources/Network_peering"
   for_each = var.resource_network_hub_peering_global != null ? var.resource_network_hub_peering_global : {}
 
