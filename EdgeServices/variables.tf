@@ -37,13 +37,13 @@ variable "resource_network_peering" {
   type        = map(any)
   default = {
     "Prod" = {
-      "DirectoryServices-Prod-UKS-01-rg"  = "DirectoryServices-Prod-vnet"
-      "FileServices-Prod-UKS-01-rg"       = "FileServices-Prod-vnet"
-      "ManagementServices-Prod-UKS-01-rg" = "ManagementServices-Prod-vnet"
+      "DirectoryServices-Prod-UKS-01-rg"  = "DirectoryServices-Prod-UKS-vnet"
+      "FileServices-Prod-UKS-01-rg"       = "FileServices-Prod-UKS-vnet"
+      "ManagementServices-Prod-UKS-01-rg" = "ManagementServices-Prod-UKS-vnet"
     },
     "Prod-DR" = {
-      "DirectoryServices-Prod-DR-NCUS-01-rg" = "DirectoryServices-Prod-DR-vnet"
-      "FileServices-Prod-DR-NCUS-01-rg"      = "FileServices-Prod-DR-vnet"
+      "DirectoryServices-Prod-DR-NCUS-01-rg" = "DirectoryServices-Prod-DR-NCUS-vnet"
+      "FileServices-Prod-DR-NCUS-01-rg"      = "FileServices-Prod-DR-NCUS-vnet"
     }
   }
 }
@@ -53,10 +53,10 @@ variable "resource_network_hub_peering" {
   type        = map(any)
   default = {
     "Prod" = {
-      "EdgeServices-Prod-UKS-01-rg" = "EdgeServices-Prod-vnet"
+      "EdgeServices-Prod-UKS-01-rg" = "EdgeServices-Prod-UKS-vnet"
     },
     "Prod-DR" = {
-      "EdgeServices-Prod-DR-NCUS-01-rg" = "EdgeServices-Prod-DR-vnet"
+      "EdgeServices-Prod-DR-NCUS-01-rg" = "EdgeServices-Prod-DR-NCUS-vnet"
     }
   }
 }
