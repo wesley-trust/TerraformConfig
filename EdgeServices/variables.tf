@@ -34,7 +34,7 @@ variable "service_recovery_services_location" {
 
 variable "resource_network_peering" {
   description = "The resource group and network pairs"
-  type        = map(any)
+  type        = map(map(any))
   default = {
     "Prod" = {
       "DirectoryServices-Prod-UKS-01-rg"  = "DirectoryServices-Prod-vnet"

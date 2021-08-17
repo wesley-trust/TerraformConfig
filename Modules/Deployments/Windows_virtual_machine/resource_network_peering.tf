@@ -1,7 +1,7 @@
 # Create spoke network dependencies
 module "service_network_peering" {
   source   = "../../Resources/Network_peering"
-  for_each = var.resource_network_peering
+  for_each = var.resource_network_peering != null ? var.resource_network_peering : {}
 
   # Hub
   service_name          = var.service_name
@@ -17,7 +17,7 @@ module "service_network_peering" {
 # Create spoke network dependencies
 module "service_network_peering_global" {
   source   = "../../Resources/Network_peering"
-  for_each = var.resource_network_peering_global
+  for_each = var.resource_network_peering_global != null ? var.resource_network_peering_global : {}
 
   # Hub
   service_name          = var.service_name

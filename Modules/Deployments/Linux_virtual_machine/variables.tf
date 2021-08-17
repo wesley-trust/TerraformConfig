@@ -145,12 +145,12 @@ variable "resource_private_ip_initial_address" {
 
 variable "resource_network_peering" {
   description = "The networks to be peered"
-  type        = any
+  type        = map(map(any))
   default     = null
 }
 
 variable "resource_network_peering_global" {
-  description = "The networks to be peered"
-  type        = any
+  description = "The networks to be peered globally"
+  type        = map(map(any))
   default     = null
 }
