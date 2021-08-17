@@ -4,6 +4,11 @@ variable "service_name" {
   type        = string
 }
 
+variable "service_location_prefix" {
+  description = "Location prefix to append to names to create regionally unique resources"
+  type        = string
+}
+
 # Required resource variables
 variable "resource_address_space" {
   description = "Desired address space for the provisioned resources"

@@ -2,6 +2,7 @@
 module "service_network" {
   source                        = "../../Resources/Network"
   service_name                  = var.service_name
+  service_location_prefix       = local.service_location_prefix
   resource_location             = module.resource_group.location
   resource_group_name           = module.resource_group.name
   resource_environment          = var.service_environment
