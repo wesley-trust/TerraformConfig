@@ -1,4 +1,4 @@
-/* module "edge_services_prod" {
+module "edge_services_prod" {
   for_each                         = toset(local.resource_prod_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod"
@@ -44,4 +44,3 @@ module "edge_services_prod_dr" {
   resource_network_peering         = local.resource_prod_dr_network_peering
   resource_network_peering_global  = local.resource_prod_network_peering
 }
- */
