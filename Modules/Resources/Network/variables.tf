@@ -36,6 +36,6 @@ variable "resource_network_subnet_count" {
 
   validation {
     condition     = var.resource_network_subnet_count <= 2
-    error_message = "The maximum subnet count cannot exceed 2 in the current configuration."
+    error_message = "The maximum subnet count cannot exceed 2, due to a (currently hard coded) limitation in the current configuration."
   }
 }
