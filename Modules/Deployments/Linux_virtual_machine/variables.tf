@@ -154,3 +154,9 @@ variable "resource_network_peering_global" {
   type        = map(any)
   default     = null
 }
+
+variable "resource_network_hub_peering_global" {
+  description = "The networks to be hub peered globally"
+  type        = map(any)
+  default     = null
+}

@@ -29,3 +29,18 @@ module "service_network_peering_global" {
   resource_group_name_peer   = each.key
   resource_network_name_peer = each.value
 }
+
+module "service_network_peering_global" {
+  source   = "../../Resources/Network_peering"
+  for_each = var.resource_network_hub_peering_global != null ? var.resource_network_hub_peering_global : {}
+
+  # Hub
+  service_name          = var.service_name
+  resource_group_name   = module.resource_group.name
+  resource_network_id   = module.service_network.network_id
+  resource_network_name = module.service_network.network_name
+
+  # Hub peer
+  resource_group_name_peer   = each.key
+  resource_network_name_peer = each.value
+}

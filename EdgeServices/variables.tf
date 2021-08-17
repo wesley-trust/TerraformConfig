@@ -42,9 +42,21 @@ variable "resource_network_peering" {
       "ManagementServices-Prod-UKS-01-rg" = "ManagementServices-Prod-vnet"
     },
     "Prod-DR" = {
-      "EdgeServices-Prod-DR-NCUS-01-rg"      = "EdgeServices-Prod-DR-vnet"
       "DirectoryServices-Prod-DR-NCUS-01-rg" = "DirectoryServices-Prod-DR-vnet"
       "FileServices-Prod-DR-NCUS-01-rg"      = "FileServices-Prod-DR-vnet"
+    }
+  }
+}
+
+variable "resource_network_hub_peering" {
+  description = "The resource group and network pairs"
+  type        = map(any)
+  default = {
+    "Prod" = {
+      "EdgeServices-Prod-UKS-01-rg" = "EdgeServices-Prod-vnet"
+    },
+    "Prod-DR" = {
+      "EdgeServices-Prod-DR-NCUS-01-rg" = "EdgeServices-Prod-DR-vnet"
     }
   }
 }
