@@ -16,7 +16,7 @@ module "edge_services_prod" {
   #resource_network_hub_peering_global = local.resource_prod_dr_network_hub_peering
 }
 
-/* module "edge_services_network_peering_prod" {
+module "edge_services_network_peering_prod" {
   for_each                     = toset(local.resource_prod_locations)
   source                       = "../Modules/Deployments/Network_peering"
   service_environment          = "Prod"
@@ -24,7 +24,7 @@ module "edge_services_prod" {
   service_name                 = var.service_name
   service_location             = each.value
   resource_network_peering_hub = module.edge_services_prod[each.value]
-} */
+}
 
 module "edge_services_recovery_services_prod" {
   depends_on                                  = [module.edge_services_prod]
