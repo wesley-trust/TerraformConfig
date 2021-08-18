@@ -1,6 +1,5 @@
 resource "azurerm_virtual_network_peering" "network_peering" {
-  depends_on = [data.azurerm_resources.virtual_network_spokes]
-  count      = length(data.azurerm_resources.virtual_network_spokes.resources)
+  count = length(data.azurerm_resources.virtual_network_spokes.resources)
 
   name = "From-${var.resource_network_peer.network_name}-To-${data.azurerm_resources.virtual_network_spokes.resources[count.index].name}"
 
