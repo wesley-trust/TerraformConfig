@@ -135,3 +135,15 @@ variable "provision_traffic_manager" {
   type        = bool
   default     = true
 }
+
+variable "resource_network_type" {
+  description = "The network type for peering"
+  type        = string
+  default = "spokeNetwork"
+}
+
+variable "resource_network_peer_type" {
+  description = "The network type for peering"
+  type        = string
+  default = "hubNetwork"
+}

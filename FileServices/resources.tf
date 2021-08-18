@@ -12,7 +12,20 @@ module "file_services_prod" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
+    resource_network_type   = var.resource_network_type
 }
+
+/* module "file_services_network_peering_prod" {
+  depends_on                 = [module.directory_services_prod]
+  for_each                   = toset(local.resource_prod_locations)
+  source                     = "../Modules/Deployments/Network_peering"
+  service_environment        = "Prod"
+  service_deployment         = "01"
+  service_name               = var.service_name
+  service_location           = each.value
+  resource_network_peer      = module.edge_services_prod[each.value]
+  resource_network_peer_type = var.resource_network_peer_type
+} */
 
 module "file_services_storage_sync_prod" {
   for_each            = toset(local.resource_prod_storage_sync_locations)
@@ -51,4 +64,5 @@ module "file_services_prod_dr" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
+    resource_network_type   = var.resource_network_type
 }

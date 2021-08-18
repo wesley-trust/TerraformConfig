@@ -11,13 +11,14 @@ module "edge_services_prod" {
   resource_network_interface_count = var.resource_network_interface_count
   resource_address_space           = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
-  resource_network_type            = "hubNetwork"
+  resource_network_type   = var.resource_network_type
   #resource_network_peering            = local.resource_prod_network_peering
   #resource_network_peering_global     = local.resource_prod_dr_network_peering
   #resource_network_hub_peering_global = local.resource_prod_dr_network_hub_peering
 }
 
 /* module "edge_services_network_peering_prod" {
+  depends_on                 = [module.edge_services_prod]
   for_each                   = toset(local.resource_prod_locations)
   source                     = "../Modules/Deployments/Network_peering"
   service_environment        = "Prod"
@@ -25,7 +26,7 @@ module "edge_services_prod" {
   service_name               = var.service_name
   service_location           = each.value
   resource_network_peer      = module.edge_services_prod[each.value]
-  resource_network_peer_type = "spokeNetwork"
+  resource_network_peer_type      = var.resource_network_peer_type
 } */
 
 module "edge_services_recovery_services_prod" {
@@ -54,7 +55,7 @@ module "edge_services_prod_dr" {
   resource_network_interface_count = var.resource_network_interface_count
   resource_address_space           = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers             = lookup(var.resource_dns_servers, each.value, null)
-  resource_network_type            = "hubNetwork"
+  resource_network_type   = var.resource_network_type
   #resource_network_peering            = local.resource_prod_dr_network_peering
   #resource_network_peering_global     = local.resource_prod_network_peering
   #resource_network_hub_peering_global = local.resource_prod_network_hub_peering
