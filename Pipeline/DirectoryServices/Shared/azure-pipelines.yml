@@ -131,7 +131,7 @@ stages:
     - task: Delay@1
       displayName: 'Delay for 10 minutes'
       inputs:
-        delayForMinutes: '10'
+        delayForMinutes: '0'
   - job: ReEvaluate
     dependsOn: Delay
     continueOnError: true
@@ -184,7 +184,7 @@ stages:
   dependsOn: RePlan
   condition: and(succeeded(), eq(dependencies.RePlan.outputs['ReEvaluate.Variable.ShouldRun'], 'true'))
   jobs:
-  - deployment: Deploy
+  - deployment: ReDeploy
     continueOnError: false
     environment: $(Environment)
     strategy:
@@ -215,4 +215,4 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/DirectoryServices/'
               environmentServiceName: '$(backendServiceArm)'
-              commandOptions: '$(Pipeline.Workspace)/Evaluate/terraform.tfplan'
+              commandOptions: '$(Pipeline.Workspace)/ReEvaluate/terraform.tfplan'
