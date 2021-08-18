@@ -16,14 +16,14 @@ module "file_services_prod" {
 }
 
 module "file_services_network_peering_prod" {
-  depends_on                 = [module.directory_services_prod]
+  depends_on                 = [module.file_services_prod]
   for_each                   = toset(local.resource_prod_locations)
   source                     = "../Modules/Deployments/Network_peering"
   service_environment        = "Prod"
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.edge_services_prod[each.value]
+  resource_network_peer      = module.file_services_prod[each.value]
   resource_network_peer_type = var.resource_network_peer_type
 }
 
@@ -68,13 +68,13 @@ module "file_services_prod_dr" {
 }
 
 module "file_services_network_peering_prod_dr" {
-  depends_on                 = [module.directory_services_prod_dr]
+  depends_on                 = [module.file_services_prod_dr]
   for_each                   = toset(local.resource_prod_dr_locations)
   source                     = "../Modules/Deployments/Network_peering"
   service_environment        = "Prod"
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.edge_services_prod_dr[each.value]
+  resource_network_peer      = module.file_services_prod_dr[each.value]
   resource_network_peer_type = var.resource_network_peer_type
 }

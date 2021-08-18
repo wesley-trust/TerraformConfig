@@ -21,7 +21,7 @@ module "directory_services_network_peering_prod" {
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.edge_services_prod[each.value]
+  resource_network_peer      = module.directory_services_prod[each.value]
   resource_network_peer_type = var.resource_network_peer_type
 }
 
@@ -61,6 +61,6 @@ module "directory_services_network_peering_prod_dr" {
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.edge_services_prod_dr[each.value]
+  resource_network_peer      = module.directory_services_prod_dr[each.value]
   resource_network_peer_type = var.resource_network_peer_type
 }
