@@ -122,8 +122,8 @@ stages:
 - stage: RePlan
   pool:
     vmImage: 'ubuntu-latest'
-  dependsOn: Plan
-  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
+  dependsOn: Apply
+  condition: and(succeeded(Plan), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
   jobs:
   - job: Delay
     pool: Server
@@ -133,6 +133,7 @@ stages:
       inputs:
         delayForMinutes: '10'
   - job: Evaluate
+    dependsOn: Delay
     continueOnError: true
     steps:
     - task: TerraformInstaller@0
