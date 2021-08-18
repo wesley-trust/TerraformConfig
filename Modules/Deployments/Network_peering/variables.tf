@@ -21,11 +21,11 @@ variable "service_location" {
 
 # Required resource variables
 variable "resource_network_peer" {
-    description = "Resource outputs for peering"
+  description = "Resource outputs for peering"
   type        = any
 }
 
 variable "resource_network_peer_type" {
-    description = "The peering type"
+  description = "The peering type"
   type        = string
 }

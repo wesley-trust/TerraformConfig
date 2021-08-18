@@ -12,7 +12,7 @@ module "file_services_prod" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-    resource_network_type   = var.resource_network_type
+  resource_network_type    = var.resource_network_type
 }
 
 /* module "file_services_network_peering_prod" {
@@ -53,7 +53,7 @@ module "file_services_recovery_services_prod" {
 module "file_services_prod_dr" {
   for_each                 = toset(local.resource_prod_dr_locations)
   source                   = "../Modules/Deployments/Windows_virtual_machine"
-  service_environment      = "Prod-DR"
+  service_environment      = "Prod"
   service_deployment       = "01"
   service_name             = var.service_name
   service_location         = each.value
@@ -64,5 +64,5 @@ module "file_services_prod_dr" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-    resource_network_type   = var.resource_network_type
+  resource_network_type    = var.resource_network_type
 }
