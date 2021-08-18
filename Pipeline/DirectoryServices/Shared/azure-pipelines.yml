@@ -186,7 +186,7 @@ stages:
   jobs:
   - deployment: ReDeploy
     continueOnError: false
-    #environment: $(Environment)
+    environment: '$(Environment)-Auto'
     strategy:
      runOnce:
        deploy:
