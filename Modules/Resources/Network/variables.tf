@@ -44,3 +44,8 @@ variable "resource_network_subnet_count" {
     error_message = "The maximum subnet count cannot exceed 2, due to a (currently hard coded) limitation in the current configuration."
   }
 }
+
+variable "resource_network_type" {
+  description = "The network type for peering"
+  type        = string
+}
