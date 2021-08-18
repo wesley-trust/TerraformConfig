@@ -14,7 +14,7 @@ module "management_services_prod" {
   resource_network_type          = var.resource_network_type
 }
 
-/* module "management_services_network_peering_prod" {
+module "management_services_network_peering_prod" {
   depends_on                 = [module.directory_services_prod]
   for_each                   = toset(local.resource_prod_locations)
   source                     = "../Modules/Deployments/Network_peering"
@@ -24,7 +24,7 @@ module "management_services_prod" {
   service_location           = each.value
   resource_network_peer      = module.edge_services_prod[each.value]
   resource_network_peer_type = var.resource_network_peer_type
-} */
+}
 
 module "management_services_traffic_manager_prod" {
   depends_on                                  = [module.management_services_prod]

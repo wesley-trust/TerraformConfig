@@ -15,7 +15,7 @@ module "file_services_prod" {
   resource_network_type    = var.resource_network_type
 }
 
-/* module "file_services_network_peering_prod" {
+module "file_services_network_peering_prod" {
   depends_on                 = [module.directory_services_prod]
   for_each                   = toset(local.resource_prod_locations)
   source                     = "../Modules/Deployments/Network_peering"
@@ -25,7 +25,7 @@ module "file_services_prod" {
   service_location           = each.value
   resource_network_peer      = module.edge_services_prod[each.value]
   resource_network_peer_type = var.resource_network_peer_type
-} */
+}
 
 module "file_services_storage_sync_prod" {
   for_each            = toset(local.resource_prod_storage_sync_locations)
@@ -67,7 +67,7 @@ module "file_services_prod_dr" {
   resource_network_type    = var.resource_network_type
 }
 
-/* module "file_services_network_peering_prod_dr" {
+module "file_services_network_peering_prod_dr" {
   depends_on                 = [module.directory_services_prod_dr]
   for_each                   = toset(local.resource_prod_dr_locations)
   source                     = "../Modules/Deployments/Network_peering"
@@ -75,6 +75,6 @@ module "file_services_prod_dr" {
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
-  resource_network_peer      = module.edge_services_prod[each.value]
+  resource_network_peer      = module.edge_services_prod_dr[each.value]
   resource_network_peer_type = var.resource_network_peer_type
-} */
+}
