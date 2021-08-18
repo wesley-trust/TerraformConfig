@@ -125,10 +125,10 @@ stages:
   jobs:
   - job: Delay
     pool: Server
-  - task: Delay@1
-    displayName: 'Delay for 10 minutes'
-    inputs:
-      delayForMinutes: '10'
+    - task: Delay@1
+      displayName: 'Delay for 10 minutes'
+      inputs:
+        delayForMinutes: '10'
   - job: Evaluate
     pool:
       vmImage: 'ubuntu-latest'
