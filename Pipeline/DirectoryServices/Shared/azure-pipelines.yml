@@ -129,9 +129,9 @@ stages:
     pool: Server
     steps:
     - task: Delay@1
-      displayName: 'Delay for 5 minutes'
+      displayName: 'Delay for $(DelayMinutes) minutes'
       inputs:
-        delayForMinutes: '5'
+        delayForMinutes: '$(DelayMinutes)'
   - job: ReEvaluate
     dependsOn: Delay
     continueOnError: true
@@ -186,7 +186,7 @@ stages:
   jobs:
   - deployment: ReDeploy
     continueOnError: false
-    environment: '$(Environment)-AutoApprove'
+    environment: '$(Environment-ReApply)'
     strategy:
      runOnce:
        deploy:
