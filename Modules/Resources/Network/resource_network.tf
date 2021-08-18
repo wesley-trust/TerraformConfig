@@ -7,7 +7,7 @@ resource "azurerm_virtual_network" "virtual_network" {
   dns_servers         = var.resource_dns_servers
 
   tags = {
-    environment = var.service_environment
+    environment = var.resource_environment
     type        = var.resource_network_type
   }
 }
