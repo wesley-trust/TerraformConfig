@@ -4,6 +4,6 @@ data "azurerm_resources" "virtual_network_spokes" {
 
   required_tags = {
     environment = "Prod"
-    role        = "spoke"
+    role        = "hub"
   }
 }
