@@ -1,4 +1,4 @@
-module "directory_services_prod" {
+/* module "directory_services_prod" {
   for_each                = toset(local.resource_prod_locations)
   source                  = "../Modules/Deployments/Windows_virtual_machine"
   service_environment     = "Prod"
@@ -62,3 +62,4 @@ module "directory_services_network_peering_prod_dr" {
   resource_network_peer      = module.directory_services_prod_dr[each.value]
   resource_network_peer_role = var.resource_network_peer_role
 }
+ */
