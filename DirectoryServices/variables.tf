@@ -119,11 +119,11 @@ variable "resource_dns_servers" {
 variable "resource_network_type" {
   description = "The network type for peering"
   type        = string
-  default     = "spokeNetwork"
+  default     = "spoke"
 }
 
 variable "resource_network_peer_type" {
   description = "The network type for peering"
   type        = string
-  default     = "hubNetwork"
+  default     = "hub"
 }
