@@ -1,4 +1,4 @@
-# Create local peering
+/* # Create local peering
 module "service_network_peering" {
   source   = "../../Resources/Network_peering"
   for_each = var.resource_network_peering != null ? var.resource_network_peering : {}
@@ -45,4 +45,4 @@ module "service_network_peering_hub_global" {
   # Hub peer
   resource_group_name_peer   = each.key
   resource_network_name_peer = each.value
-}
+} */
