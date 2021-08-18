@@ -10,7 +10,19 @@ module "directory_services_prod" {
   resource_instance_size  = local.resource_prod_instance_size
   resource_address_space  = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
+  resource_network_type   = "spokeNetwork"
 }
+
+/* module "directory_services_network_peering_prod" {
+  for_each                   = toset(local.resource_prod_locations)
+  source                     = "../Modules/Deployments/Network_peering"
+  service_environment        = "Prod"
+  service_deployment         = "01"
+  service_name               = var.service_name
+  service_location           = each.value
+  resource_network_peer      = module.directory_services_prod[each.value]
+  resource_network_peer_type = "hubNetwork"
+} */
 
 module "directory_services_recovery_services_prod" {
   depends_on                                  = [module.directory_services_prod]

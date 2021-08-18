@@ -160,3 +160,8 @@ variable "resource_network_hub_peering_global" {
   type        = map(any)
   default     = null
 }
+
+variable "resource_network_type" {
+  description = "The network type for peering"
+  type        = string
+}
