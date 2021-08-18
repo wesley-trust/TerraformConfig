@@ -132,7 +132,7 @@ stages:
       displayName: 'Delay for 10 minutes'
       inputs:
         delayForMinutes: '10'
-  - job: Evaluate
+  - job: ReEvaluate
     dependsOn: Delay
     continueOnError: true
     steps:
@@ -176,13 +176,13 @@ stages:
       displayName: 'Publish plan artifact'
       inputs:
         targetPath: '$(Pipeline.Workspace)/Output'
-        artifact: 'Evaluate'
+        artifact: 'ReEvaluate'
         publishLocation: 'pipeline'
 - stage: ReApply
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: RePlan
-  condition: and(succeeded(), eq(dependencies.RePlan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
+  condition: and(succeeded(), eq(dependencies.RePlan.outputs['ReEvaluate.Variable.ShouldRun'], 'true'))
   jobs:
   - deployment: Deploy
     continueOnError: false
