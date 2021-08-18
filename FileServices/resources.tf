@@ -12,7 +12,7 @@ module "file_services_prod" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-  resource_network_type    = var.resource_network_type
+  resource_network_role    = var.resource_network_role
 }
 
 module "file_services_network_peering_prod" {
@@ -24,7 +24,7 @@ module "file_services_network_peering_prod" {
   service_name               = var.service_name
   service_location           = each.value
   resource_network_peer      = module.file_services_prod[each.value]
-  resource_network_peer_type = var.resource_network_peer_type
+  resource_network_peer_role = var.resource_network_peer_role
 }
 
 module "file_services_storage_sync_prod" {
@@ -64,7 +64,7 @@ module "file_services_prod_dr" {
   resource_data_disk_size  = var.resource_data_disk_size
   resource_address_space   = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers     = lookup(var.resource_dns_servers, each.value, null)
-  resource_network_type    = var.resource_network_type
+  resource_network_role    = var.resource_network_role
 }
 
 module "file_services_network_peering_prod_dr" {
@@ -76,5 +76,5 @@ module "file_services_network_peering_prod_dr" {
   service_name               = var.service_name
   service_location           = each.value
   resource_network_peer      = module.file_services_prod_dr[each.value]
-  resource_network_peer_type = var.resource_network_peer_type
+  resource_network_peer_role = var.resource_network_peer_role
 }

@@ -143,25 +143,7 @@ variable "resource_private_ip_initial_address" {
   default     = 4
 }
 
-variable "resource_network_peering" {
-  description = "The networks to be peered"
-  type        = map(any)
-  default     = null
-}
-
-variable "resource_network_peering_global" {
-  description = "The networks to be peered globally"
-  type        = map(any)
-  default     = null
-}
-
-variable "resource_network_hub_peering_global" {
-  description = "The networks to be hub peered globally"
-  type        = map(any)
-  default     = null
-}
-
-variable "resource_network_type" {
+variable "resource_network_role" {
   description = "The network type for peering"
   type        = string
 }

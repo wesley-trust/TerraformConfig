@@ -141,13 +141,13 @@ variable "resource_dns_servers" {
   }
 }
 
-variable "resource_network_type" {
+variable "resource_network_role" {
   description = "The network type for peering"
   type        = string
   default     = "spoke"
 }
 
-variable "resource_network_peer_type" {
+variable "resource_network_peer_role" {
   description = "The network type for peering"
   type        = string
   default     = "hub"

@@ -11,7 +11,7 @@ module "management_services_prod" {
   resource_address_space         = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers           = lookup(var.resource_dns_servers, each.value, null)
   provision_public_load_balancer = var.provision_public_load_balancer
-  resource_network_type          = var.resource_network_type
+  resource_network_role          = var.resource_network_role
 }
 
 module "management_services_network_peering_prod" {
@@ -23,7 +23,7 @@ module "management_services_network_peering_prod" {
   service_name               = var.service_name
   service_location           = each.value
   resource_network_peer      = module.management_services_prod[each.value]
-  resource_network_peer_type = var.resource_network_peer_type
+  resource_network_peer_role = var.resource_network_peer_role
 }
 
 module "management_services_traffic_manager_prod" {

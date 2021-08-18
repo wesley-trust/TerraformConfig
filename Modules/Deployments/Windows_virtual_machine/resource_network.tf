@@ -9,5 +9,5 @@ module "service_network" {
   resource_address_space        = var.resource_address_space
   resource_dns_servers          = var.resource_dns_servers
   resource_network_subnet_count = var.resource_network_interface_count
-  resource_network_type         = var.resource_network_type
+  resource_network_role         = var.resource_network_role
 }

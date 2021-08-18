@@ -25,7 +25,7 @@ variable "resource_network_peer" {
   type        = any
 }
 
-variable "resource_network_peer_type" {
+variable "resource_network_peer_role" {
   description = "The peering type"
   type        = string
 }

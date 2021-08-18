@@ -45,7 +45,7 @@ variable "resource_network_subnet_count" {
   }
 }
 
-variable "resource_network_type" {
+variable "resource_network_role" {
   description = "The network type for peering"
   type        = string
 }
