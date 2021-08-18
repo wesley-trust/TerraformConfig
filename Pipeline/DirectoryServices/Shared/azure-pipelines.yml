@@ -125,13 +125,15 @@ stages:
   dependsOn: Plan
   condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
   jobs:
-  - job: Evaluate
-    continueOnError: true
-    steps:
+  - job: Delay
+      pool: Server
     - task: Delay@1
       displayName: 'Delay for 10 minutes'
       inputs:
         delayForMinutes: '10'
+  - job: Evaluate
+    continueOnError: true
+    steps:
     - task: TerraformInstaller@0
       displayName: 'Terraform Install'
       inputs:
