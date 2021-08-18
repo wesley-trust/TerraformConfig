@@ -49,4 +49,5 @@ module "directory_services_prod_dr" {
   resource_instance_size  = local.resource_prod_dr_instance_size
   resource_address_space  = lookup(var.resource_address_space, each.value, null)
   resource_dns_servers    = lookup(var.resource_dns_servers, each.value, null)
+  resource_network_type   = "spokeNetwork"
 }
