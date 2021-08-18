@@ -120,18 +120,18 @@ stages:
               environmentServiceName: '$(backendServiceArm)'
               commandOptions: '$(Pipeline.Workspace)/Evaluate/terraform.tfplan'
 - stage: RePlan
+  dependsOn: Plan
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
+  jobs:
   - job: Delay
     pool: Server
   - task: Delay@1
     displayName: 'Delay for 10 minutes'
     inputs:
       delayForMinutes: '10'
-  pool:
-    vmImage: 'ubuntu-latest'
-  dependsOn: Plan
-  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
-  jobs:
   - job: Evaluate
+    pool:
+      vmImage: 'ubuntu-latest'
     continueOnError: true
     steps:
     - task: TerraformInstaller@0
