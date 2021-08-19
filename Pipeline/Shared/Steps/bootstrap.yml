@@ -1,8 +1,12 @@
 steps:
+
+# Install Terraform
 - task: TerraformInstaller@0
   displayName: 'Terraform Install'
   inputs:
     terraformVersion: '$(terraformVersion)'
+
+# Initialise Terraform
 - task: TerraformCLI@0
   displayName: 'Terraform Initialise'
   inputs:

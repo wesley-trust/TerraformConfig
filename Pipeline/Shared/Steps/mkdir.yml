@@ -1,0 +1,7 @@
+steps:
+
+# Create artifact directory
+- bash: |
+      mkdir -p $(Pipeline.Workspace)/Output
+  name: 'Directory'
+  displayName: 'Create artifact directory'

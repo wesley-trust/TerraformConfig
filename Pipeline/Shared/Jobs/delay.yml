@@ -1,0 +1,8 @@
+jobs:
+- job: Delay
+  pool: Server
+  steps:
+  - task: Delay@1
+    displayName: 'Delay for $(DelayMinutes) minutes'
+    inputs:
+      delayForMinutes: '$(DelayMinutes)'
