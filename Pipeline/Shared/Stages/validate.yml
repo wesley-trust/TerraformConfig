@@ -3,28 +3,9 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
-  - job: Import
-    continueOnError: false
-    steps:
-    - task: TerraformInstaller@0
-      displayName: 'Terraform Install'
-      inputs:
-        terraformVersion: '$(terraformVersion)'
-    - task: TerraformCLI@0
-      displayName: 'Terraform Initialise'
-      inputs:
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        backendType: 'azurerm'
-        backendServiceArm: '$(backendServiceArm)'
-        ensureBackend: true
-        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
-        backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
-        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
-        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
-        backendAzureRmKey: '$(backendAzureRmKey)'
-    - task: TerraformCLI@0
-      displayName: 'Terraform Validate'
-      inputs:
-        command: 'validate'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+  
+  # Terraform Install and initialise
+  - template: ../Jobs/bootstrap.yml
+  
+  # Terraform Validate
+  - template: ../Jobs/validate.yml
