@@ -1,6 +1,3 @@
-variables:
-- group: 'terraform-backend'
-- group: 'terraform-system'
 stages:
 - stage: Plan
   pool:
