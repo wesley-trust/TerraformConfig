@@ -11,5 +11,14 @@ trigger:
 # Do not trigger builds on PRs
 pr: none
 
+# Execute on a schedule
+schedules:
+- cron: "0 */24 * * *"
+  displayName: Run daily
+  branches:
+    include:
+    - main
+  always: true
+
 extends:
   template: ../../Shared/azure-pipelines.yml

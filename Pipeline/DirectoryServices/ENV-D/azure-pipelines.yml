@@ -11,12 +11,5 @@ trigger:
 # Do not trigger builds on PRs
 pr: none
 
-# Trigger as a result of the Cloud Platform pipeline
-resources:
-  pipelines:
-    - pipeline: CloudPlatform
-      source: 'SVC-CP;ENV-D; Cloud Platform'
-      trigger: true
-
 extends:
   template: ../../Shared/azure-pipelines.yml
