@@ -1,9 +1,22 @@
+# Define stage wide variables
 variables:
 - group: 'terraform-backend'
 - group: 'terraform-system'
+
+# Run stages
 stages:
+
+# Validate
 - template: Stages/validate.yml
+
+# Plan
 - template: Stages/plan.yml
+
+# Apply
 - template: Stages/apply.yml
+
+# RePlan
 - template: Stages/replan.yml
+
+# ReApply
 - template: Stages/reapply.yml
