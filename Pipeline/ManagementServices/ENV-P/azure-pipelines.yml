@@ -22,3 +22,4 @@ schedules:
 
 extends:
   template: ../../Shared/validate.yml
+  template: ../../Shared/plan.yml
