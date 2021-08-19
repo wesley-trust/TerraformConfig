@@ -48,7 +48,6 @@ stages:
     # Publish artifact
     - task: PublishPipelineArtifact@1
       displayName: 'Publish plan artifact'
-      displayName: 'Publish plan artifact'
       inputs:
         targetPath: '$(Pipeline.Workspace)/Output'
         artifact: 'ReEvaluate'
