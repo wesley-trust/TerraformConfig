@@ -12,3 +12,8 @@ schedules:
     include:
     - develop
   always: true
+stages:
+  - stage: TriggerPipelines
+    displayName: 'Trigger all pipelines'
+    jobs:
+     - job: TriggerPipelines
