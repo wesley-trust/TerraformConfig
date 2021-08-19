@@ -16,9 +16,7 @@ resources:
   pipelines:
   - pipeline: CloudPlatform
     source: 'SVC-CP;ENV-D; Cloud Platform'
-    trigger: 
-      branches:
-      - develop
+    trigger: true
 
 extends:
   template: ../../Shared/azure-pipelines.yml
