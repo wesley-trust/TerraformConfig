@@ -13,10 +13,10 @@ schedules:
     - develop
   always: true
 stages:
-  - stage: TriggerPipelines
+  - stage: Pipelines
     displayName: 'Trigger all pipelines'
     jobs:
-    - job: Import
+    - job: Trigger
       steps:
       # required to cause pipeline triggering downstream
       - task: CopyFiles@2

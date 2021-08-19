@@ -15,7 +15,7 @@ pr: none
 resources:
   pipelines:
     - pipeline: CloudPlatform
-      source: SVC-CP;ENV-D; Cloud Platform
+      source: 'SVC-CP;ENV-D; Cloud Platform'
       trigger: true
 
 extends:
