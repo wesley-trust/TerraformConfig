@@ -1,0 +1,5 @@
+variables:
+- group: 'terraform-backend'
+- group: 'terraform-system'
+stages:
+- template: Stages/validate.yml

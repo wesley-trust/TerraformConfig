@@ -21,5 +21,4 @@ schedules:
   always: true
 
 extends:
-  template: ../../Shared/validate.yml
-  template: ../../Shared/plan.yml
+  template: ../../Shared/azure-pipelines.yml
