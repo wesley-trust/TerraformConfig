@@ -17,7 +17,7 @@ stages:
       displayName: 'Terraform Initialise'
       inputs:
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         backendType: 'azurerm'
         backendServiceArm: '$(backendServiceArm)'
         ensureBackend: true
@@ -30,7 +30,7 @@ stages:
       displayName: 'Terraform Validate'
       inputs:
         command: 'validate'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
@@ -47,7 +47,7 @@ stages:
       displayName: 'Terraform Initialise'
       inputs:
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         backendType: 'azurerm'
         backendServiceArm: '$(backendServiceArm)'
         ensureBackend: true
@@ -65,7 +65,7 @@ stages:
       displayName: 'Terraform Plan'
       inputs:
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'apply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/apply_terraform.tfplan -detailed-exitcode'
@@ -103,7 +103,7 @@ stages:
             displayName: 'Terraform Initialise'
             inputs:
               command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
               backendType: 'azurerm'
               backendServiceArm: '$(backendServiceArm)'
               ensureBackend: true
@@ -116,7 +116,7 @@ stages:
             displayName: 'Terraform Apply'
             inputs:
               command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
               environmentServiceName: '$(backendServiceArm)'
               commandOptions: '$(Pipeline.Workspace)/Evaluate/apply_terraform.tfplan'
 - stage: RePlan
@@ -144,7 +144,7 @@ stages:
       displayName: 'Terraform Initialise'
       inputs:
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         backendType: 'azurerm'
         backendServiceArm: '$(backendServiceArm)'
         ensureBackend: true
@@ -162,7 +162,7 @@ stages:
       displayName: 'Terraform Plan'
       inputs:
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'reapply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/reapply_terraform.tfplan -detailed-exitcode'
@@ -200,7 +200,7 @@ stages:
             displayName: 'Terraform Initialise'
             inputs:
               command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
               backendType: 'azurerm'
               backendServiceArm: '$(backendServiceArm)'
               ensureBackend: true
@@ -213,6 +213,6 @@ stages:
             displayName: 'Terraform Apply'
             inputs:
               command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/ManagementServices/'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
               environmentServiceName: '$(backendServiceArm)'
               commandOptions: '$(Pipeline.Workspace)/ReEvaluate/reapply_terraform.tfplan'
