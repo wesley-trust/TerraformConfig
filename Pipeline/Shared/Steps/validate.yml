@@ -1,0 +1,6 @@
+steps:
+- task: TerraformCLI@0
+  displayName: 'Terraform Validate'
+  inputs:
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'

@@ -3,9 +3,12 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
-  
-  # Terraform Install and initialise
-  - template: ../Jobs/bootstrap.yml
-  
-  # Terraform Validate
-  - template: ../Jobs/validate.yml
+  - job: Import
+    continueOnError: false
+    steps:
+    
+    # Terraform Install and initialise
+    - template: ../Steps/bootstrap.yml
+    
+    # Terraform Validate
+    - template: ../Steps/validate.yml
