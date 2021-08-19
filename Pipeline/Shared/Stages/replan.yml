@@ -14,29 +14,19 @@ stages:
         delayForMinutes: '$(DelayMinutes)'
   - job: ReEvaluate
     dependsOn: Delay
-    continueOnError: true
+    continueOnError: false
     steps:
-    - task: TerraformInstaller@0
-      displayName: 'Terraform Install'
-      inputs:
-        terraformVersion: '$(terraformVersion)'
-    - task: TerraformCLI@0
-      displayName: 'Terraform Initialise'
-      inputs:
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        backendType: 'azurerm'
-        backendServiceArm: '$(backendServiceArm)'
-        ensureBackend: true
-        backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
-        backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
-        backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
-        backendAzureRmContainerName: '$(backendAzureRmContainerName)'
-        backendAzureRmKey: '$(backendAzureRmKey)'
+    
+    # Terraform Install and initialise
+    - template: ../Steps/bootstrap.yml
+
+    # Create artifact directory
     - bash: |
           mkdir -p $(Pipeline.Workspace)/Output
       name: 'Directory'
       displayName: 'Create artifact directory'
+    
+    # Terraform Plan
     - task: TerraformCLI@0
       name: 'Plan'
       displayName: 'Terraform Plan'
@@ -46,13 +36,18 @@ stages:
         environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'reapply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/reapply_terraform.tfplan -detailed-exitcode'
+    
+    # Set pipeline output variable if there are changes
     - bash: |
         if [ "$TERRAFORM_PLAN_HAS_CHANGES" = true ] ; then
           echo "##vso[task.setvariable variable=ShouldRun;isOutput=true]true"
           fi
       name: 'Variable'
       displayName: 'Set variable'
+    
+    # Publish artifact
     - task: PublishPipelineArtifact@1
+      displayName: 'Publish plan artifact'
       displayName: 'Publish plan artifact'
       inputs:
         targetPath: '$(Pipeline.Workspace)/Output'

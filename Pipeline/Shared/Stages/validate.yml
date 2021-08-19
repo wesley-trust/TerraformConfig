@@ -10,5 +10,9 @@ stages:
     # Terraform Install and initialise
     - template: ../Steps/bootstrap.yml
     
-    # Terraform Validate
-    - template: ../Steps/validate.yml
+    # Terraform validate
+    - task: TerraformCLI@0
+      displayName: 'Terraform Validate'
+      inputs:
+        command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'

@@ -12,24 +12,14 @@ stages:
      runOnce:
        deploy:
         steps:
+
+          # Checkout repo
           - checkout: self
-          - task: TerraformInstaller@0
-            displayName: 'Terraform Install'
-            inputs:
-              terraformVersion: '$(terraformVersion)'
-          - task: TerraformCLI@0
-            displayName: 'Terraform Initialise'
-            inputs:
-              command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-              backendType: 'azurerm'
-              backendServiceArm: '$(backendServiceArm)'
-              ensureBackend: true
-              backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
-              backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
-              backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
-              backendAzureRmContainerName: '$(backendAzureRmContainerName)'
-              backendAzureRmKey: '$(backendAzureRmKey)'
+    
+          # Terraform Install and initialise
+          - template: ../Steps/bootstrap.yml
+
+          # Terraform Apply
           - task: TerraformCLI@0
             displayName: 'Terraform Apply'
             inputs:
