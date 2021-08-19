@@ -11,7 +11,7 @@ trigger:
 # Do not trigger builds on PRs
 pr: none
 
-# Execute on a schedule
+# Execute on a schedule (measure drift from desired state)
 schedules:
 - cron: "0 */24 * * *"
   displayName: Run daily
