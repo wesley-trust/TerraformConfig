@@ -10,5 +10,5 @@ schedules:
   displayName: Run daily
   branches:
     include:
-    - main
+    - develop
   always: true
