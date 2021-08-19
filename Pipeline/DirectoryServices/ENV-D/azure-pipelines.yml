@@ -15,7 +15,7 @@ pr: none
 resources:
   pipelines:
   - pipeline: CloudPlatform
-    source: 'Cloud Platform'
+    source: 'SVC-CP;ENV-D; Cloud Platform'
     trigger: 
       branches:
       - develop
