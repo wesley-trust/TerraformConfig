@@ -12,4 +12,4 @@ trigger:
 pr: none
 
 extends:
-  template: ../Shared/azure-pipelines.yml
+  template: ../../Shared/azure-pipelines.yml
