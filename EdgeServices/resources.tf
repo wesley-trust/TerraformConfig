@@ -1,4 +1,4 @@
-/* module "edge_services_virtual_machines_prod" {
+module "edge_services_virtual_machines_prod" {
   for_each                         = toset(local.resource_prod_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
   service_environment              = "Prod"
@@ -25,7 +25,7 @@ module "edge_services_network_peering_prod" {
   resource_network_peer_role = var.resource_network_peer_role
 }
 
-module "edge_services_recovery_services_prod" {
+/* module "edge_services_recovery_services_prod" {
   depends_on                                  = [module.edge_services_virtual_machines_prod]
   for_each                                    = toset(local.resource_prod_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
