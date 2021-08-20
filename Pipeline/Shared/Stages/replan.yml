@@ -24,7 +24,7 @@ stages:
     # Terraform Plan
     - template: ../Steps/terraform.yml
       parameters:
-        Name: RePlan
+        name: RePlan
         displayName: 'Terraform Plan'
         command: 'plan'
         publishPlanResults: 'reapply_terraform.tfplan'
