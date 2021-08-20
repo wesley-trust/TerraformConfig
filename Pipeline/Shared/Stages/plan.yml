@@ -15,13 +15,10 @@ stages:
     - template: ../Steps/mkdir.yml
     
     # Terraform Plan
-    - task: TerraformCLI@0
-      name: 'Plan'
-      displayName: 'Terraform Plan'
-      inputs:
+    - template: ../Steps/terraform.yml
+      parameters:
+        displayName: 'Terraform Plan'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'apply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/apply_terraform.tfplan -detailed-exitcode'
     

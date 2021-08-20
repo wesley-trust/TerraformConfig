@@ -6,3 +6,6 @@ steps:
   inputs:
     command: '${{ parameters.command }}'
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+    environmentServiceName: '$(backendServiceArm)'
+    publishPlanResults: '${{ parameters.publishPlanResult }}'
+    commandOptions: '${{ parameters.commandOptions }}'
