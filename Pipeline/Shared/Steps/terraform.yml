@@ -2,11 +2,11 @@ steps:
 
 # Terraform command
 - task: TerraformCLI@0
-  name: '${{ parameters.name }}'
+  name: '${{ parameters.displayName }}'
   displayName: '${{ parameters.displayName }}'
   inputs:
     command: '${{ parameters.command }}'
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
     environmentServiceName: '$(backendServiceArm)'
-    publishPlanResults: '${{ parameters.publishPlanResult }}'
+    publishPlanResults: '${{ parameters.publishPlanResults }}'
     commandOptions: '${{ parameters.commandOptions }}'
