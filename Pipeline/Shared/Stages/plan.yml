@@ -1,9 +1,11 @@
 stages:
+
 - stage: Plan
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: Validate
   jobs:
+  
   - job: Evaluate
     continueOnError: false
     steps:

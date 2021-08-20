@@ -1,10 +1,12 @@
 stages:
+
 - stage: ReApply
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: RePlan
   condition: and(succeeded('RePlan'), eq(dependencies.RePlan.outputs['ReEvaluate.Variable.ShouldRun'], 'true'))
   jobs:
+  
   - deployment: ReDeploy
     continueOnError: true
     environment: '$(Environment-ReApply)'

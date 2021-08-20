@@ -1,8 +1,10 @@
 stages:
+
 - stage: Validate
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
+  
   - job: Import
     continueOnError: false
     steps:
