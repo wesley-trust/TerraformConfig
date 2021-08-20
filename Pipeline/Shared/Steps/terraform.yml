@@ -2,7 +2,7 @@ steps:
 
 # Terraform command
 - task: TerraformCLI@0
-  displayName: 'Terraform '${{ parameters.displayName }}'
+  displayName: 'Terraform ${{ parameters.displayName }}'
   inputs:
     command: '${{ parameters.command }}'
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
