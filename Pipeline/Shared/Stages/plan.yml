@@ -17,7 +17,7 @@ stages:
     # Terraform Plan
     - template: ../Steps/terraform.yml
       parameters:
-        name: Plan
+        name: 'Plan'
         displayName: 'Terraform Plan'
         command: 'plan'
         publishPlanResults: 'apply_terraform.tfplan'

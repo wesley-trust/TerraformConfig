@@ -22,7 +22,7 @@ stages:
           # Terraform Apply
           - template: ../Steps/terraform.yml
             parameters:
-              name: Apply
+              name: 'Apply'
               displayName: 'Terraform Apply'
               command: 'apply'
               commandOptions: '$(Pipeline.Workspace)/Evaluate/apply_terraform.tfplan'

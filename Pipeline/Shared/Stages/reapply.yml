@@ -22,7 +22,7 @@ stages:
           # Terraform Apply
           - template: ../Steps/terraform.yml
             parameters:
-              name: ReApply
+              name: 'ReApply'
               displayName: 'Terraform Apply'
               command: 'apply'
               commandOptions: '$(Pipeline.Workspace)/ReEvaluate/reapply_terraform.tfplan'
