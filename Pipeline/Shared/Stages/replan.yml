@@ -20,15 +20,13 @@ stages:
 
     # Create artifact directory
     - template: ../Steps/mkdir.yml
-    
+       
     # Terraform Plan
-    - task: TerraformCLI@0
-      name: 'Plan'
-      displayName: 'Terraform Plan'
-      inputs:
+    - template: ../Steps/terraform.yml
+      parameters:
+        Name: 'RePlan'
+        displayName: 'Terraform Plan'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        environmentServiceName: '$(backendServiceArm)'
         publishPlanResults: 'reapply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/reapply_terraform.tfplan -detailed-exitcode'
     

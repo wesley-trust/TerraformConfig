@@ -18,12 +18,11 @@ stages:
     
           # Terraform Install and initialise
           - template: ../Steps/bootstrap.yml
-
+         
           # Terraform Apply
-          - task: TerraformCLI@0
-            displayName: 'Terraform Apply'
-            inputs:
+          - template: ../Steps/terraform.yml
+            parameters:
+              Name: 'ReApply'
+              displayName: 'Terraform Apply'
               command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-              environmentServiceName: '$(backendServiceArm)'
               commandOptions: '$(Pipeline.Workspace)/ReEvaluate/reapply_terraform.tfplan'

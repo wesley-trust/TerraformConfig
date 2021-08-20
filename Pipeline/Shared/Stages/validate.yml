@@ -13,5 +13,6 @@ stages:
     # Terraform validate
     - template: ../Steps/terraform.yml
       parameters:
+        Name: 'Validate'
         displayName: 'Terraform Validate'
         command: 'validate'

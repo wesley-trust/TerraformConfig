@@ -20,10 +20,9 @@ stages:
           - template: ../Steps/bootstrap.yml
 
           # Terraform Apply
-          - task: TerraformCLI@0
-            displayName: 'Terraform Apply'
-            inputs:
+          - template: ../Steps/terraform.yml
+            parameters:
+              Name: 'Apply'
+              displayName: 'Terraform Apply'
               command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-              environmentServiceName: '$(backendServiceArm)'
               commandOptions: '$(Pipeline.Workspace)/Evaluate/apply_terraform.tfplan'

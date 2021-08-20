@@ -2,6 +2,7 @@ steps:
 
 # Terraform command
 - task: TerraformCLI@0
+  name: '${{ parameters.displayName }}'
   displayName: '${{ parameters.displayName }}'
   inputs:
     command: '${{ parameters.command }}'
