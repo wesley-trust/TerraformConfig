@@ -36,9 +36,6 @@ stages:
     - template: ../Steps/variable.yml
     
     # Publish artifact
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish plan artifact'
-      inputs:
-        targetPath: '$(Pipeline.Workspace)/Output'
+    - template: ../Steps/artifact.yml
+      parameters:
         artifact: 'ReEvaluate'
-        publishLocation: 'pipeline'
