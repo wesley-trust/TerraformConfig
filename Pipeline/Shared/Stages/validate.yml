@@ -14,7 +14,7 @@ stages:
 
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
-      condition: Failed()
+      continueOnError: true
       displayName: 'Terraform Workspace new'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
@@ -22,10 +22,12 @@ stages:
         workspaceSubCommand: 'new'
         workspaceName: $(Environment)
 
+    # Select workspace
+    - template: ../Steps/workspace.yml
+
     # Terraform Validate
     - template: ../Steps/terraform.yml
       parameters:
         name: 'Validate'
         displayName: 'Terraform Validate'
-        condition: succeededOrFailed()
         command: 'validate'

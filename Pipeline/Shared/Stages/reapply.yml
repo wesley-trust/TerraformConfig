@@ -21,6 +21,9 @@ stages:
           # Terraform bootstrap
           - template: ../Steps/bootstrap.yml
 
+          # Select workspace
+          - template: ../Steps/workspace.yml
+
           # Terraform Apply
           - template: ../Steps/terraform.yml
             parameters:
