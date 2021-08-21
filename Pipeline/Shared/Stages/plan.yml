@@ -21,7 +21,7 @@ stages:
       parameters:
         name: 'Plan'
         displayName: 'Terraform Plan'
-        condition: succeeded()
+        condition: succeededOrFailed()
         command: 'plan'
         publishPlanResults: 'apply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/apply_terraform.tfplan -detailed-exitcode'
