@@ -11,13 +11,23 @@ stages:
     
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
-    
-    # Terraform workspace new
-    - template: ../Steps/workspace_new.yml
+
+    # Create workspace (if does not exist)
+    - task: TerraformCLI@0
+      condition: Failed()
+      displayName: 'Terraform Workspace new'
+      inputs:
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+        command: 'workspace'
+        workspaceSubCommand: 'new'
+        workspaceName: $(Environment)
 
     # Terraform validate
-    - template: ../Steps/terraform.yml
-      parameters:
-        name: 'Validate'
-        displayName: 'Terraform Validate'
+    - task: TerraformCLI@0
+      condition: Succeeded('Initialise')
+      name: 'Validate'
+      displayName: 'Terraform Validate'
+      inputs:
         command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+        environmentServiceName: '$(backendServiceArm)'

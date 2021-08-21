@@ -8,6 +8,7 @@ steps:
 
 # Initialise Terraform
 - task: TerraformCLI@0
+  name: 'Initialise'
   displayName: 'Terraform Initialise'
   inputs:
     command: 'init'
@@ -20,3 +21,13 @@ steps:
     backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
     backendAzureRmContainerName: '$(backendAzureRmContainerName)'
     backendAzureRmKey: '$(backendAzureRmKey)'
+
+# Select workspace (if exists)
+- task: TerraformCLI@0
+  condition: Failed()
+  displayName: 'Terraform Workspace select'
+  inputs:
+    workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+    command: 'workspace'
+    workspaceSubCommand: 'select'
+    workspaceName: $(Environment)
