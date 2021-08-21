@@ -31,7 +31,7 @@ stages:
 
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
-      condition: failed()
+      condition: SucceededWithIssues()
       displayName: 'Terraform Workspace new'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
