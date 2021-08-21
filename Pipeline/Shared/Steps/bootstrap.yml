@@ -24,7 +24,6 @@ steps:
 
 # Select workspace (if exists)
 - task: TerraformCLI@0
-  continueOnError: true
   displayName: 'Terraform Workspace select'
   inputs:
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
