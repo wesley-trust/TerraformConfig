@@ -19,18 +19,9 @@ stages:
         displayName: 'Terraform Validate'
         command: 'validate'
 
-    # Select workspace (if exists)
-    - task: TerraformCLI@0
-      continueOnError: true
-      displayName: 'Terraform Workspace select'
-      inputs:
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        command: 'workspace'
-        workspaceSubCommand: 'select'
-        workspaceName: $(Environment)
-
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
+      continueOnError: true
       displayName: 'Terraform Workspace new'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
