@@ -22,11 +22,10 @@ stages:
         workspaceSubCommand: 'new'
         workspaceName: $(Environment)
 
-    # Terraform validate
-    - task: TerraformCLI@0
-      name: 'Validate'
-      displayName: 'Terraform Validate'
-      inputs:
+    # Terraform Validate
+    - template: ../Steps/terraform.yml
+      parameters:
+        name: 'Validate'
+        displayName: 'Terraform Validate'
+        condition: succeededOrFailed()
         command: 'validate'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-        environmentServiceName: '$(backendServiceArm)'

@@ -8,7 +8,6 @@ stages:
   jobs:
   
   - deployment: Deploy
-    continueOnError: true
     environment: $(Environment)
     strategy:
      runOnce:
@@ -26,5 +25,6 @@ stages:
             parameters:
               name: 'Apply'
               displayName: 'Terraform Apply'
+              condition: succeeded()
               command: 'apply'
               commandOptions: '$(Pipeline.Workspace)/Evaluate/apply_terraform.tfplan'

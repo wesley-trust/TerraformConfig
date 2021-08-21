@@ -26,5 +26,6 @@ stages:
             parameters:
               name: 'ReApply'
               displayName: 'Terraform Apply'
+              condition: succeeded()
               command: 'apply'
               commandOptions: '$(Pipeline.Workspace)/ReEvaluate/reapply_terraform.tfplan'

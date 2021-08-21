@@ -4,7 +4,7 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: Apply
-  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
+  condition: and(succeededOrFailed(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
   jobs:
   
   # Delay job
@@ -27,6 +27,7 @@ stages:
       parameters:
         name: 'RePlan'
         displayName: 'Terraform Plan'
+        condition: succeeded()
         command: 'plan'
         publishPlanResults: 'reapply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/reapply_terraform.tfplan -detailed-exitcode'
