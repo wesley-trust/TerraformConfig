@@ -18,7 +18,7 @@ stages:
           # Checkout repo
           - checkout: self
     
-          # Terraform Install and initialise
+          # Terraform bootstrap
           - template: ../Steps/bootstrap.yml
          
           # Terraform Apply

@@ -10,7 +10,7 @@ stages:
     continueOnError: false
     steps:
     
-    # Terraform Install and initialise
+    # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
     # Create artifact directory
