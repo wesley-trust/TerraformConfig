@@ -23,7 +23,7 @@ stages:
     - task: TerraformCLI@0
       name: 'select'
       continueOnError: true
-      displayName: 'Terraform Workspace select'
+      displayName: 'Terraform Workspace import'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         command: 'workspace'
@@ -40,7 +40,7 @@ stages:
 
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
-      displayName: 'Terraform Workspace new'
+      displayName: 'Terraform Workspace creation'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         command: 'workspace'
