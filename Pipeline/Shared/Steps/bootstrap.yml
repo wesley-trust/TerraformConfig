@@ -23,7 +23,7 @@ steps:
 
 # Create workspace (if does not exist)
 - task: TerraformCLI@0
-  #continueOnError: true
+  continueOnError: true
   displayName: 'Terraform Workspace new'
   inputs:
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
@@ -33,7 +33,7 @@ steps:
 
 # Select workspace (if exists)
 - task: TerraformCLI@0
-  condition: Failed()
+  #condition: Failed()
   displayName: 'Terraform Workspace select'
   inputs:
     workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
