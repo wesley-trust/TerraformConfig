@@ -18,15 +18,7 @@ stages:
         name: 'Validate'
         displayName: 'Terraform Validate'
         command: 'validate'
-  
-  - job: Select
-    dependsOn: Import
-    continueOnError: true
-    steps:
-
-    # Terraform bootstrap
-    - template: ../Steps/bootstrap.yml
-
+    
     # Select workspace (if exists)
     - task: TerraformCLI@0
       name: 'select'
@@ -39,8 +31,8 @@ stages:
         workspaceName: $(Environment)
 
   - job: New
-    dependsOn: Select
-    condition: eq(dependencies.Select.result,'SucceededWithIssues')
+    dependsOn: Import
+    condition: eq(dependencies.Import.result,'SucceededWithIssues')
     steps:
 
     # Terraform bootstrap
