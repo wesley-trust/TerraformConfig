@@ -8,6 +8,7 @@ stages:
   jobs:
   
   - deployment: Deploy
+    continueOnError: true
     environment: $(Environment)
     strategy:
      runOnce:
