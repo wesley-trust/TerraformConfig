@@ -5,7 +5,7 @@ stages:
     vmImage: 'ubuntu-latest'
   jobs:
   
-  - job: Import
+  - job: Bootstrap
     continueOnError: false
     steps:
     
@@ -30,9 +30,13 @@ stages:
         workspaceSubCommand: 'select'
         workspaceName: $(Environment)
 
+  - job: Workspace
+    continueOnError: false
+    steps:
+
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
-      condition: eq(dependencies.select.result,'SucceededWithIssues')
+      condition: eq(dependencies.Bootstrap.result,'SucceededWithIssues')
       displayName: 'Terraform Workspace new'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
