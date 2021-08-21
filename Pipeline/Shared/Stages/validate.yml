@@ -38,7 +38,7 @@ stages:
         workspaceSubCommand: 'select'
         workspaceName: $(Environment)
 
- - job: New
+  - job: New
     dependsOn: Select
     condition: eq(dependencies.Select.result,'SucceededWithIssues')
     steps:
