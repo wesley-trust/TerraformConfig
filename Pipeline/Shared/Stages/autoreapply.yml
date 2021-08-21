@@ -1,0 +1,28 @@
+stages:
+
+- stage: AutoReApply
+  pool:
+    vmImage: 'ubuntu-latest'
+  dependsOn: Apply
+  condition: and(Failed(), (succeeded('Plan'))
+  jobs:
+  
+  - deployment: AutoReDeploy
+    environment: '$(Environment-ReApply)'
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+
+          # Checkout repo
+          - checkout: self
+    
+          # Terraform bootstrap
+          - template: ../Steps/bootstrap.yml
+         
+          # Terraform Apply
+          - template: ../Steps/terraform.yml
+            parameters:
+              name: 'ReApply'
+              displayName: 'Terraform Apply'
+              command: 'apply'

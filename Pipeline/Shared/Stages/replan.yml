@@ -4,7 +4,7 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: Apply
-  condition: and(succeeded('Plan'), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
+  condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
   jobs:
   
   # Delay job

@@ -15,6 +15,9 @@ stages:
 # Apply
 - template: Stages/apply.yml
 
+# AutoReApply
+- template: Stages/autoreapply.yml
+
 # RePlan
 - template: Stages/replan.yml
 
