@@ -12,8 +12,12 @@ stages:
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
+    # Select workspace
+    - template: ../Steps/workspace.yml
+
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
+      condition: failed()
       continueOnError: true
       displayName: 'Terraform Workspace new'
       inputs:
@@ -21,9 +25,6 @@ stages:
         command: 'workspace'
         workspaceSubCommand: 'new'
         workspaceName: $(Environment)
-
-    # Select workspace
-    - template: ../Steps/workspace.yml
 
     # Terraform Validate
     - template: ../Steps/terraform.yml
