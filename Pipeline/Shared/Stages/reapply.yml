@@ -9,7 +9,7 @@ stages:
   
   - deployment: ReDeploy
     continueOnError: true
-    environment: '$(Environment-ReApply)'
+    environment: '$(Environment)'
     strategy:
      runOnce:
        deploy:
