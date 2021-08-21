@@ -20,37 +20,37 @@ stages:
         command: 'validate'
   
   - job: Select
-  dependsOn: Import
-  continueOnError: true
-  steps:
-
-  # Terraform bootstrap
-  - template: ../Steps/bootstrap.yml
-
-  # Select workspace (if exists)
-  - task: TerraformCLI@0
-    name: 'select'
+    dependsOn: Import
     continueOnError: true
-    displayName: 'Terraform Workspace select'
-    inputs:
-      workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-      command: 'workspace'
-      workspaceSubCommand: 'select'
-      workspaceName: $(Environment)
+    steps:
+
+    # Terraform bootstrap
+    - template: ../Steps/bootstrap.yml
+
+    # Select workspace (if exists)
+    - task: TerraformCLI@0
+      name: 'select'
+      continueOnError: true
+      displayName: 'Terraform Workspace select'
+      inputs:
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+        command: 'workspace'
+        workspaceSubCommand: 'select'
+        workspaceName: $(Environment)
 
  - job: New
-  dependsOn: Select
-  condition: eq(dependencies.Select.result,'SucceededWithIssues')
-  steps:
+    dependsOn: Select
+    condition: eq(dependencies.Select.result,'SucceededWithIssues')
+    steps:
 
-  # Terraform bootstrap
-  - template: ../Steps/bootstrap.yml
+    # Terraform bootstrap
+    - template: ../Steps/bootstrap.yml
 
-  # Create workspace (if does not exist)
-  - task: TerraformCLI@0
-    displayName: 'Terraform Workspace new'
-    inputs:
-      workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
-      command: 'workspace'
-      workspaceSubCommand: 'new'
-      workspaceName: $(Environment)
+    # Create workspace (if does not exist)
+    - task: TerraformCLI@0
+      displayName: 'Terraform Workspace new'
+      inputs:
+        workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+        command: 'workspace'
+        workspaceSubCommand: 'new'
+        workspaceName: $(Environment)
