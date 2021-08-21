@@ -4,7 +4,7 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   dependsOn: Apply
-  condition: and(Failed(), (succeeded('Plan')))
+  condition: Failed()
   jobs:
   
   - deployment: AutoReDeploy
