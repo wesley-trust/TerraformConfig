@@ -12,6 +12,13 @@ stages:
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
+    # Terraform Validate
+    - template: ../Steps/terraform.yml
+      parameters:
+        name: 'Validate'
+        displayName: 'Terraform Validate'
+        command: 'validate'
+
     # Select workspace
     - template: ../Steps/workspace.yml
 
@@ -25,10 +32,3 @@ stages:
         command: 'workspace'
         workspaceSubCommand: 'new'
         workspaceName: $(Environment)
-
-    # Terraform Validate
-    - template: ../Steps/terraform.yml
-      parameters:
-        name: 'Validate'
-        displayName: 'Terraform Validate'
-        command: 'validate'
