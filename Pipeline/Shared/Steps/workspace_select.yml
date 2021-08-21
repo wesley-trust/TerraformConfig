@@ -1,0 +1,10 @@
+steps:
+
+# Select workspace (if exists)
+- task: TerraformCLI@0
+  displayName: 'Terraform Workspace select'
+  inputs:
+    workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
+    command: 'workspace'
+    workspaceSubCommand: 'select'
+    workspaceName: $(Environment)

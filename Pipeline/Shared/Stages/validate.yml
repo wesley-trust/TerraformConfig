@@ -12,6 +12,9 @@ stages:
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
     
+    # Terraform workspace new
+    - template: ../Steps/workspace_new.yml
+
     # Terraform validate
     - template: ../Steps/terraform.yml
       parameters:
