@@ -24,7 +24,7 @@ stages:
 
     # Terraform validate
     - task: TerraformCLI@0
-      condition: Succeeded('Initialise')
+      condition: succeeded('Initialise')
       name: 'Validate'
       displayName: 'Terraform Validate'
       inputs:

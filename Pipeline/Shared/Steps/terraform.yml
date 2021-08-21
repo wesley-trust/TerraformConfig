@@ -2,7 +2,7 @@ steps:
 
 # Terraform command
 - task: TerraformCLI@0
-  condition: Succeeded()
+  condition: succeeded()
   name: '${{ parameters.name }}'
   displayName: '${{ parameters.displayName }}'
   inputs:
