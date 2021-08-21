@@ -19,12 +19,8 @@ stages:
         displayName: 'Terraform Validate'
         command: 'validate'
 
-    # Select workspace
-    - template: ../Steps/workspace.yml
-
     # Create workspace (if does not exist)
     - task: TerraformCLI@0
-      condition: failed()
       continueOnError: true
       displayName: 'Terraform Workspace new'
       inputs:
