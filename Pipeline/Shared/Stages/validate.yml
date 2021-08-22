@@ -30,6 +30,7 @@ stages:
         workspaceSubCommand: 'select'
         workspaceName: $(Environment)
 
+    # Create workspace (if not exist)
   - job: New
     dependsOn: Import
     condition: eq(dependencies.Import.result,'SucceededWithIssues')
