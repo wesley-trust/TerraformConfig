@@ -1,4 +1,4 @@
-/* module "management_services_virtual_machines_prod" {
+module "management_services_virtual_machines_prod" {
   for_each                       = toset(local.resource_prod_locations)
   source                         = "../Modules/Deployments/Windows_virtual_machine"
   service_environment            = "Prod"
@@ -49,4 +49,4 @@ module "management_services_recovery_services_prod" {
   resource_name                               = local.resource_name
   resource_recovery_services_instance_count   = local.resource_prod_recovery_services_instance_count
   resource_recovery_services_virtual_machines = module.management_services_virtual_machines_prod[each.value]
-} */
+}
