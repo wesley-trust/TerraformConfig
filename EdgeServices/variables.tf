@@ -10,10 +10,14 @@ variable "service_location" {
   type        = map(any)
   default = {
     Prod = [
-      "UK South",
+      "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
       "North Central US"
     ]
   }
@@ -27,37 +31,12 @@ variable "service_recovery_services_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
     ]
-  }
-}
 
-variable "resource_network_peering" {
-  description = "The resource group and network pairs"
-  type        = map(any)
-  default = {
-    "Prod" = {
-      "DirectoryServices-Prod-UKS-01-rg"  = "DirectoryServices-Prod-UKS-vnet"
-      "FileServices-Prod-UKS-01-rg"       = "FileServices-Prod-UKS-vnet"
-      "ManagementServices-Prod-UKS-01-rg" = "ManagementServices-Prod-UKS-vnet"
-    },
-    "Prod-DR" = {
-      "DirectoryServices-Prod-DR-NCUS-01-rg" = "DirectoryServices-Prod-DR-NCUS-vnet"
-      "FileServices-Prod-DR-NCUS-01-rg"      = "FileServices-Prod-DR-NCUS-vnet"
-    }
-  }
-}
-
-variable "resource_network_hub_peering" {
-  description = "The resource group and network pairs"
-  type        = map(any)
-  default = {
-    "Prod" = {
-      "EdgeServices-Prod-UKS-01-rg" = "EdgeServices-Prod-UKS-vnet"
-    },
-    "Prod-DR" = {
-      "EdgeServices-Prod-DR-NCUS-01-rg" = "EdgeServices-Prod-DR-NCUS-vnet"
-    }
+    BCDR = [
+    ]
   }
 }
 
@@ -73,10 +52,15 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
-      "EdgeServices" = 2
+    Prod = {
+      "EdgeServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "EdgeServices" = 1
+    },
+
+    BCDR = {
       "EdgeServices" = 1
     }
   }
@@ -86,10 +70,15 @@ variable "resource_recovery_services_instance_count" {
   description = "Desired number of the provisioned resources to backup in each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "EdgeServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "EdgeServices" = 1
+    },
+
+    BCDR = {
       "EdgeServices" = 0
     }
   }
@@ -99,10 +88,15 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "EdgeServices" = "Standard_B1ls"
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "EdgeServices" = "Standard_B1ls"
+    },
+    
+    BCDR = {
       "EdgeServices" = "Standard_B1ls"
     }
   }

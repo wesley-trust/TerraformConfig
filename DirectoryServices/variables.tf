@@ -13,7 +13,11 @@ variable "service_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
       "North Central US"
     ]
   }
@@ -27,7 +31,11 @@ variable "service_recovery_services_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
     ]
   }
 }
@@ -44,10 +52,15 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "DirectoryServices" = 2
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "DirectoryServices" = 1
+    },
+
+    BCDR = {
       "DirectoryServices" = 1
     }
   }
@@ -57,10 +70,15 @@ variable "resource_recovery_services_instance_count" {
   description = "Desired number of the provisioned resources to backup in each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "DirectoryServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "DirectoryServices" = 1
+    },
+
+    BCDR = {
       "DirectoryServices" = 0
     }
   }
@@ -70,10 +88,15 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "DirectoryServices" = "Standard_B1s"
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "DirectoryServices" = "Standard_B1s"
+    },
+
+    BCDR = {
       "DirectoryServices" = "Standard_B1s"
     }
   }

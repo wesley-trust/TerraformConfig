@@ -10,10 +10,14 @@ variable "service_location" {
   type        = map(any)
   default = {
     Prod = [
-      "UK South",
+      "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
       "North Central US"
     ]
   }
@@ -27,7 +31,11 @@ variable "service_recovery_services_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
     ]
   }
 }
@@ -40,7 +48,11 @@ variable "service_storage_sync_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
     ]
   }
 }
@@ -57,10 +69,15 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
-      "FileServices" = 2
+    Prod = {
+      "FileServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "FileServices" = 1
+    },
+
+    BCDR = {
       "FileServices" = 1
     }
   }
@@ -70,10 +87,15 @@ variable "resource_recovery_services_instance_count" {
   description = "Desired number of the provisioned resources to backup in each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "FileServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "FileServices" = 1
+    },
+
+    BCDR = {
       "FileServices" = 0
     }
   }
@@ -83,10 +105,15 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "FileServices" = "Standard_B1s"
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "FileServices" = "Standard_B1s"
+    },
+
+    BCDR = {
       "FileServices" = "Standard_B1s"
     }
   }

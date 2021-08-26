@@ -10,10 +10,14 @@ variable "service_location" {
   type        = map(any)
   default = {
     Prod = [
-      "UK South",
+      "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
     ]
   }
 }
@@ -23,7 +27,8 @@ variable "service_traffic_manager_location" {
   type        = map(any)
   default = {
     Prod    = "UK South"
-    Prod-DR = null
+    Dev     = "UK South"
+    BCDR    = null
   }
 }
 
@@ -35,7 +40,11 @@ variable "service_recovery_services_location" {
       "UK South"
     ]
 
-    Prod-DR = [
+    Dev = [
+      "UK South"
+    ]
+
+    BCDR = [
     ]
   }
 }
@@ -52,10 +61,15 @@ variable "resource_instance_count" {
   description = "Desired number of the provisioned resources for each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "ManagementServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "ManagementServices" = 1
+    },
+
+    BCDR = {
       "ManagementServices" = 0
     }
   }
@@ -65,10 +79,15 @@ variable "resource_recovery_services_instance_count" {
   description = "Desired number of the provisioned resources to backup in each service environment"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "ManagementServices" = 1
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "ManagementServices" = 1
+    },
+
+    BCDR = {
       "ManagementServices" = 0
     }
   }
@@ -78,10 +97,15 @@ variable "resource_instance_size" {
   description = "Desired size for the provisioned resources for each service"
   type        = map(any)
   default = {
-    "Prod" = {
+    Prod = {
       "ManagementServices" = "Standard_B1s"
     },
-    "Prod-DR" = {
+
+    Dev = {
+      "ManagementServices" = "Standard_B1s"
+    },
+    
+    BCDR = {
       "ManagementServices" = "Standard_B1s"
     }
   }
