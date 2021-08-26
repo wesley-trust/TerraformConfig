@@ -1,5 +1,9 @@
 # TerraformConfig
 Configuration files for deployment with Terraform and Pipeline definitions
+| Status |
+|:--:|
+|[![Board Status](https://dev.azure.com/wesleytrust/e877378a-4a78-460d-bcc8-36cef3decd0e/4f6e88ab-5c49-41c2-94c2-7429981e9a8a/_apis/work/boardbadge/928ae330-92c8-4f3e-8f73-2692da0ab73a?columnOptions=1)](https://dev.azure.com/wesleytrust/e877378a-4a78-460d-bcc8-36cef3decd0e/_boards/board/t/4f6e88ab-5c49-41c2-94c2-7429981e9a8a/Microsoft.EpicCategory/)|
+
 ## Services
 | Root Module | Deployment Module  | main  | develop |
 |:---|:---|:----: | :-----: |
