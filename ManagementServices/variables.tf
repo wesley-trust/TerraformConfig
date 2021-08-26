@@ -26,9 +26,9 @@ variable "service_traffic_manager_location" {
   description = "The production resource location for traffic manager to deploy"
   type        = map(any)
   default = {
-    Prod    = "UK South"
-    Dev     = "UK South"
-    BCDR    = null
+    Prod = "UK South"
+    Dev  = "UK South"
+    BCDR = null
   }
 }
 
@@ -104,7 +104,7 @@ variable "resource_instance_size" {
     Dev = {
       "ManagementServices" = "Standard_B1s"
     },
-    
+
     BCDR = {
       "ManagementServices" = "Standard_B1s"
     }

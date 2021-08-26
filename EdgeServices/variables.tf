@@ -95,7 +95,7 @@ variable "resource_instance_size" {
     Dev = {
       "EdgeServices" = "Standard_B1ls"
     },
-    
+
     BCDR = {
       "EdgeServices" = "Standard_B1ls"
     }
