@@ -28,7 +28,7 @@ resource "azurerm_private_endpoint" "storage_account" {
   private_service_connection {
     name                           = "${local.resource_storage_share_name}-private"
     private_connection_resource_id = azurerm_storage_account.account.id
-    subresource_names              = "file"
+    subresource_names              = ["file"]
     is_manual_connection           = false
   }
 }
