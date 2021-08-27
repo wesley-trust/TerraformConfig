@@ -13,12 +13,13 @@ resource "azurerm_virtual_network" "virtual_network" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  count                                         = var.resource_network_subnet_count
-  name                                          = "${local.resource_subnet_name}-${count.index + 1}"
-  resource_group_name                           = var.resource_group_name
-  virtual_network_name                          = azurerm_virtual_network.virtual_network.name
-  address_prefixes                              = [local.resource_cidrsubnet[count.index]]
-  enforce_private_link_service_network_policies = false
+  count                                          = var.resource_network_subnet_count
+  name                                           = "${local.resource_subnet_name}-${count.index + 1}"
+  resource_group_name                            = var.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.virtual_network.name
+  address_prefixes                               = [local.resource_cidrsubnet[count.index]]
+  enforce_private_link_endpoint_network_policies = true
+  enforce_private_link_service_network_policies  = true
 }
 
 resource "azurerm_route_table" "route_table" {
