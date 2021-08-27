@@ -30,3 +30,15 @@ variable "resource_storage_sync_object_id" {
   type        = string
   default     = "a7ddc9cc-daee-4e0a-be3f-027903915879"
 }
+
+variable "resource_address_space" {
+  description = "Desired address space for the provisioned resources"
+  type        = string
+  default     = "172.30.16.0/24"
+}
+
+variable "provision_private_link" {
+  description = "Whether to provision a private link"
+  type        = bool
+  default     = false
+}

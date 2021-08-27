@@ -29,11 +29,22 @@ module "file_services_network_peering" {
 module "file_services_storage_sync" {
   for_each            = toset(local.resource_storage_sync_locations)
   source              = "../Modules/Deployments/Storage_sync"
-  service_environment = "${terraform.workspace}"
+  service_environment = terraform.workspace
   service_deployment  = "01"
   service_name        = "${var.service_name}-SS"
   service_location    = each.value
   resource_name       = local.resource_name
+}
+
+module "file_services_storage_sync" {
+  for_each               = toset(local.resource_storage_sync_locations)
+  source                 = "../Modules/Deployments/Storage_sync"
+  service_environment    = terraform.workspace
+  service_deployment     = "02"
+  service_name           = "${var.service_name}-SS"
+  service_location       = each.value
+  resource_name          = local.resource_name
+  provision_private_link = true
 }
 
 /* module "file_services_recovery_services" {
