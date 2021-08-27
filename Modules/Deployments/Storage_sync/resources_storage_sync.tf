@@ -16,3 +16,18 @@ resource "azurerm_storage_sync_cloud_endpoint" "sync_cloud_endpoint" {
   file_share_name       = azurerm_storage_share.share.name
   storage_account_id    = azurerm_storage_account.account.id
 }
+
+resource "azurerm_private_endpoint" "storage_sync" {
+  count               = var.provision_private_link == true ? 1 : 0
+  name                = "${local.resource_storage_share_name}"
+  resource_group_name = module.resource_group.name
+  location            = module.resource_group.location
+  subnet_id           = module.service_network[0].subnet_id[0]
+
+  private_service_connection {
+    name                           = "${local.resource_storage_sync_name}"
+    private_connection_resource_id = azurerm_storage_sync.sync.id
+    subresource_names              = ["afs"]
+    is_manual_connection           = false
+  }
+}
