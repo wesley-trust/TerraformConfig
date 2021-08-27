@@ -33,11 +33,13 @@ variable "resource_environment" {
 variable "resource_dns_servers" {
   description = "Desired DNS servers for the provisioned resources"
   type        = list(string)
+  default     = null
 }
 
 variable "resource_network_subnet_count" {
   description = "Desired number of subnets for the provisioned resources"
   type        = string
+  default     = 1
 
   validation {
     condition     = var.resource_network_subnet_count <= 2
@@ -48,4 +50,5 @@ variable "resource_network_subnet_count" {
 variable "resource_network_role" {
   description = "The network type for peering"
   type        = string
+  default     = null
 }
