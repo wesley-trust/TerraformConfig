@@ -36,7 +36,7 @@ module "file_services_storage_sync" {
   resource_name       = local.resource_name
 }
 
-module "file_services_storage_sync" {
+module "file_services_storage_sync_vnext" {
   for_each               = toset(local.resource_storage_sync_locations)
   source                 = "../Modules/Deployments/Storage_sync"
   service_environment    = terraform.workspace
