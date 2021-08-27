@@ -23,7 +23,7 @@ resource "azurerm_private_endpoint" "storage_account" {
   name                = "${local.resource_storage_share_name}-private"
   resource_group_name = module.resource_group.name
   location            = module.resource_group.location
-  subnet_id           = module.service_network[0].subnet_id
+  subnet_id           = module.service_network[0].subnet_id[0]
 
   private_service_connection {
     name                           = "${local.resource_storage_share_name}-private"
