@@ -19,5 +19,5 @@ steps:
     backendAzureRmResourceGroupName: '$(backendAzureRmResourceGroupName)'
     backendAzureRmResourceGroupLocation: '$(backendAzureRmResourceGroupLocation)'
     backendAzureRmStorageAccountName: '$(backendAzureRmStorageAccountName)'
-    backendAzureRmContainerName: lower($(Service))
+    backendAzureRmContainerName: $(backendAzureRmContainerName)
     backendAzureRmKey: '$(backendAzureRmKey)'

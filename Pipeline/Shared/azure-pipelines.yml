@@ -2,6 +2,7 @@
 variables:
 - group: 'terraform-backend'
 - group: 'terraform-system'
+backendAzureRmContainerName: lower($Service)
 
 # Run stages
 stages:
