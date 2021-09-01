@@ -1,8 +1,8 @@
 # Define stage wide variables
 variables:
+  backendAzureRmContainerName: $[lower(variables['Service'])]
 - group: 'terraform-backend'
 - group: 'terraform-system'
-  backendAzureRmContainerName: $[lower(variables['Service'])]
 
 # Run stages
 stages:
