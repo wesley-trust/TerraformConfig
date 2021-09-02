@@ -24,9 +24,9 @@ module "file_services_network_peering" {
   service_location           = each.value
   resource_network_peer      = module.file_services_virtual_machines[each.value]
   resource_network_peer_role = var.resource_network_peer_role
-}
+} */
 
-module "file_services_storage_sync" {
+/* module "file_services_storage_sync" {
   for_each               = toset(local.resource_storage_sync_locations)
   source                 = "../Modules/Deployments/Storage_sync"
   service_environment    = terraform.workspace
