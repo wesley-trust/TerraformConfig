@@ -1,7 +1,7 @@
 # Conditional parameters
 parameters:
 - name: environment
-  value: $(Environment)
+  default: $(Environment)
 
 variables:
 - group: ${{ parameters.environment }}
