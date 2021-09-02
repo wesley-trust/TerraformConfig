@@ -3,7 +3,7 @@ variables:
 
 - template: Variables/global.yml
 
-# Run stages
+# Define stages
 stages:
 
 # Validate
