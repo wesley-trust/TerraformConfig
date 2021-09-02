@@ -2,6 +2,9 @@
 variables:
 - group: 'terraform-backend'
 - group: 'terraform-system'
-- group: '${{ variables.Environment }}'
+- ${{ if eq(variables['Environment'], 'Prod') }}:
+  - group: Prod
+- ${{ if eq(variables['Environment'], 'Dev') }}:
+  - group: Dev
 - name: 'backendAzureRmContainerName'
   value: $[lower(variables['Service'])]
