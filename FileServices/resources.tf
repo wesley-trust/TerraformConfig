@@ -34,7 +34,7 @@ module "file_services_storage_sync" {
   service_name           = "${var.service_name}-SS"
   service_location       = each.value
   resource_name          = local.resource_name
-  provision_private_link = false
+  provision_private_link = true
 }
 
 /* module "file_services_recovery_services" {
