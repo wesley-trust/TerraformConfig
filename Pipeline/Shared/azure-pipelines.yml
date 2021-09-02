@@ -1,7 +1,6 @@
 # Define variables and parameters
 variables:
 - template: Variables/global.yml
-parameters:
 - template: Parameters/global.yml
 
 # Define stages
