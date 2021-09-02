@@ -2,7 +2,8 @@
 parameters:
 - name: environment
   type: string
-  default: $[variables['Environment']]
+  #default: $[variables['Environment']]
+  default: test
 
 variables:
 - group: ${{ parameters.environment }}
