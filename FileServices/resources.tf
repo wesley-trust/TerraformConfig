@@ -26,7 +26,7 @@ module "file_services_network_peering" {
   resource_network_peer_role = var.resource_network_peer_role
 } */
 
-/* module "file_services_storage_sync" {
+module "file_services_storage_sync" {
   for_each               = toset(local.resource_storage_sync_locations)
   source                 = "../Modules/Deployments/Storage_sync"
   service_environment    = terraform.workspace
@@ -37,7 +37,7 @@ module "file_services_network_peering" {
   provision_private_link = true
 }
 
-module "file_services_recovery_services" {
+/* module "file_services_recovery_services" {
   depends_on                                  = [module.file_services_virtual_machines]
   for_each                                    = toset(local.resource_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
