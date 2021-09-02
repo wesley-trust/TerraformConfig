@@ -3,6 +3,6 @@ jobs:
   pool: Server
   steps:
   - task: Delay@1
-    displayName: 'Delay for $(DelayMinutes) minutes'
+    displayName: 'Delay for ${{ variables.DelayMinutes }} minutes'
     inputs:
-      delayForMinutes: '$(DelayMinutes)'
+      delayForMinutes: ${{ variables.DelayMinutes }}
