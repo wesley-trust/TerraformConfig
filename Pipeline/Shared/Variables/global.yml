@@ -1,0 +1,6 @@
+# Define global variables
+variables:
+- group: 'terraform-backend'
+- group: 'terraform-system'
+- name: backendAzureRmContainerName
+  value: '$[lower(variables['Service'])]'

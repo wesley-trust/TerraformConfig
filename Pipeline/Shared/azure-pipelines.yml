@@ -1,8 +1,7 @@
-# Define stage wide variables
+# Define global variables
 variables:
-- group: 'terraform-backend'
-- group: 'terraform-system'
-  backendAzureRmContainerName: '$[lower(variables['Service'])]'
+
+- template: Variables/global.yml
 
 # Run stages
 stages:
