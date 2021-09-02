@@ -1,7 +1,7 @@
 /* module "management_services_virtual_machines" {
   for_each                       = toset(local.resource_locations)
   source                         = "../Modules/Deployments/Windows_virtual_machine"
-  service_environment            = "${terraform.workspace}"
+  service_environment            = terraform.workspace
   service_deployment             = "01"
   service_name                   = var.service_name
   service_location               = each.value
@@ -17,7 +17,7 @@
 module "management_services_network_peering" {
   for_each                   = toset(local.resource_locations)
   source                     = "../Modules/Deployments/Network_peering"
-  service_environment        = "${terraform.workspace}"
+  service_environment        = terraform.workspace
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
@@ -29,7 +29,7 @@ module "management_services_traffic_manager" {
   depends_on                                  = [module.management_services_virtual_machines]
   count                                       = var.provision_traffic_manager == true ? 1 : 0
   source                                      = "../Modules/Deployments/Traffic_manager"
-  service_environment                         = "${terraform.workspace}"
+  service_environment                         = terraform.workspace
   service_deployment                          = "01"
   service_name                                = "${var.service_name}-TM"
   service_location                            = local.resource_traffic_manager_location
@@ -42,7 +42,7 @@ module "management_services_recovery_services" {
   depends_on                                  = [module.management_services_virtual_machines]
   for_each                                    = toset(local.resource_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
-  service_environment                         = "${terraform.workspace}"
+  service_environment                         = terraform.workspace
   service_deployment                          = "01"
   service_name                                = "${var.service_name}-RSV"
   service_location                            = each.value

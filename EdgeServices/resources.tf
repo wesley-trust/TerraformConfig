@@ -1,7 +1,7 @@
 /* module "edge_services_virtual_machines" {
   for_each                         = toset(local.resource_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
-  service_environment              = "${terraform.workspace}"
+  service_environment              = terraform.workspace
   service_deployment               = "01"
   service_name                     = var.service_name
   service_location                 = each.value
@@ -17,7 +17,7 @@
 module "edge_services_network_peering" {
   for_each                   = toset(local.resource_locations)
   source                     = "../Modules/Deployments/Network_peering"
-  service_environment        = "${terraform.workspace}"
+  service_environment        = terraform.workspace
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
@@ -29,7 +29,7 @@ module "edge_services_recovery_services" {
   depends_on                                  = [module.edge_services_virtual_machines]
   for_each                                    = toset(local.resource_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
-  service_environment                         = "${terraform.workspace}"
+  service_environment                         = terraform.workspace
   service_deployment                          = "01"
   service_name                                = "${var.service_name}-RSV"
   service_location                            = each.value
@@ -41,7 +41,7 @@ module "edge_services_recovery_services" {
 module "edge_services_virtual_machines_bcdr" {
   for_each                         = toset(local.resource_bcdr_locations)
   source                           = "../Modules/Deployments/Linux_virtual_machine"
-  service_environment              = "${terraform.workspace}"
+  service_environment              = terraform.workspace
   service_deployment               = "01"
   service_name                     = var.service_name
   service_location                 = each.value
@@ -57,7 +57,7 @@ module "edge_services_virtual_machines_bcdr" {
 module "edge_services_network_peering_bcdr" {
   for_each                   = toset(local.resource_bcdr_locations)
   source                     = "../Modules/Deployments/Network_peering"
-  service_environment        = "${terraform.workspace}"
+  service_environment        = terraform.workspace
   service_deployment         = "01"
   service_name               = var.service_name
   service_location           = each.value
