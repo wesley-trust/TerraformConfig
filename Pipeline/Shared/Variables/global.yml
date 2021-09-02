@@ -6,6 +6,6 @@ variables:
 #  - group: Prod
 #- ${{ if eq(variables['Environment'], 'Dev') }}:
 #  - group: Dev
-- group: ${{ variables.Environment }}
+- group: '${{ variables.Environment }}'
 - name: 'backendAzureRmContainerName'
   value: $[lower(variables['Service'])]
