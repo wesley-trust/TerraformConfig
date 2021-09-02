@@ -2,6 +2,6 @@
 variables:
 - group: 'terraform-backend'
 - group: 'terraform-system'
-- group: 'terraform-$[variables['Environment']]'
+- group: terraform-$[variables['Environment']]
 - name: 'backendAzureRmContainerName'
   value: $[lower(variables['Service'])]
