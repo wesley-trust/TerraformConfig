@@ -4,11 +4,3 @@ variables:
 - group: 'terraform-system'
 - name: 'backendAzureRmContainerName'
   value: $[lower(variables['Service'])]
-
-parameters:
-- name: environment
-type: string
-default: $(Environment)
-
-variables:
-- group: ${{ parameters.environment }}

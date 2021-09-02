@@ -1,0 +1,7 @@
+# Conditional parameters
+parameters:
+- name: environment
+  value: $(Environment)
+
+variables:
+- group: ${{ parameters.environment }}
