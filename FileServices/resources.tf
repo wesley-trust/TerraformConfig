@@ -24,7 +24,7 @@ module "file_services_network_peering" {
   service_location           = each.value
   resource_network_peer      = module.file_services_virtual_machines[each.value]
   resource_network_peer_role = var.resource_network_peer_role
-} */
+}
 
 module "file_services_storage_sync" {
   for_each               = toset(local.resource_storage_sync_locations)
@@ -34,10 +34,10 @@ module "file_services_storage_sync" {
   service_name           = "${var.service_name}-SS"
   service_location       = each.value
   resource_name          = local.resource_name
-  provision_private_link = false
+  provision_private_link = true
 }
 
-/* module "file_services_recovery_services" {
+module "file_services_recovery_services" {
   depends_on                                  = [module.file_services_virtual_machines]
   for_each                                    = toset(local.resource_recovery_services_locations)
   source                                      = "../Modules/Deployments/Recovery_services"
