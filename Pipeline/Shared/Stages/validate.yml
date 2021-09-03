@@ -1,6 +1,6 @@
 stages:
 
-- stage: '$(DelayMinutes)'
+- stage: 'D_$(DelayMinutes)'
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
