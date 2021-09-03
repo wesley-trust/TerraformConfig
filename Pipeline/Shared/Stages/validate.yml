@@ -8,8 +8,6 @@ stages:
   - job: Import
     continueOnError: false
     steps:
-    variables:
-      - template: ../Variables/stage.yml
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
@@ -24,6 +22,8 @@ stages:
     - task: TerraformCLI@0
       name: 'select'
       continueOnError: true
+      variables:
+      - template: ../Variables/stage.yml
       displayName: 'Terraform Workspace import $(DelayMinutes)'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
