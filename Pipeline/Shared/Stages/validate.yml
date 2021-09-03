@@ -9,7 +9,7 @@ stages:
     continueOnError: false
     steps:
       variables:
-        - template: ../Variables/stage.yml
+      - template: ../Variables/stage.yml
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
