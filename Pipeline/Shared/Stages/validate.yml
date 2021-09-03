@@ -23,7 +23,7 @@ stages:
     - task: TerraformCLI@0
       name: 'select'
       continueOnError: true
-      displayName: 'Terraform Workspace import $(DelayMinutes)'
+      displayName: 'Terraform Workspace import $(Environment)'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         command: 'workspace'
