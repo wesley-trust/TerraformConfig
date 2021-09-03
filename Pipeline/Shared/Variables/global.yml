@@ -2,12 +2,13 @@
 variables:
 - group: 'terraform-backend'
 - group: 'terraform-system'
+- group: 'Dev'
 
 # Set variable group based upon environment
-- ${{ if eq(variables['Environment'], 'Prod') }}:
-  - group: 'Prod'
-- ${{ if eq(variables['Environment'], 'Dev') }}:
-  - group: 'Dev'
+#- ${{ if eq(variables['Environment'], 'Prod') }}:
+#  - group: 'Prod'
+#- ${{ if eq(variables['Environment'], 'Dev') }}:
+#  - group: 'Dev'
 
 # Specify backend container from the service (which must be lowercase)
 - name: 'backendAzureRmContainerName'
