@@ -5,7 +5,7 @@ stages:
     vmImage: 'ubuntu-latest'
   jobs:
   
-  - job: 'D_$(DelayMinutes)'
+  - job: Import
     continueOnError: false
     steps:
     
@@ -21,7 +21,7 @@ stages:
     
     # Select workspace (if exists)
     - task: TerraformCLI@0
-      name: 'select'
+      name: '$(DelayMinutes'
       continueOnError: true
       displayName: 'Terraform Workspace import'
       inputs:
