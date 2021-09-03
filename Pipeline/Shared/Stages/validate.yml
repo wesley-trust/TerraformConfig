@@ -1,6 +1,6 @@
 stages:
-variables:
-  - template: ../Variables/stage.yml
+  variables:
+    - template: ../Variables/stage.yml
 - stage: Validate
   pool:
     vmImage: 'ubuntu-latest'
