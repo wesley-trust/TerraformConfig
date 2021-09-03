@@ -2,11 +2,6 @@ stages:
 - stage: Validate
   pool:
     vmImage: 'ubuntu-latest'
-  variables:
-  - ${{ if eq('$(Environment)', 'Prod') }}:
-    - group: 'Prod'
-  - ${{ if eq('$(Environment)', 'Dev') }}:
-    - group: 'Dev'
   jobs:
   
   - job: Import
@@ -26,7 +21,7 @@ stages:
     - task: TerraformCLI@0
       name: 'select'
       continueOnError: true
-      displayName: 'Terraform Workspace import $(DelayMinutes)'
+      displayName: 'Terraform Workspace import'
       inputs:
         workingDirectory: '$(System.DefaultWorkingDirectory)/$(Service)/'
         command: 'workspace'
