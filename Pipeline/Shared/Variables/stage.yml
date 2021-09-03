@@ -1,4 +1,5 @@
 # Set variable group based upon environment
+variables:
 - ${{ if eq(variables['Environment'], 'Prod') }}:
   - group: 'Prod'
 - ${{ if eq(variables['Environment'], 'Dev') }}:
