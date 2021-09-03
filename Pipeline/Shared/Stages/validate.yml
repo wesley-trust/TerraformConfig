@@ -3,9 +3,9 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   variables:
-  - ${{ if eq(variables['Environment'], 'Prod') }}:
+  - $(if eq(variables['Environment'], 'Prod') ):
     - group: 'Prod'
-  - ${{ if eq(variables['Environment'], 'Dev') }}:
+  - $( if eq(variables['Environment'], 'Dev') ):
     - group: 'Dev'
   jobs:
   
