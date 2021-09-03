@@ -1,6 +1,6 @@
 stages:
 
-- stage: Validate
+- stage: $(DelayMinutes)
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
