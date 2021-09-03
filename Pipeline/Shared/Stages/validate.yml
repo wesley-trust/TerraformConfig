@@ -21,7 +21,7 @@ stages:
     
     # Select workspace (if exists)
     - task: TerraformCLI@0
-      name: '$(DelayMinutes'
+      name: '$(DelayMinutes)'
       continueOnError: true
       displayName: 'Terraform Workspace import'
       inputs:
