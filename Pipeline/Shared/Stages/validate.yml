@@ -3,7 +3,10 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   variables:
-    - template: ../Variables/stage.yml
+  - ${{ if eq(variables['Environment'], 'Prod') }}:
+    - group: 'Prod'
+  - ${{ if eq(variables['Environment'], 'Dev') }}:
+    - group: 'Dev'
   jobs:
   
   - job: Import
