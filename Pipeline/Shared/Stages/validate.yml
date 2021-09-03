@@ -3,11 +3,11 @@ stages:
 - stage: Validate
   pool:
     vmImage: 'ubuntu-latest'
-  variables:
-  - template: ../Variables/stage.yml
   jobs:
   
   - job: Import
+    variables:
+    - template: ../Variables/stage.yml
     continueOnError: false
     steps:
     
