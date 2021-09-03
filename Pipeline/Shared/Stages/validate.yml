@@ -6,11 +6,10 @@ stages:
   jobs:
   
   - job: Import
-    variables:
-    - template: ../Variables/stage.yml
     continueOnError: false
     steps:
-    
+    variables:
+      - template: ../Variables/stage.yml
     # Terraform bootstrap
     - template: ../Steps/bootstrap.yml
 
