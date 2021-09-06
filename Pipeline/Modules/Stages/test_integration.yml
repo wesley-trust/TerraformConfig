@@ -7,6 +7,12 @@ stages:
   - job: Test
     continueOnError: false
     steps:
+
+    # Install Terraform
+    - task: TerraformInstaller@0
+      displayName: 'Terraform Install'
+      inputs:
+        terraformVersion: '$(terraformVersion)'
     
     # Install Go
     - task: GoTool@0
