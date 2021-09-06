@@ -9,7 +9,7 @@ stages:
     steps:
     
     # Terraform bootstrap
-    - template: ../Steps/bootstrap.yml
+    - template: ../Shared/Steps/bootstrap.yml
     
     # Install Go
     - task: GoTool@0
