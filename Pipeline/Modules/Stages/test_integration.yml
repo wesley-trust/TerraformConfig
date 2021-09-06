@@ -7,12 +7,9 @@ stages:
   - job: Test
     continueOnError: false
     steps:
-
-    # Install Terraform
-    - task: TerraformInstaller@0
-      displayName: 'Terraform Install'
-      inputs:
-        terraformVersion: '$(terraformVersion)'
+    
+    # Terraform bootstrap
+    - template: ../Steps/bootstrap.yml
     
     # Install Go
     - task: GoTool@0
@@ -20,12 +17,12 @@ stages:
         version: '1.17'
 
     # Create test module
-    #- task: Go@0
-    #  inputs:
-    #    command: 'custom'
-    #    customCommand: 'mod'
-    #    arguments: 'init $(Module)'
-    #    workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
+    - task: Go@0
+      inputs:
+        command: 'custom'
+        customCommand: 'mod'
+        arguments: 'init $(Module)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
 
     # Add module dependencies
     - task: Go@0
