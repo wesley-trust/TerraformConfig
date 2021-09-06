@@ -1,0 +1,37 @@
+stages:
+- stage: Integration
+  pool:
+    vmImage: 'ubuntu-latest'
+  jobs:
+  
+  - job: Test
+    continueOnError: false
+    steps:
+    
+    # Install Go
+    - task: GoTool@0
+      inputs:
+        version: '1.17'
+
+    # Create test module
+    - task: Go@0
+      inputs:
+        command: 'custom'
+        customCommand: 'mod'
+        arguments: 'init $(Module)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
+
+    # Add module dependencies
+    - task: Go@0
+      inputs:
+        command: 'custom'
+        customCommand: 'mod'
+        arguments: 'tidy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
+    
+    # Run Go Test
+    - task: Go@0
+      inputs:
+        command: 'test'
+        arguments: '-v integration_test.go'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
