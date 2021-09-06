@@ -20,12 +20,12 @@ stages:
         version: '1.17'
 
     # Create test module
-    - task: Go@0
-      inputs:
-        command: 'custom'
-        customCommand: 'mod'
-        arguments: 'init $(Module)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
+    #- task: Go@0
+    #  inputs:
+    #    command: 'custom'
+    #    customCommand: 'mod'
+    #    arguments: 'init $(Module)'
+    #    workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/$(Module)/tests'
 
     # Add module dependencies
     - task: Go@0
