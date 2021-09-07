@@ -16,11 +16,13 @@ stages:
 
     # Install Go
     - task: GoTool@0
+      displayName: 'Go Install'
       inputs:
         version: '1.17'
 
     # Create test module
     - task: Go@0
+      displayName: 'Create test module'  
       inputs:
         command: 'custom'
         customCommand: 'mod'
@@ -29,23 +31,16 @@ stages:
 
     # Add module dependencies
     - task: Go@0
+      displayName: 'Get test dependencies'  
       inputs:
         command: 'custom'
         customCommand: 'mod'
         arguments: 'tidy'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
-    
-    # Run Go Get
-    #- task: Go@0
-    #  inputs:
-    #    command: 'get'
-    #    arguments: './integration_test.go'
-    #    workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
         
     # Run Go Test
     - task: Go@0
-      inputs:
+      displayName: 'Run tests'
         command: 'test'
-        #arguments: '-v integration_test.go'
-        arguments: 'TestIntegrationExample'
+        arguments: '-v integration_test.go'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
