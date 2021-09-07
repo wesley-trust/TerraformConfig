@@ -27,7 +27,7 @@ stages:
     - task: TerraformInstaller@0
       displayName: 'Terraform Install'
       inputs:
-        terraformVersion: '$(terraformVersion)'
+        terraformVersion: 'latest'
 
     # Install Go
     - task: GoTool@0
