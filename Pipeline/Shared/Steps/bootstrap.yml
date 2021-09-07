@@ -4,7 +4,7 @@ steps:
   name: CloneTerraformModules
   displayName: 'Get Terraform Modules'
   inputs:
-    script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/Terraform.git' Modules
+    script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/Terraform.git Modules'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 # Install Terraform
