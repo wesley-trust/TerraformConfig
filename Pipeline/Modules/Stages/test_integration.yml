@@ -8,8 +8,11 @@ stages:
     continueOnError: false
     steps:
     
-    # Terraform bootstrap
-    - template: ../../Shared/Steps/bootstrap.yml
+    # Install Terraform
+    - task: TerraformInstaller@0
+      displayName: 'Terraform Install'
+      inputs:
+        terraformVersion: '$(terraformVersion)'
     
     # Install Go
     - task: GoTool@0
