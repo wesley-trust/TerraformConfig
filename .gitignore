@@ -5,6 +5,10 @@
 *.tfstate
 *.tfstate.*
 
+# Go files
+#*.mod
+#*.sum
+
 # Crash log files
 crash.log
 
