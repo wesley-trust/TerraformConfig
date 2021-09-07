@@ -13,15 +13,6 @@ stages:
       displayName: 'Terraform Install'
       inputs:
         terraformVersion: '$(terraformVersion)'
-    
-    # Initialise Terraform
-    - task: TerraformCLI@0
-      name: 'Initialise'
-      displayName: 'Terraform Initialise'
-      inputs:
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/'
-        backendServiceArm: '$(backendServiceArm)'
 
     # Install Go
     - task: GoTool@0
@@ -44,6 +35,13 @@ stages:
         arguments: 'tidy'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
     
+    # Run Go Get
+    - task: Go@0
+      inputs:
+        command: 'get'
+        arguments: 'integration_test.go'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
+        
     # Run Go Test
     - task: Go@0
       inputs:
