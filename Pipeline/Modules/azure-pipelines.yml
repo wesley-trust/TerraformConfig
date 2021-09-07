@@ -1,6 +1,6 @@
 # Define global variables
 variables:
-- template: ../Shared/Variables/global.yml
+- template: Variables/global.yml
 
 # Define stages
 stages:
