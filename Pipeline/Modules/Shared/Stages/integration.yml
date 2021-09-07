@@ -5,23 +5,9 @@ stages:
   jobs:
   
   - job: Test
+    displayName: 'Integration Test'
     continueOnError: false
     steps:
-    
-    # Sign in to Azure
-    #- task: PowerShell@2
-    #  displayName: Authenticate with Azure
-    #  env:
-    #      TENANTID: ($TenantId)
-    #      SERVICEPRINCIPALID: $(ServicePrincipalId)
-    #      SERVICEPRINCIPALKEY: $(ServicePrincipalKey)
-    #      SUBSCRIPTIONID: $(SubscriptionId)
-    #  inputs:
-    #    targetType: 'inline'
-    #    script: |
-    #        az login --service-principal -t $env:TENANTID -u $env:SERVICEPRINCIPALID -p $env:SERVICEPRINCIPALKEY
-    #        az account set -s $env:SUBSCRIPTIONID
-    #    pwsh: true
 
     # Install Terraform
     - task: TerraformInstaller@0

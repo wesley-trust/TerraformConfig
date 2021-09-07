@@ -6,4 +6,4 @@ variables:
 stages:
 
 # Integration
-- template: Stages/test_integration.yml
+- template: Stages/integration.yml
