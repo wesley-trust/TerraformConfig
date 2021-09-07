@@ -33,7 +33,7 @@ stages:
     - task: GoTool@0
       displayName: 'Go Install'
       inputs:
-        version: '1.17'
+        version: 'latest'
 
     # Create test module
     - task: Go@0
@@ -61,7 +61,7 @@ stages:
         arguments: '-v integration_test.go'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
       env:
-          ARM_TENANT_ID: ($TenantId)
+          ARM_TENANT_ID: $(TenantId)
           ARM_CLIENT_ID: $(ServicePrincipalId)
           ARM_CLIENT_SECRET: $(ServicePrincipalKey)
           ARM_SUBSCRIPTION_ID: $(SubscriptionId)
