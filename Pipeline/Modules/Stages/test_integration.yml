@@ -16,12 +16,12 @@ stages:
     
     # Initialise Terraform
     - task: TerraformCLI@0
-    name: 'Initialise'
-    displayName: 'Terraform Initialise'
-    inputs:
-      command: 'init'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/'
-      backendServiceArm: '$(backendServiceArm)'
+      name: 'Initialise'
+      displayName: 'Terraform Initialise'
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/'
+        backendServiceArm: '$(backendServiceArm)'
 
     # Install Go
     - task: GoTool@0
