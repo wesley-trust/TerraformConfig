@@ -6,8 +6,8 @@
 *.tfstate.*
 
 # Go files
-#*.mod
-#*.sum
+*.mod
+*.sum
 
 # Crash log files
 crash.log
