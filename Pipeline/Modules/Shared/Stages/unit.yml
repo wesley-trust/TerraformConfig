@@ -1,0 +1,53 @@
+stages:
+- stage: Unit
+  pool:
+    vmImage: 'ubuntu-latest'
+  jobs:
+  
+  - job: Test
+    displayName: 'Unit Test'
+    continueOnError: false
+    steps:
+
+    # Install Terraform
+    - task: TerraformInstaller@0
+      displayName: 'Terraform Install'
+      inputs:
+        terraformVersion: 'latest'
+
+    # Install Go
+    - task: GoTool@0
+      displayName: 'Go Install'
+      inputs:
+        version: '1.17'
+
+    # Create test module
+    - task: Go@0
+      displayName: 'Create test module'  
+      inputs:
+        command: 'custom'
+        customCommand: 'mod'
+        arguments: 'init $(Module)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
+
+    # Add module dependencies
+    - task: Go@0
+      displayName: 'Get test dependencies'
+      inputs:
+        command: 'custom'
+        customCommand: 'mod'
+        arguments: 'tidy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
+        
+    # Run Go Test
+    - task: Go@0
+      displayName: 'Run tests'
+      inputs:
+        command: 'test'
+        arguments: '-v unit_test.go'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
+      env:
+          ARM_TENANT_ID: $(TenantId)
+          ARM_CLIENT_ID: $(ServicePrincipalId)
+          ARM_CLIENT_SECRET: $(ServicePrincipalKey)
+          ARM_SUBSCRIPTION_ID: $(SubscriptionId)
