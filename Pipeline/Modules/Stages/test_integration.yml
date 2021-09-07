@@ -23,17 +23,6 @@ stages:
             az account set -s $env:SUBSCRIPTIONID
         pwsh: true
 
-    # Sign in to Azure
-    - task: AzureCLI@2
-      inputs:
-        azureSubscription: 'ARM-Alpha'
-        scriptType: 'pscore'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          #az login --service-principal -t $env:tenantId -u $env:servicePrincipalId -p $env:servicePrincipalKey
-          #az account set -s $env:subscriptionId
-        addSpnToEnvironment: true
-
     # Install Terraform
     - task: TerraformInstaller@0
       displayName: 'Terraform Install'
