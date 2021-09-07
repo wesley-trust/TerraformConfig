@@ -15,8 +15,8 @@ stages:
         scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az login --service-principal -t $env:tenantId -u $env:servicePrincipalId -p $env:servicePrincipalKey
-          az account set -s $env:subscriptionId
+          #az login --service-principal -t $env:tenantId -u $env:servicePrincipalId -p $env:servicePrincipalKey
+          #az account set -s $env:subscriptionId
         addSpnToEnvironment: true
 
     # Install Terraform
