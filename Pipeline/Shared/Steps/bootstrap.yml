@@ -1,5 +1,12 @@
 steps:
 
+- task: CmdLine@2
+  name: CloneTerraformModules
+  displayName: 'Get Terraform Modules'
+  inputs:
+    script: 'git clone --branch $(Branch) --single-branch https://github.com/wesley-trust/Terraform.git'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
 # Install Terraform
 - task: TerraformInstaller@0
   displayName: 'Terraform Install'
