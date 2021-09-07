@@ -39,7 +39,7 @@ stages:
     - task: Go@0
       inputs:
         command: 'get'
-        arguments: 'integration_test.go'
+        arguments: './integration_test.go'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
         
     # Run Go Test
