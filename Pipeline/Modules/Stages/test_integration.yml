@@ -36,15 +36,16 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
     
     # Run Go Get
-    - task: Go@0
-      inputs:
-        command: 'get'
-        arguments: './integration_test.go'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
+    #- task: Go@0
+    #  inputs:
+    #    command: 'get'
+    #    arguments: './integration_test.go'
+    #    workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
         
     # Run Go Test
     - task: Go@0
       inputs:
         command: 'test'
-        arguments: '-v integration_test.go'
+        #arguments: '-v integration_test.go'
+        arguments: 'TestIntegrationExample'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
