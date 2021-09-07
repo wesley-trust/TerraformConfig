@@ -33,7 +33,7 @@ stages:
     - task: GoTool@0
       displayName: 'Go Install'
       inputs:
-        version: 'latest'
+        version: '1.17'
 
     # Create test module
     - task: Go@0
