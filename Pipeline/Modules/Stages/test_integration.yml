@@ -41,6 +41,7 @@ stages:
     # Run Go Test
     - task: Go@0
       displayName: 'Run tests'
+      inputs:
         command: 'test'
         arguments: '-v integration_test.go'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/Deployments/$(Module)/tests'
