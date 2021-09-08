@@ -7,7 +7,8 @@ stages:
   - job: Import
     continueOnError: false
     steps:
-    # Terraform bootstrap
+    
+    # Bootstrap steps
     - template: ../Steps/bootstrap.yml
 
     # Terraform Validate
