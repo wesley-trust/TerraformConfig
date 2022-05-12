@@ -37,7 +37,7 @@ stages:
         # Set working directory
         cd $(System.DefaultWorkingDirectory)/$(Service)/
         # Generate JSON plan
-        terraform show -json $(Pipeline.Workspace)/Output/terraform.tfplan >$(System.ArtifactsDirectory)/plan.json
+        terraform show -json $(Pipeline.Workspace)/Output/apply_terraform.tfplan >$(System.ArtifactsDirectory)/plan.json
         # Scan plan
         regula run $(System.ArtifactsDirectory)/plan.json -s high
       name: 'RegulaScan'
