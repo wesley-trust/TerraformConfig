@@ -18,6 +18,16 @@ stages:
         displayName: 'Terraform Validate'
         command: 'validate'
     
+    # Regula steps
+    - template: ../Steps/regula.yml
+
+    # Scan with Regula
+    - bash: |
+        # Scan files with Regula
+        regula run $(System.DefaultWorkingDirectory)/$(Service)/ -s critical
+      name: 'RegulaScan'
+      displayName: 'Scan Terraform files with Regula'
+
     # Select workspace (if exists)
     - task: TerraformCLI@0
       name: 'select'

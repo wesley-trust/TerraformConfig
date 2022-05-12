@@ -35,6 +35,20 @@ stages:
         publishPlanResults: 'reapply_terraform.tfplan'
         commandOptions: '-out=$(Pipeline.Workspace)/Output/reapply_terraform.tfplan -detailed-exitcode'
     
+    # Regula steps
+    - template: ../Steps/regula.yml
+
+    # Scan Terraform Plan with Regula
+    - bash: |
+        # Set working directory
+        cd $(System.DefaultWorkingDirectory)/$(Service)/
+        # Generate JSON plan
+        terraform show -json $(Pipeline.Workspace)/Output/reapply_terraform.tfplan >$(System.ArtifactsDirectory)/plan.json
+        # Scan plan
+        regula run $(System.ArtifactsDirectory)/plan.json -s high
+      name: 'RegulaScan'
+      displayName: 'Scan Terraform Plan with Regula'
+
     # Set pipeline output variable if there are changes
     - template: ../Steps/variable.yml
     

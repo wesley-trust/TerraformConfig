@@ -6,7 +6,7 @@ stages:
   dependsOn: Plan
   condition: and(succeeded(), eq(dependencies.Plan.outputs['Evaluate.Variable.ShouldRun'], 'true'))
   jobs:
-  
+
   - deployment: Deploy
     continueOnError: true
     environment: $(Environment)

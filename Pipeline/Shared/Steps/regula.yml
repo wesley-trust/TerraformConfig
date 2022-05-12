@@ -1,0 +1,26 @@
+steps:
+
+# Download Regula
+- task: DownloadGitHubRelease@0
+  displayName: 'Download Regula'
+  inputs:
+    connection: 'wesley-trust'
+    userRepository: 'fugue/regula'
+    defaultVersionType: 'latest'
+    itemPattern: '*Linux_x86_64.tar.gz'
+    downloadPath: '$(System.ArtifactsDirectory)/regula' 
+
+# Configure Regula
+- bash: |
+    # Change to directory containing regula download
+    cd $(System.ArtifactsDirectory)/regula
+    # Add filename to variable
+    REGULA=$(ls -p | grep -v /)
+    # Extract archive
+    tar -xf $REGULA
+    # Remove archive
+    rm --f $REGULA
+    # Add Regula to PATH
+    echo "##vso[task.prependpath]$(System.ArtifactsDirectory)/regula"
+  name: 'ConfigureRegula'
+  displayName: 'Configure Regula'
